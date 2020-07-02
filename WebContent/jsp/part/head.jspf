@@ -21,65 +21,76 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="/blog/resource/js/common.js"></script>
-<link rel="stylesheet" type="text/css" href="/blog/resource/css/index.css">
+<link rel="stylesheet" type="text/css"
+	href="/blog/resource/css/index.css">
 
 <title>blog</title>
 
 </head>
 
 <body>
-<div class="main-logo visible-md-up"> 
-  <a href="#">
-    <i class="fab fa-free-code-camp"></i>
-  </a>
-  <div></div>
-</div>
-<div class="top-bar visible-md-up">
-    <nav class="menu-box-1 visible-md-up">
-      <ul>
-        <li><a href="#" class="">홈 화면</a></li>
-        <li>
-          <a href="#" class="">게시판</a>
-          <ul-box>
-            <ul>
-              <li><a href="#">무슨게시판</a></li>
-              <li><a href="#">어떤게시판</a></li>
-              <li><a href="#">그냥게시판</a></li>
-            </ul>  
-          </ul-box>
-        </li>
-        <li><a href="#">취미</a></li>
-        <li><a href="#">기타</a></li>
-        <li><a href="#">SNS</a></li>
-      </ul>
-    </nav>
-</div>
+	<div class="top-menu visible-md-up">
+		<div class="main-logo">
+			<a href="/blog/jsp/home/main.jsp"> <i
+				class="fab fa-free-code-camp"></i>
+			</a>
+			<div></div>
+		</div>
+		<div class="top-bar visible-md-up">
+			<nav class="menu-box-1">
+				<ul>
+					<li><a href="/blog/jsp/home/main.jsp" class="">홈</a></li>
+					<li><a href="#" class="">잡담</a></li>
+					<li><a href="#">공부</a> <ul-box>
+						<ul>
+							<li><a href="#">IT기타</a></li>
+							<li><a href="#">프론트엔드</a></li>
+							<li><a href="#">백엔드</a></li>
+							<li><a href="#">알고리즘</a></li>
+						</ul>
+						</ul-box></li>
+					<li><a href="#">취미</a> <ul-box>
+						<ul>
+							<li><a href="#">게임</a></li>
+							<li><a href="#">축구</a></li>
+						</ul>
+						</ul-box></li>
+					<li><a href="#">SNS</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
 
-<div class="mobile-top-bar visible-sm-down flex">
-  <a href="#" class="btn-toggle-mobile-side-bar felx-ai-c">
-    <div></div>
-    <div></div>
-    <div></div>
-  </a>
-  <a href="#" class="logo flex flex-ai-c absolute-center absolute-middle">
-    <i class="fab fa-free-code-camp"></i>
-  </a>
-</div>
-<div class="mobile-side-bar">
-  <div class="menu-box">
-    <ul>
-      <li><a href="#" class="block">홈화면</a></li>
-      <li>
-        <a href="#" class="block">게시판</a>
-        <ul>
-          <li><a href="#" class="block">무슨게시판</a></li>
-          <li><a href="#" class="block">어떤게시판</a></li>
-          <li><a href="#" class="block">그냥게시판</a></li>
-        </ul>
-      </li>
-      <li><a href="#" class="block">사진</a></li>
-      <li><a href="#" class="block">영상</a></li>
-      <li><a href="#" class="block">SNS</a></li>
-    </ul>
-  </div>
-</div>
+	<div class="mobile-top-bar visible-sm-down flex">
+		<a href="#" class="btn-toggle-mobile-side-bar felx-ai-c">
+			<div></div>
+			<div></div>
+			<div></div>
+		</a> <a href="/blog/jsp/home/main.jsp"
+			class="logo flex flex-ai-c absolute-center absolute-middle"> <i
+			class="fab fa-free-code-camp"></i>
+		</a>
+	</div>
+	<div class="mobile-side-bar">
+		<div class="menu-box">
+			<ul>
+				<li><a href="/blog/jsp/home/main.jsp" class="">홈</a></li>
+				<li><a href="#" class="">잡담</a></li>
+				<li><a href="#">공부</a> <ul-box>
+					<ul>
+						<li><a href="#">IT기타</a></li>
+						<li><a href="#">프론트엔드</a></li>
+						<li><a href="#">백엔드</a></li>
+						<li><a href="#">알고리즘</a></li>
+					</ul>
+					</ul-box></li>
+				<li><a href="#">취미</a> <ul-box>
+					<ul>
+						<li><a href="#">게임</a></li>
+						<li><a href="#">축구</a></li>
+					</ul>
+					</ul-box></li>
+				<li><a href="#">SNS</a></li>
+			</ul>
+		</div>
+	</div>

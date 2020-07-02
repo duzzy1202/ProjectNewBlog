@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.DB.practice.DBUtil;
-import com.Dto.practice.Article;
+import com.DB.java.blog.DBUtil;
+import com.Dto.java.blog.Article;
 
 @WebServlet("/s/article/list")
 public class ArticleListServlet extends HttpServlet {
@@ -72,6 +72,6 @@ public class ArticleListServlet extends HttpServlet {
 		List<Article> articles = getArticles();
 
 		req.setAttribute("articles", articles);
-		req.getRequestDispatcher("/jsp/s/home/board1.jsp").forward(req, resp);
+		req.getRequestDispatcher("/jsp/article/List.jsp").forward(req, resp);
 	}
 }

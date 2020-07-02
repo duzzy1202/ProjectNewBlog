@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.DB.practice.DBUtil;
-import com.Dto.practice.Article;
+import com.DB.java.blog.DBUtil;
+import com.Dto.java.blog.Article;
 
 @WebServlet("/s/article/detail")
 public class ArticleDetailServlet extends HttpServlet {
@@ -45,7 +45,7 @@ public class ArticleDetailServlet extends HttpServlet {
 			Article article = getArticle(connection, id);
 
 			request.setAttribute("article", article);
-			request.getRequestDispatcher("/jsp/s/home/detail.jsp").forward(request, response);
+			request.getRequestDispatcher("/jsp/article/Detail.jsp").forward(request, response);
 
 		} catch (SQLException e) {
 			System.err.printf("[SQLException 예외, %s]\n", e.getMessage());

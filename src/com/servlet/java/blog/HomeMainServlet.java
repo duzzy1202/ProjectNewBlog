@@ -14,7 +14,7 @@ public class HomeMainServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
 
-		request.getRequestDispatcher("/jsp/s/home/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/jsp/home/main.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
