@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 구글 폰트 불러오기 -->
+<!-- rotobo(400/900), notosanskr(400/900) -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&family=Roboto:wght@400;900&display=swap"
+	rel="stylesheet">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+
+<!-- 제이쿼리 불러오기 -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/blog/resource/js/common.js"></script>
+<link rel="stylesheet" type="text/css" href="/blog/resource/css/index.css">
+
+<title>blog</title>
+
+</head>
+
+<body>
+<div class="main-logo visible-md-up"> 
+  <a href="#">
+    <i class="fab fa-free-code-camp"></i>
+  </a>
+  <div></div>
+</div>
+<div class="top-bar visible-md-up">
+    <nav class="menu-box-1 visible-md-up">
+      <ul>
+        <li><a href="#" class="">홈 화면</a></li>
+        <li>
+          <a href="#" class="">게시판</a>
+          <ul-box>
+            <ul>
+              <li><a href="#">무슨게시판</a></li>
+              <li><a href="#">어떤게시판</a></li>
+              <li><a href="#">그냥게시판</a></li>
+            </ul>  
+          </ul-box>
+        </li>
+        <li><a href="#">취미</a></li>
+        <li><a href="#">기타</a></li>
+        <li><a href="#">SNS</a></li>
+      </ul>
+    </nav>
+</div>
+
+<div class="mobile-top-bar visible-sm-down flex">
+  <a href="#" class="btn-toggle-mobile-side-bar felx-ai-c">
+    <div></div>
+    <div></div>
+    <div></div>
+  </a>
+  <a href="#" class="logo flex flex-ai-c absolute-center absolute-middle">
+    <i class="fab fa-free-code-camp"></i>
+  </a>
+</div>
+<div class="mobile-side-bar">
+  <div class="menu-box">
+    <ul>
+      <li><a href="#" class="block">홈화면</a></li>
+      <li>
+        <a href="#" class="block">게시판</a>
+        <ul>
+          <li><a href="#" class="block">무슨게시판</a></li>
+          <li><a href="#" class="block">어떤게시판</a></li>
+          <li><a href="#" class="block">그냥게시판</a></li>
+        </ul>
+      </li>
+      <li><a href="#" class="block">사진</a></li>
+      <li><a href="#" class="block">영상</a></li>
+      <li><a href="#" class="block">SNS</a></li>
+    </ul>
+  </div>
+</div>

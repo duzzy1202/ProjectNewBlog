@@ -1,0 +1,45 @@
+package com.Dto.practice;
+
+import java.util.Map;
+
+public class ArticleReply extends Dto {
+	private int id;
+	private String regDate;
+	private int articleId;
+	private String body;
+
+	public ArticleReply() {
+
+	}
+	
+	public ArticleReply(int articleId, String body) {
+		this.articleId = articleId;
+		this.body = body;
+	}
+	
+	public ArticleReply(Map<String, Object> row) {
+		super((int) row.get("id"), (String) row.get("regDate"));
+		this.body = (String) row.get("body");
+		this.articleId = (int) row.get("articleId");
+	}
+
+	public int getArticleId() {
+		return articleId;
+	}
+
+	public void setArticleId(int articleId) {
+		this.articleId = articleId;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public String toString() {
+		return "[" + getId() + "] " + getBody() + " ( " + getRegDate() + " )";
+	}
+}
