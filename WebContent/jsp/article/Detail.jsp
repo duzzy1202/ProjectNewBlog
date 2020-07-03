@@ -41,27 +41,29 @@
 <link rel="stylesheet"
 	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
-<div class="con">
-	<h1><%=article.getTitle()%></h1>
-	
-	<div>
-		이모지 테스트 : 😀😁
+<div class="detail-box">
+	<div class="con">
+		<div class="detail-title">
+			<div class="detail-title-box">
+				<i class="fab fa-free-code-camp"></i><span><%=article.getTitle()%></span>
+			</div>
+		</div>
+
+		<div class="detail-body">
+			<div id="origin1" style="display: none;"><%=article.getBody()%></div>
+			<div id="viewer1"></div>
+			<script>
+				var editor1__initialValue = $('#origin1').html();
+				var editor1 = new toastui.Editor({
+					el : document.querySelector('#viewer1'),
+					height : '600px',
+					initialValue : editor1__initialValue,
+					viewer : true,
+					plugins : [ toastui.Editor.plugin.codeSyntaxHighlight ]
+				});
+			</script>
+		</div>
 	</div>
-	
-	<div id="origin1" style="display: none;"><%=article.getBody()%></div>
-	<div id="viewer1"></div>
-	<script>
-		var editor1__initialValue = $('#origin1').html();
-		var editor1 = new toastui.Editor({
-			el : document.querySelector('#viewer1'),
-			height : '600px',
-			initialValue : editor1__initialValue,
-			viewer : true,
-			plugins : [ toastui.Editor.plugin.codeSyntaxHighlight ]
-		});
-	</script>
 </div>
-
-
 
 <%@ include file="/jsp/part/foot.jspf"%>

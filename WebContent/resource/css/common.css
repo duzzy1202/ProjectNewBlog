@@ -323,27 +323,21 @@ html {
 }
 .article-list-body {
   background-color: #2E2E2E;
-  height: 600px;
+  height: 500px;
 }
 .article-list-body li {
   display: flex;
   width: 100%;
-  margin: 0;
-  
 }
 .article-list-body li > div {
-  display: inline-block;
   padding: 8px;
-  margin: 0;
   color: white;
 }
-
 .article-list-body li > div:first-child {
   width: 5%;
   text-align: center;
   color: orangered;
   font-size: 1.5rem;
-  padding: 0 5px;
 }
 .article-list-body li > div:nth-child(2) {
   width: 5%;
@@ -359,3 +353,68 @@ html {
 .article-list-body li > div:last-child {
   text-align: center;
   width: 40%;
+}
+.page-box > ul {
+  height: 100%;
+  padding: 5px;
+}
+.page-box > ul > li {
+  text-align: center;
+  margin: 5px;
+  background-color: #2E2E2E;
+  height: 50px;
+  width: 50px;
+}
+.page-box > ul > li > a {
+  display: block;
+  padding: 10px;
+  font-size: 1.4rem;
+	color: white;
+}
+.page-box > ul > li:hover > a {
+	color: orangered;
+  text-decoration: underline;
+}
+.page-box > ul > li.current > a {
+	color: orangered;
+}
+.detail-box {
+  color: white;
+  background-color: grey;
+  display: block;
+  margin-left: 25%;
+  margin-right: 25%;
+  height: 600px;
+}
+
+.detail-box .detail-title {
+  display: block;
+  height: 70px;
+  padding: 5px;
+}
+.detail-box .detail-title .detail-title-box {
+  display: flex;
+  margin: 5px;
+  background-color: #2E2E2E;
+}
+
+.detail-box .detail-title > .detail-title-box > i {
+  display: flex;
+  font-size: 2.5rem;
+  padding: 5px;
+  color: orangered;
+}
+
+.detail-box .detail-title > .detail-title-box > span {
+  display: flex;
+  width: 100%;
+  margin: 10px;
+  font-size: 1.5rem;
+}
+
+.detail-box .detail-body {
+  display: block;
+  margin: 10px;
+  height: 480px;
+  background-color: white;
+}

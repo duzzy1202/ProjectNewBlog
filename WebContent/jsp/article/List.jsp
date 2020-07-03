@@ -44,22 +44,6 @@
 <link rel="stylesheet"
 	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
-<style>
-.page-box>ul>li>a {
-	padding: 0 10px;
-	text-decoration: underline;
-	color: #787878;
-}
-
-.page-box>ul>li:hover>a {
-	color: black;
-}
-
-.page-box>ul>li.current>a {
-	color: red;
-}
-</style>
-
 <div class="article-list-box">
 	<div class="total-article-box1">
 		<div class="total-article-box2">
@@ -70,29 +54,33 @@
 	</div>
 
 
-	<div class="con">
+	<div class="article-list-body">
 		<ul>
 			<%
 				for (Article article : articles) {
 					String cateName = "";
-					if (article.getCateItemId() == 1) {
-						cateName = "잡담";
-					}
 					switch (article.getCateItemId()) {
 					case 1:
 						cateName = "잡담";
+						break;
 					case 2:
 						cateName = "IT기타";
+						break;
 					case 3:
 						cateName = "프론트엔드";
+						break;
 					case 4:
 						cateName = "백엔드";
+						break;
 					case 5:
 						cateName = "알고리즘";
+						break;
 					case 6:
 						cateName = "게임";
+						break;
 					case 7:
 						cateName = "축구";
+						break;
 					}
 			%>
 
@@ -115,8 +103,7 @@
 			<%
 				for (int i = 1; i <= totalPage; i++) {
 			%>
-			<li class="<%=i == paramPage ? "current" : ""%>"><a
-				href="?cateItemId=${param.cateItemId}&page=<%=i%>" class="block"><%=i%></a></li>
+			<li class="<%=i == paramPage ? "current" : ""%>"><a href="?cateItemId=${param.cateItemId}&page=<%=i%>" class="block"><%=i%></a></li>
 			<%
 				}
 			%>
