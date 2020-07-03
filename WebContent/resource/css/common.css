@@ -90,7 +90,13 @@ html {
   height: 90px;
   width: 100px;
   text-align: center;
+  color: orange;
+  transition: color 4s;
 }
+.main-logo a:hover {
+  color: red;
+}
+
 /* 탑바 */
 @media ( max-width: 799px ) {
   .visible-md-up {
@@ -140,16 +146,21 @@ html {
 }
 .top-bar .menu-box-1 > ul > li:hover > a {
   background-color: #424242;
+  color: orangered;
 }
 .top-bar .menu-box-1 ul ul-box {
-  display: none;
+  display: block;
   position: absolute;
   top: 180px;
   width: 1000px;
-  height: 100px;
+  height: 60px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s;
 }
 .top-bar .menu-box-1 ul > li:hover > ul-box {
-  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 .top-bar .menu-box-1 ul ul {
   display: none;
@@ -161,7 +172,7 @@ html {
 .top-bar .menu-box-1 ul ul > li {
   display: inline-block;
   height: 40px;
-  width: 200px;
+  width: 150px;
 }
 .top-bar .menu-box-1 ul ul a {
   display: block;
@@ -171,14 +182,15 @@ html {
   width: 100%;
   top: 100%;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding: 0 5px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .top-bar .menu-box-1 ul ul > li:hover > a {
   display: block;
   background-color: black;
+  color: orangered;
   color: #FE9A2E;
 }
 
@@ -384,7 +396,7 @@ html {
   display: block;
   margin-left: 25%;
   margin-right: 25%;
-  height: 800px;
+  height: 750px;
 }
 
 .detail-box .detail-title {
@@ -422,7 +434,7 @@ html {
 
 .detail-box .detail-body .detail-body-box {
   display: block;
-  height: 680px;
+  height: 620px;
   background-color: #BDBDBD;
   overflow: auto;
 }
