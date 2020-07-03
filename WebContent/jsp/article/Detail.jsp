@@ -50,18 +50,20 @@
 		</div>
 
 		<div class="detail-body">
-			<div id="origin1" style="display: none;"><%=article.getBody()%></div>
-			<div id="viewer1"></div>
-			<script>
-				var editor1__initialValue = $('#origin1').html();
-				var editor1 = new toastui.Editor({
-					el : document.querySelector('#viewer1'),
-					height : '600px',
-					initialValue : editor1__initialValue,
-					viewer : true,
-					plugins : [ toastui.Editor.plugin.codeSyntaxHighlight ]
-				});
-			</script>
+			<div class="detail-body-box">
+				<div id="origin1" style="display: none;"><%=article.getBody()%></div>
+				<div id="viewer1"></div>
+				<script>
+					var editor1__initialValue = $('#origin1').html();
+					var editor1 = new toastui.Editor({
+						el : document.querySelector('#viewer1'),
+						height : '600px',
+						initialValue : editor1__initialValue,
+						viewer : true,
+						plugins : [ toastui.Editor.plugin.codeSyntaxHighlight ]
+					});
+				</script>
+			</div>
 		</div>
 	</div>
 </div>

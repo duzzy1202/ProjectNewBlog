@@ -414,7 +414,14 @@ html {
 
 .detail-box .detail-body {
   display: block;
+  padding: 10px;
   margin: 10px;
-  height: 480px;
   background-color: white;
+}
+
+.detail-box .detail-body .detail-body-box {
+  display: block;
+  height: 460px;
+  background-color: #BDBDBD;
+  overflow: auto;
 }
