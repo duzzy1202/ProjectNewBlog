@@ -17,12 +17,14 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
 
+<link rel="stylesheet" type="text/css" href="/blog/resource/css/common.css">
+
 <!-- 제이쿼리 불러오기 -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="/blog/resource/js/common.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="/blog/resource/css/index.css">
+
+<script src="/blog/resource/js/common.js"></script>
+
 
 <title>blog</title>
 
@@ -31,7 +33,7 @@
 <body>
 	<div class="top-menu visible-md-up">
 		<div class="main-logo">
-			<a href="/blog/jsp/home/main.jsp"> <i
+			<a href="${pageContext.request.contextPath}/s/home/main"> <i
 				class="fab fa-free-code-camp"></i>
 			</a>
 			<div></div>
@@ -39,8 +41,8 @@
 		<div class="top-bar visible-md-up">
 			<nav class="menu-box-1">
 				<ul>
-					<li><a href="/blog/jsp/home/main.jsp" class="">홈</a></li>
-					<li><a href="#" class="">잡담</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/home/main" class="">홈</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/article/list" class="">잡담</a></li>
 					<li><a href="#">공부</a> <ul-box>
 						<ul>
 							<li><a href="#">IT기타</a></li>
@@ -66,7 +68,7 @@
 			<div></div>
 			<div></div>
 			<div></div>
-		</a> <a href="/blog/jsp/home/main.jsp"
+		</a> <a href="${pageContext.request.contextPath}/s/home/main"
 			class="logo flex flex-ai-c absolute-center absolute-middle"> <i
 			class="fab fa-free-code-camp"></i>
 		</a>
@@ -74,7 +76,7 @@
 	<div class="mobile-side-bar">
 		<div class="menu-box">
 			<ul>
-				<li><a href="/blog/jsp/home/main.jsp" class="">홈</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/home/main" class="">홈</a></li>
 				<li><a href="#" class="">잡담</a></li>
 				<li><a href="#">공부</a> <ul-box>
 					<ul>

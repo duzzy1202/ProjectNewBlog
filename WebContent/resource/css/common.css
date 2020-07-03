@@ -59,10 +59,12 @@ a {
 .fontsize-4rem {
   font-size: 4rem;
 }
-/* 커스텀 */
-.con {
-  max-width: 1356px;
+
+/* 배경 */
+html {
+	background-color: black;
 }
+
 /* 메인 로고 */
 .main-logo {
   display: flex;
@@ -131,12 +133,13 @@ a {
   color: #FE9A2E;
   padding: 0 40px;
   display: flex;
+  width: 100%;
   height: 100%;
   align-items: center;
   justify-content: center;;
 }
 .top-bar .menu-box-1 > ul > li:hover > a {
-  background-color: #CEE3F6;
+  background-color: #424242;
 }
 .top-bar .menu-box-1 ul ul-box {
   display: none;
@@ -163,8 +166,8 @@ a {
 .top-bar .menu-box-1 ul ul a {
   display: block;
   text-align: center;
-  background-color: #CEE3F6;
-  color: #045FB4;
+  background-color: #424242;
+  color: #FE9A2E;
   width: 100%;
   top: 100%;
   font-weight: bold;
@@ -175,8 +178,8 @@ a {
 }
 .top-bar .menu-box-1 ul ul > li:hover > a {
   display: block;
-  background-color: #08088A;
-  color: #045FB4;
+  background-color: black;
+  color: #FE9A2E;
 }
 
 /* 모바일 탑바 */
@@ -284,3 +287,75 @@ a {
 .mobile-side-bar .menu-box ul > li.active > a:not(:only-child)::after {
   content: "[-]";
 }
+.main-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: -1;
+}
+
+/* 리스트 */
+.article-list-box {
+  background-color: grey;
+  display: block;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.total-article-box1 {
+  background-color: orangered;
+  padding: 15px;
+}
+.total-article-box1 > .total-article-box2 {
+  background-color: orange;
+  display: flex;
+  justify-content: center;
+}
+.total-article-box1 > .total-article-box2 > span {
+  display: block;
+  color: black;
+  font-size: 2rem;
+  padding: 5px;
+}
+.total-article-box1 > .total-article-box2 > span > i {
+  color: red;
+  padding: 5px;
+  font-size: 2.5rem;
+}
+.article-list-body {
+  background-color: #2E2E2E;
+  height: 600px;
+}
+.article-list-body li {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  
+}
+.article-list-body li > div {
+  display: inline-block;
+  padding: 8px;
+  margin: 0;
+  color: white;
+}
+
+.article-list-body li > div:first-child {
+  width: 5%;
+  text-align: center;
+  color: orangered;
+  font-size: 1.5rem;
+  padding: 0 5px;
+}
+.article-list-body li > div:nth-child(2) {
+  width: 5%;
+  text-align: center;
+}
+.article-list-body li > div:nth-child(3) {
+  width: 20%;
+  text-align: center;
+}
+.article-list-body li > div:nth-child(4) {
+  width: 100%;
+}
+.article-list-body li > div:last-child {
+  text-align: center;
+  width: 40%;

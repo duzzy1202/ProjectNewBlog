@@ -50,41 +50,78 @@
 	text-decoration: underline;
 	color: #787878;
 }
+
 .page-box>ul>li:hover>a {
 	color: black;
 }
+
 .page-box>ul>li.current>a {
 	color: red;
 }
 </style>
 
-<div class="con">
-	총 게시물 수 : ${totalCount}
-</div>
+<div class="article-list-box">
+	<div class="total-article-box1">
+		<div class="total-article-box2">
+			<span> <i class="fab fa-free-code-camp"></i> 불타고 있는 모닥불 갯수 :
+				${totalCount} 개 <i class="fab fa-free-code-camp"></i>
+			</span>
+		</div>
+	</div>
 
-<div class="con">
-	<ul>
-		<%
-			for (Article article : articles) {
-		%>
-		<li><a href="./detail?id=<%=article.getId()%>"><%=article.getId()%>,
-				<%=article.getCateItemId()%>, <%=article.getTitle()%></a></li>
-		<%
-			}
-		%>
-	</ul>
-</div>
 
-<div class="con page-box">
-	<ul class="flex flex-jc-c">
-		<%
-			for (int i = 1; i <= totalPage; i++) {
-		%>
-		<li class="<%=i == paramPage ? "current" : ""%>"><a href="?cateItemId=${param.cateItemId}&page=<%=i%>" class="block"><%=i%></a></li>
-		<%
-			}
-		%>
-	</ul>
+	<div class="con">
+		<ul>
+			<%
+				for (Article article : articles) {
+					String cateName = "";
+					if (article.getCateItemId() == 1) {
+						cateName = "잡담";
+					}
+					switch (article.getCateItemId()) {
+					case 1:
+						cateName = "잡담";
+					case 2:
+						cateName = "IT기타";
+					case 3:
+						cateName = "프론트엔드";
+					case 4:
+						cateName = "백엔드";
+					case 5:
+						cateName = "알고리즘";
+					case 6:
+						cateName = "게임";
+					case 7:
+						cateName = "축구";
+					}
+			%>
+
+			<li>
+				<div><i class="fab fa-free-code-camp"></i></div>
+				<div class="articleId"><%=article.getId()%></div> 
+				<div class="cateName"><%=cateName%></div>
+				<div class="articleTitle"><a href="./detail?id=<%=article.getId()%>"><%=article.getTitle()%></a></div>
+				<div class="articleRegDate"><%=article.getRegDate()%></div>
+			</li>
+			
+			<%
+				}
+			%>
+		</ul>
+	</div>
+
+	<div class="con page-box">
+		<ul class="flex flex-jc-c">
+			<%
+				for (int i = 1; i <= totalPage; i++) {
+			%>
+			<li class="<%=i == paramPage ? "current" : ""%>"><a
+				href="?cateItemId=${param.cateItemId}&page=<%=i%>" class="block"><%=i%></a></li>
+			<%
+				}
+			%>
+		</ul>
+	</div>
 </div>
 
 
