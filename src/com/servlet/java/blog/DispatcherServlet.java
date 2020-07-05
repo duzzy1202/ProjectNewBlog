@@ -63,7 +63,7 @@ public class DispatcherServlet extends HttpServlet {
 				controller = new MemberController();
 				break;
 			case "home":
-				controller = new HomeController();
+				controller = new HomeController(dbConn);
 				break;
 			}
 

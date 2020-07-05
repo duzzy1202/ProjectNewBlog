@@ -46,6 +46,8 @@
 		<div class="detail-title">
 			<div class="detail-title-box">
 				<i class="fab fa-free-code-camp"></i><span><%=article.getTitle()%></span>
+				<div class="article-regdate"><span><%=article.getRegDate()%></span></div>
+				<div class="back-list-btn"><a href="javascript:history.back();">목록</a></div>
 			</div>
 		</div>
 

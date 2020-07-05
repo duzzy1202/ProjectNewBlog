@@ -368,92 +368,95 @@ html {
 	position: absolute;
 	top: 15%;
 	left: 50%;
-	transform:translateX(-50%);
+	transform: translateX(-50%);
 }
 
-.total-article-box1 {
+.article-list-box .total-article-box1 {
 	background-color: orangered;
 	padding: 15px;
 }
 
-.total-article-box1>.total-article-box2 {
+.article-list-box .total-article-box1>.total-article-box2 {
 	background-color: orange;
 	display: flex;
 	justify-content: center;
 }
 
-.total-article-box1>.total-article-box2>span {
+.article-list-box .total-article-box1>.total-article-box2>span {
 	display: block;
 	color: black;
 	font-size: 2rem;
 	padding: 5px;
+	font-family: 'Sunflower', sans-serif;
 }
 
-.total-article-box1>.total-article-box2>span>i {
+.article-list-box .total-article-box1>.total-article-box2>span>i {
 	color: red;
 	padding: 5px;
 	font-size: 2.5rem;
 }
 
-.article-list-body {
+.article-list-box .article-list-body {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.75);
 	height: 500px;
 	width: 100%;
 }
 
-.article-list-body li {
+.article-list-box .article-list-body li {
 	display: flex;
 	width: 100%;
 	background-color: black;
 	background: rgba(0, 0, 0, 0);
 }
-.article-list-body li:hover {
+
+.article-list-box .article-list-body li:hover {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.8);
 }
 
-.article-list-body li>div {
+.article-list-box .article-list-body li>div {
 	padding: 8px;
 	color: white;
 }
 
-.article-list-body li>div:first-child {
+.article-list-box .article-list-body li>div:first-child {
 	width: 5%;
 	text-align: center;
 	color: orangered;
 	font-size: 1.6rem;
 }
 
-.article-list-body li>div:nth-child(2) {
+.article-list-box .article-list-body li>div:nth-child(2) {
 	width: 5%;
 	text-align: center;
 	padding: 10px;
 	font-size: 1.2rem;
 }
 
-.article-list-body li>div:nth-child(3) {
+.article-list-box .article-list-body li>div:nth-child(3) {
 	width: 20%;
 	text-align: center;
 	padding: 10px;
 	font-size: 1.2rem;
+	font-family: 'Sunflower', sans-serif;
 }
 
-.article-list-body li>div:nth-child(4) {
+.article-list-box .article-list-body li>div:nth-child(4) {
 	width: 100%;
 	padding: 10px;
 	font-size: 1.2rem;
+	font-family: 'Sunflower', sans-serif;
 }
 
-.article-list-body li>div:last-child {
+.article-list-box .article-list-body li>div:last-child {
 	text-align: center;
 	width: 40%;
 	padding: 10px;
 	font-size: 1.2rem;
 }
 
-
-.page-box>ul>li {
+.article-list-box .page-box>ul>li {
 	text-align: center;
 	margin: 5px;
 	background-color: black;
@@ -462,24 +465,24 @@ html {
 	width: 50px;
 }
 
-.page-box>ul>li>a {
+.article-list-box .page-box>ul>li>a {
 	display: block;
 	padding: 10px;
 	font-size: 1.4rem;
 	color: white;
 }
 
-.page-box>ul>li:hover {
+.article-list-box .page-box>ul>li:hover {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.8);
 }
 
-.page-box>ul>li:hover>a {
+.article-list-box .page-box>ul>li:hover>a {
 	color: orangered;
 	text-decoration: underline;
 }
 
-.page-box>ul>li.current>a {
+.article-list-box .page-box>ul>li.current>a {
 	color: orangered;
 }
 
@@ -493,7 +496,7 @@ html {
 	position: absolute;
 	top: 10%;
 	left: 50%;
-	transform:translateX(-50%);
+	transform: translateX(-50%);
 }
 
 .detail-box .detail-title {
@@ -520,10 +523,42 @@ html {
 
 .detail-box .detail-title>.detail-title-box>span {
 	display: flex;
-	width: 100%;
+	width: 65%;
 	margin: 10px;
 	font-size: 1.5rem;
 	color: white;
+	font-family: 'Sunflower', sans-serif;
+}
+.detail-box .detail-title>.detail-title-box>.article-regdate {
+	display: flex;
+	width: 30%;
+	height: 100%;
+	text-align: center;
+}
+.detail-box .detail-title>.detail-title-box>.article-regdate>span {
+	display: block;
+	width: 100%;
+	padding: 16px;
+	height: 100%;
+	font-size: 1rem;
+	color: white;
+	font-family: 'Sunflower', sans-serif;
+}
+.detail-box .detail-title>.detail-title-box>.back-list-btn {
+	display: flex;
+	width: 5%;
+	background-color: #F3F781;
+	text-align: center;
+	margin: 9px;
+	font-weight: bold;padding: 5px;
+	padding: 5px;
+}
+.detail-box .detail-title>.detail-title-box>.back-list-btn>a {
+	display: block;
+	color: orangered;
+	width: 100%;
+	height: 100%;
+	font-size: 1.2rem;
 	font-family: 'Sunflower', sans-serif;
 }
 
@@ -541,4 +576,101 @@ html {
 	background-color: #BDBDBD;
 	overflow: auto;
 	padding: 20px;
+}
+
+/* 홈화면 최근 게시물 리스트 */
+.lastest-article-list-box {
+	background-color: black;
+	background: rgba(0, 0, 0, 0);
+	display: block;
+	width: 40%;
+	position: absolute;
+	top: 15%;
+	left: 40%;
+	transform: translateX(-50%);
+}
+
+.lastest-article-list-box .total-article-box1 {
+	background-color: orangered;
+	padding: 15px;
+}
+
+.lastest-article-list-box .total-article-box1>.total-article-box2 {
+	background-color: orange;
+	display: flex;
+	justify-content: center;
+}
+
+.lastest-article-list-box .total-article-box1>.total-article-box2>span {
+	display: block;
+	color: black;
+	font-size: 2rem;
+	padding: 5px;
+	font-family: 'Sunflower', sans-serif;
+}
+
+.lastest-article-list-box .total-article-box1>.total-article-box2>span>i {
+	color: red;
+	padding: 5px;
+	font-size: 2.5rem;
+}
+
+.lastest-article-list-box .article-list-body {
+	background-color: black;
+	background: rgba(0, 0, 0, 0.75);
+	height: 552px;
+	width: 100%;
+}
+
+.lastest-article-list-box .article-list-body li {
+	display: flex;
+	width: 100%;
+	background-color: black;
+	background: rgba(0, 0, 0, 0);
+}
+
+.lastest-article-list-box .article-list-body li:hover {
+	background-color: black;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.lastest-article-list-box .article-list-body li>div {
+	padding: 5px;
+	color: white;
+}
+
+.lastest-article-list-box .article-list-body li>div:first-child {
+	width: 5%;
+	text-align: center;
+	color: orangered;
+	font-size: 1.6rem;
+}
+
+.lastest-article-list-box .article-list-body li>div:nth-child(2) {
+	width: 5%;
+	text-align: center;
+	padding: 10px;
+	font-size: 1.2rem;
+}
+
+.lastest-article-list-box .article-list-body li>div:nth-child(3) {
+	width: 40%;
+	text-align: center;
+	padding: 10px;
+	font-size: 1.2rem;
+	font-family: 'Sunflower', sans-serif;
+}
+
+.lastest-article-list-box .article-list-body li>div:nth-child(4) {
+	width: 100%;
+	padding: 10px;
+	font-size: 1.2rem;
+	font-family: 'Sunflower', sans-serif;
+}
+
+.lastest-article-list-box .article-list-body li>div:last-child {
+	text-align: center;
+	width: 50%;
+	padding: 10px;
+	font-size: 1rem;
 }
