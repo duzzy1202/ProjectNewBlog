@@ -25,6 +25,8 @@
 
 <script src="/blog/resource/js/common.js"></script>
 
+<!-- 구글폰트 불러오기 -->
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Hi+Melody&family=Jua&family=Nanum+Gothic&family=Nanum+Pen+Script&family=Sunflower:wght@300&display=swap" rel="stylesheet">
 
 <title>blog</title>
 
