@@ -467,6 +467,9 @@ html {
 	padding: 10px;
 	font-size: 1.3rem;
 	font-family: 'Sunflower', sans-serif;
+	overflow: hidden; /* : 넓이가 70px를 넒어서는 내용에 대해서는 보이지 않게 처리함 */
+	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */ 
+	white-space: nowrap;
 }
 
 .article-list-box .article-list-body li>div:last-child {
@@ -474,6 +477,9 @@ html {
 	width: 40%;
 	padding: 10px;
 	font-size: 1.2rem;
+	overflow: hidden; /* : 넓이가 70px를 넒어서는 내용에 대해서는 보이지 않게 처리함 */
+	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */ 
+	white-space: nowrap;
 }
 
 .article-list-box .page-box>ul>li {
@@ -612,7 +618,7 @@ html {
 	width: 40%;
 	position: absolute;
 	top: 15%;
-	left: 40%;
+	left: 33%;
 	transform: translateX(-50%);
 	border-radius: 10px;
 }
@@ -670,21 +676,21 @@ html {
 }
 
 .lastest-article-list-box .article-list-body li>div:first-child {
-	width: 5%;
+	width: 2.5%;
 	text-align: center;
 	color: orangered;
 	font-size: 1.6rem;
 }
 
 .lastest-article-list-box .article-list-body li>div:nth-child(2) {
-	width: 5%;
+	width: 2.5%;
 	text-align: center;
 	padding: 10px;
 	font-size: 1.2rem;
 }
 
 .lastest-article-list-box .article-list-body li>div:nth-child(3) {
-	width: 40%;
+	width: 20%;
 	text-align: center;
 	padding: 10px;
 	font-size: 1.3rem;
@@ -692,18 +698,43 @@ html {
 }
 
 .lastest-article-list-box .article-list-body li>div:nth-child(4) {
-	width: 100%;
-	padding: 10px;
+	width: 50%;
 	font-size: 1.3rem;
 	font-family: 'Sunflower', sans-serif;
+	overflow: hidden; /* : 넓이가 70px를 넒어서는 내용에 대해서는 보이지 않게 처리함 */
+	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */ 
+	white-space: nowrap;
 }
 
 .lastest-article-list-box .article-list-body li>div:last-child {
 	text-align: center;
-	width: 50%;
+	width: 25%;
 	padding: 10px;
 	font-size: 1rem;
+	overflow: hidden; /* : 넓이가 70px를 넒어서는 내용에 대해서는 보이지 않게 처리함 */
+	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */ 
+	white-space: nowrap;
 }
+
+/* 메인화면 오른쪽 */
+
+.main-right {
+	border-radius: 10px;
+	barckground-color: black;
+	background: rgba(0, 0, 0, 0.8);
+	position : absolute;
+	display: block;
+	width: 30%;
+	height: 643px;
+	top: 15%;
+	left: 72%;
+	transform: translateX(-50%);
+}
+.main-right > div {
+	color: white;
+	font-size: 3rem;
+}
+
 
 /* 어바웃 미 */
 
@@ -714,6 +745,7 @@ html {
 	top: 15%;
 	left: 40%;
 	transform: translateX(-50%);
+	border-radius: 10px;
 }
 
 .aboutme-box .con > .aboutme-body {

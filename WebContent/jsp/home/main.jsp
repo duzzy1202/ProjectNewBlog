@@ -6,7 +6,7 @@
 
 <%@ include file="/jsp/part/head.jspf"%>
 <%
-	List<Article> articles = (List<Article>) request.getAttribute("articles"); 
+	List<Article> articles = (List<Article>) request.getAttribute("articles");
 %>
 
 <!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
@@ -58,10 +58,10 @@
 	<div class="article-list-body visible-md-up">
 		<ul>
 			<%
-			for (Article article : articles) {
-				String cateName = "";
-				switch (article.getCateItemId()) {
-				case 1:
+				for (Article article : articles) {
+					String cateName = "";
+					switch (article.getCateItemId()) {
+					case 1:
 						cateName = "잡담";
 						break;
 					case 2:
@@ -97,10 +97,14 @@
 				<div class="articleRegDate"><%=article.getRegDate()%></div>
 			</li>
 
-			<%	}
+			<%
+				}
 			%>
 		</ul>
 	</div>
 </div>
+<div class="main-right visible-md-up">
+		<div> 무언가 추가할 예정 </div>
+	</div>
 <%@ include file="/jsp/part/foot.jspf"%>
 
