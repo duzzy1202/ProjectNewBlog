@@ -386,17 +386,20 @@ html {
 	top: 15%;
 	left: 50%;
 	transform: translateX(-50%);
+	border-radius: 10px;
 }
 
 .article-list-box .total-article-box1 {
 	background-color: orangered;
 	padding: 15px;
+	border-radius: 10px;
 }
 
 .article-list-box .total-article-box1>.total-article-box2 {
 	background-color: orange;
 	display: flex;
 	justify-content: center;
+	border-radius: 10px;
 }
 
 .article-list-box .total-article-box1>.total-article-box2>span {
@@ -480,6 +483,7 @@ html {
 	background: rgba(0, 0, 0, 0.75);
 	height: 50px;
 	width: 50px;
+	border-radius: 3px;
 }
 
 .article-list-box .page-box>ul>li>a {
@@ -514,12 +518,14 @@ html {
 	top: 10%;
 	left: 50%;
 	transform: translateX(-50%);
+	border-radius: 10px;
 }
 
 .detail-box .detail-title {
 	display: block;
 	height: 70px;
 	padding: 5px;
+	border-radius: 10px;
 }
 
 .detail-box .detail-title .detail-title-box {
@@ -528,6 +534,7 @@ html {
 	background: rgba(0, 0, 0, 1);
 	margin: 0 30px;
 	margin-top: 10px;
+	border-radius: 10px;
 }
 
 .detail-box .detail-title>.detail-title-box>i {
@@ -585,6 +592,7 @@ html {
 	margin: 0 30px;
 	background-color: #2E2E2E;
 	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
 }
 
 .detail-box .detail-body .detail-body-box {
@@ -593,6 +601,7 @@ html {
 	background-color: #BDBDBD;
 	overflow: auto;
 	padding: 20px;
+	border-radius: 10px;
 }
 
 /* 홈화면 최근 게시물 리스트 */
@@ -605,17 +614,20 @@ html {
 	top: 15%;
 	left: 40%;
 	transform: translateX(-50%);
+	border-radius: 10px;
 }
 
 .lastest-article-list-box .total-article-box1 {
 	background-color: orangered;
 	padding: 15px;
+	border-radius: 10px;
 }
 
 .lastest-article-list-box .total-article-box1>.total-article-box2 {
 	background-color: orange;
 	display: flex;
 	justify-content: center;
+	border-radius: 10px;
 }
 
 .lastest-article-list-box .total-article-box1>.total-article-box2>span {
@@ -637,6 +649,7 @@ html {
 	background: rgba(0, 0, 0, 0.75);
 	height: 552px;
 	width: 100%;
+	border-radius: 10px;
 }
 
 .lastest-article-list-box .article-list-body li {
@@ -717,9 +730,27 @@ html {
 	font-size: 1.5rem;
 	font-family: 'Sunflower', sans-serif;
 	padding : 20px;
+	border-radius: 10px;
 }
 
 .aboutme-box .con > .aboutme-body > span {
 	display : block;
 	padding: 15px;
+}
+
+/* 시계 */
+.clock { 
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: black;
+	background: rgba(0, 0, 0, 0.75);
+	border-radius: 20px;
+	width: 200px; 
+	height: 55px; 
+	line-height: 50px; 
+	color: #E0ECF8; 
+	font-size: 2rem; 
+	text-align: center;
 }
