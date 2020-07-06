@@ -37,8 +37,10 @@ function printClock() {
     var currentMinute = addZeros(currentDate.getMinutes() ,2);
     var currentSeconds =  addZeros(currentDate.getSeconds(),2);
     
-    if(currentHours >= 12){ // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
+    if(currentHours >= 12){ // 시간이 12이상일때 PM으로 세팅
     	amPm = 'PM';
+    }
+    if(currentHours > 12){  // 시간이 13이상일때 12를 빼줌
     	currentHours = addZeros(currentHours - 12,2);
     }
 
