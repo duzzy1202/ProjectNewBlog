@@ -16,7 +16,7 @@ public class Article extends Dto {
 		this.title = (String) row.get("title");
 		this.body = (String) row.get("body");
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Article [updateDate=" + updateDate + ", cateItemId=" + cateItemId + ", title=" + title + ", body="

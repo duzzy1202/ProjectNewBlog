@@ -17,7 +17,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
 
-<link rel="stylesheet" type="text/css" href="/blog/resource/css/common.css">
+<link rel="stylesheet" type="text/css"
+	href="/blog/resource/css/common.css">
 
 <!-- 제이쿼리 불러오기 -->
 <script
@@ -25,6 +26,10 @@
 
 <script src="/blog/resource/js/common.js"></script>
 
+<!-- 구글폰트 불러오기 -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Hi+Melody&family=Jua&family=Nanum+Gothic&family=Nanum+Pen+Script&family=Sunflower:wght@300&display=swap"
+	rel="stylesheet">
 
 <title>blog</title>
 
@@ -41,28 +46,38 @@
 		<div class="top-bar visible-md-up">
 			<nav class="menu-box-1">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/s/home/main" class="">홈</a></li>
-					<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=1" class="">잡담</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/home/main"
+						class="">홈</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/s/article/list?cateItemId=1"
+						class="">잡담</a></li>
 					<li><a href="#">공부</a> <ul-box>
 						<ul>
-							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=2">IT기타</a></li>
-							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=3">프론트엔드</a></li>
-							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=4">백엔드</a></li>
-							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=5">알고리즘</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/s/article/list?cateItemId=2">IT기타</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/s/article/list?cateItemId=3">프론트엔드</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/s/article/list?cateItemId=4">백엔드</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/s/article/list?cateItemId=5">알고리즘</a></li>
 						</ul>
 						</ul-box></li>
 					<li><a href="#">취미</a> <ul-box>
 						<ul>
-							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=6">게임</a></li>
-							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=7">축구</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/s/article/list?cateItemId=6">게임</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/s/article/list?cateItemId=7">축구</a></li>
 						</ul>
 						</ul-box></li>
-					<li><a href="#">주인장</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/s/home/aboutme">주인장</a></li>
 				</ul>
 			</nav>
 		</div>
 	</div>
-
+	<div class="mobile-background visible-sm-down"><img src="/blog/resource/ETC/mobile_campfireimg_854x1280.jpg"></div>
 	<div class="mobile-top-bar visible-sm-down flex">
 		<a href="#" class="btn-toggle-mobile-side-bar felx-ai-c">
 			<div></div>
@@ -73,26 +88,33 @@
 			class="fab fa-free-code-camp"></i>
 		</a>
 	</div>
-	<div class="mobile-side-bar">
+	<div class="mobile-side-bar visible-sm-down">
 		<div class="menu-box">
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/s/home/main" class="">홈</a></li>
-				<li><a href="#" class="">잡담</a></li>
-				<li><a href="#">공부</a> <ul-box>
+				<li><a href="${pageContext.request.contextPath}/s/home/main"
+					class="">홈</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/s/article/list?cateItemId=1"
+					class="">잡담</a></li>
+				<li><a href="#">공부</a>
 					<ul>
-						<li><a href="#">IT기타</a></li>
-						<li><a href="#">프론트엔드</a></li>
-						<li><a href="#">백엔드</a></li>
-						<li><a href="#">알고리즘</a></li>
-					</ul>
-					</ul-box></li>
-				<li><a href="#">취미</a> <ul-box>
+						<li><a
+							href="${pageContext.request.contextPath}/s/article/list?cateItemId=2">IT기타</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/s/article/list?cateItemId=3">프론트엔드</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/s/article/list?cateItemId=4">백엔드</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/s/article/list?cateItemId=5">알고리즘</a></li>
+					</ul></li>
+				<li><a href="#">취미</a>
 					<ul>
-						<li><a href="#">게임</a></li>
-						<li><a href="#">축구</a></li>
-					</ul>
-					</ul-box></li>
-				<li><a href="#">SNS</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/s/article/list?cateItemId=6">게임</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/s/article/list?cateItemId=7">축구</a></li>
+					</ul></li>
+				<li><a href="${pageContext.request.contextPath}/s/home/aboutme">주인장</a></li>
 			</ul>
 		</div>
 	</div>
