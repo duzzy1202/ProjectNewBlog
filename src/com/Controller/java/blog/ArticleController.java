@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.Dto.java.blog.Article;
+import com.Dto.java.blog.CateItem;
 import com.Service.java.blog.ArticleService;
 import com.util.java.blog.Util;
 
@@ -14,9 +15,11 @@ import com.util.java.blog.Util;
 
 public class ArticleController extends Controller {
 	private ArticleService articleService;
+	private Util util;
 
 	public ArticleController(Connection dbConn) {
 		articleService = new ArticleService(dbConn);
+		util = new Util(dbConn);
 	}
 
 	public String doAction(String actionMethodName, HttpServletRequest req, HttpServletResponse resp) {
@@ -25,7 +28,7 @@ public class ArticleController extends Controller {
 			return doActionList(req, resp);
 		case "detail":
 			return doActionDetail(req, resp);
-		case "doWrite":
+		case "dowrite":
 			return doActionDoWrite(req, resp);
 		}
 
@@ -33,7 +36,11 @@ public class ArticleController extends Controller {
 	}
 
 	private String doActionDoWrite(HttpServletRequest req, HttpServletResponse resp) {
-		return null;
+		
+		List<CateItem> cateItems = util.getCateItems();
+		req.setAttribute("cateItems", cateItems);
+		
+		return "article/dowrite.jsp";
 	}
 
 	private String doActionDetail(HttpServletRequest req, HttpServletResponse resp) {

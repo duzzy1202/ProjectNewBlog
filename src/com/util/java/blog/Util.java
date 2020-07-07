@@ -1,12 +1,23 @@
 package com.util.java.blog;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.Dto.java.blog.CateItem;
+
 public class Util {
+	private Connection dbConn;
+	
+	public Util(Connection dbConn) {
+		this.dbConn = dbConn;
+	}
+
 	public static boolean empty(HttpServletRequest req, String paramName) {
 		String paramValue = req.getParameter(paramName);
 
@@ -68,4 +79,22 @@ public class Util {
 			e1.printStackTrace();
 		}
 	}
+
+	public List<CateItem> getCateItems() {
+		String sql = "";
+
+		sql += String.format("SELECT * ");
+		sql += String.format("FROM cateItem ");
+		sql += String.format("WHERE 1 ");
+
+		List<Map<String, Object>> rows = DBUtil.selectRows(dbConn, sql);
+		List<CateItem> cateItems = new ArrayList<>();
+
+		for (Map<String, Object> row : rows) {
+			cateItems.add(new CateItem(row));
+		}
+
+		return cateItems;
+	}
+
 }
