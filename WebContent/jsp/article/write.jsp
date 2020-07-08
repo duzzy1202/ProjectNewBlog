@@ -14,7 +14,7 @@
 			<h1>글 작성하기</h1>
 		</div>
 		<div class="doWrite-body">
-			<form class="input-article" method="POST" action="result">
+			<form class="input-article" method="POST" action="doWrite">
 				<div class="select-cateItem inputs">
 					<span>카테고리</span> <select name="cateItem" id="select-cate">
 						<%

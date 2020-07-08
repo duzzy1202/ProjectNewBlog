@@ -30,8 +30,8 @@ public class ArticleController extends Controller {
 			return doActionDetail(req, resp);
 		case "write":
 			return doActionWrite(req, resp);
-		case "result":
-			return doActionResult(req, resp);
+		case "doWrite":
+			return doActionDoWrite(req, resp);
 		}
 
 		return "";
@@ -45,18 +45,14 @@ public class ArticleController extends Controller {
 		return "article/write.jsp";
 	}
 	
-	private String doActionResult(HttpServletRequest req, HttpServletResponse resp) {		
-		int cateItemId = Integer.parseInt(req.getParameter("cateItem"));
+	private String doActionDoWrite(HttpServletRequest req, HttpServletResponse resp) {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
-		
-		System.out.println(cateItemId);
-		System.out.println(title);
-		System.out.println(body);
-		
+		int cateItemId = Util.getInt(req, "cateItem");
+
 		int id = articleService.insertWrittenArticle(cateItemId, title, body);
-		
-		return "article/detail?id=%d";
+
+		return "html:<script> alert('" + id + "번 게시물이 생성되었습니다.'); location.replace('detail?id=" + id + "'); </script>";
 	}
 
 	private String doActionDetail(HttpServletRequest req, HttpServletResponse resp) {
