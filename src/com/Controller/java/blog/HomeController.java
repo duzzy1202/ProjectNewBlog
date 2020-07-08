@@ -10,14 +10,13 @@ import com.Dto.java.blog.Article;
 import com.Service.java.blog.ArticleService;
 
 public class HomeController extends Controller {
-	private ArticleService articleService;
-
-	public HomeController(Connection dbConn) {
-		articleService = new ArticleService(dbConn);
+	public HomeController(Connection dbConn, String actionMethodName, HttpServletRequest req,
+			HttpServletResponse resp) {
+		super(dbConn, actionMethodName, req, resp);
 	}
 
 	@Override
-	public String doAction(String actionMethodName, HttpServletRequest req, HttpServletResponse resp) {
+	public String doAction() {
 		switch (actionMethodName) {
 		case "main":
 			return doActionMain(req, resp);
@@ -30,14 +29,14 @@ public class HomeController extends Controller {
 
 	private String doActionMain(HttpServletRequest req, HttpServletResponse resp) {
 		int cateItemId = 0;
-
+		String searchKeywordType = "";
+		String searchKeyword = "";
 		int page = 1;
-
 		int itemsInAPage = 12;
 
 		req.setAttribute("page", page);
 
-		List<Article> articles = articleService.getForPrintListArticles(page, itemsInAPage, cateItemId);
+		List<Article> articles = articleService.getForPrintListArticles(page, itemsInAPage, cateItemId, searchKeywordType, searchKeyword);
 		req.setAttribute("articles", articles);
 		return "home/main.jsp";
 	}

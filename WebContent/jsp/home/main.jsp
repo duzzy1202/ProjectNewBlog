@@ -71,7 +71,10 @@
 	</div>
 </div>
 <div class="main-right visible-md-up">
-		<div> 무언가 추가할 예정 </div>
+		<form>
+			<button type="button" onclick="location.href='${pageContext.request.contextPath}/s/article/write'">글쓰기</button>
+			<button type="button" onclick="location.href='${pageContext.request.contextPath}/s/article/write?cateItem=1&title=안녕&body=안녕하세요' ">글쓰기2</button>
+		</form>
 	</div>
 <%@ include file="/jsp/part/foot.jspf"%>
 

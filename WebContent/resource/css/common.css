@@ -845,6 +845,8 @@ html {
 	padding: 15px;
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
+	text-align: center;
+	border-radius: 10px;
 }
 .doWrite-box > .con > .doWrite-title > h1 {
 	color: white;
@@ -857,4 +859,47 @@ html {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
 	heigth: 700px;
+	border-radius: 10px;
+	
+}
+
+.doWrite-box > .con > .doWrite-body span {
+	color: white;
+	font-family: 'Sunflower', sans-serif;
+	font-size: 1.5rem;
+	text-align: center;
+}
+.doWrite-box > .con > .doWrite-body > .input-article > .inputs {
+	display: block;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	padding: 8px;
+	border-radius: 10px;
+}
+.doWrite-box > .con > .doWrite-body > .input-article > .select-cateItem > select {
+	margin-left: auto;
+	margin-right: auto;
+}
+.doWrite-box > .con > .doWrite-body > .input-article > .input-title > input {
+	width: 600px;
+	height: 30px;
+	font-size: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.doWrite-box > .con > .doWrite-body > .input-article > .input-body > textarea {
+	width: 600px;
+	height: 500px;
+	font-size: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.doWrite-box > .con > .doWrite-body > .input-article > .submit {
+	display: block;
+	padding: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
 }
