@@ -119,10 +119,10 @@ public class ArticleDao extends Dao {
 		sql += String.format("INSERT INTO article ");
 		sql += String.format("SET regDate = NOW()");
 		sql += String.format(", updateDate = NOW()");
-		sql += String.format(", cateItemId = %d ", cateItemId);
-		sql += String.format(", displayStatus = 1 ");
-		sql += String.format(", title = %s ", title);
-		sql += String.format(", body = %s ", body);
+		sql += String.format(", cateItemId = '%d' ", cateItemId);
+		sql += String.format(", displayStatus = '1' ");
+		sql += String.format(", title = '%s' ", title);
+		sql += String.format(", body = '%s' ", body);
 
 		int id = dbUtil.insert(dbConn, sql);
 		

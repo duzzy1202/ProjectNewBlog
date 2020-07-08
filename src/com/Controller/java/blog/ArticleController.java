@@ -30,34 +30,33 @@ public class ArticleController extends Controller {
 			return doActionDetail(req, resp);
 		case "write":
 			return doActionWrite(req, resp);
+		case "result":
+			return doActionResult(req, resp);
 		}
 
 		return "";
 	}
 
-	private String doActionWrite(HttpServletRequest req, HttpServletResponse resp) {
-		int cateItemId = 0;
-		String title = null;
-		String body = null;
-		
-		cateItemId = Integer.parseInt(req.getParameter("cateItem"));
-		
-		if (cateItemId != 0) {
-			title = req.getParameter("title");
-			body = req.getParameter("body");
-			
-			System.out.println(cateItemId);
-			System.out.println(title);
-			System.out.println(body);
-			int id = articleService.insertWrittenArticle(cateItemId, title, body);
-			
-			return String.format("article/detail?id=%d", id);
-		}
+	private String doActionWrite(HttpServletRequest req, HttpServletResponse resp) {	
 		
 		List<CateItem> cateItems = articleService.getForPrintCateItems();
 		req.setAttribute("cateItems", cateItems);
 		
-		return "article/dowrite.jsp";
+		return "article/write.jsp";
+	}
+	
+	private String doActionResult(HttpServletRequest req, HttpServletResponse resp) {		
+		int cateItemId = Integer.parseInt(req.getParameter("cateItem"));
+		String title = req.getParameter("title");
+		String body = req.getParameter("body");
+		
+		System.out.println(cateItemId);
+		System.out.println(title);
+		System.out.println(body);
+		
+		int id = articleService.insertWrittenArticle(cateItemId, title, body);
+		
+		return "article/detail?id=%d";
 	}
 
 	private String doActionDetail(HttpServletRequest req, HttpServletResponse resp) {
