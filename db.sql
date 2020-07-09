@@ -21,6 +21,7 @@ INSERT INTO cateItem SET regDate = NOW(), `name` = "공부/백엔드";
 INSERT INTO cateItem SET regDate = NOW(), `name` = "공부/알고리즘";
 INSERT INTO cateItem SET regDate = NOW(), `name` = "취미/게임";
 INSERT INTO cateItem SET regDate = NOW(), `name` = "취미/축구";
+INSERT INTO cateItem SET regDate = NOW(), `name` = "취미/유튜브";
 
 # 게시물 테이블 생성
 DROP TABLE IF EXISTS article;
@@ -36,7 +37,21 @@ CREATE TABLE article (
 INSERT INTO article SET
 regDate = NOW(),
 updateDate = NOW(),
-cateItemId = 1,
+cateItemId = 4,
 displayStatus = 1,
-title = '블로그를 시작합니다.',
-`body` = '';
+title = '페이징 기능 테스트를 위한 게시판',
+`body` = '페이징 테스트를 합니다.';
+
+DROP TABLE IF EXISTS `member`;
+CREATE TABLE `member` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    `loginId` CHAR(50) NOT NULL,
+    `loginPw` CHAR(255) NOT NULL,
+    `name` CHAR(30) NOT NULL,
+    `nickname` CHAR(30) NOT NULL
+);
+
+SELECT * FROM article
+SELECT * FROM `member`
+SELECT * FROM cateItem

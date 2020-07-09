@@ -73,6 +73,8 @@
 <div class="main-right visible-md-up">
 		<form>
 			<button type="button" onclick="location.href='/blog/s/article/write' ">글쓰기</button>
+			<button type="button" onclick="location.href='/blog/s/member/join' ">회원가입</button>
+			<button type="button" onclick="location.href='/blog/s/member/login' ">로그인</button>
 		</form>
 	</div>
 <%@ include file="/jsp/part/foot.jspf"%>
