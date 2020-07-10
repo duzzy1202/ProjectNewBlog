@@ -32,7 +32,8 @@ CREATE TABLE article (
     cateItemId INT(10) UNSIGNED NOT NULL,
     displayStatus TINYINT(1) UNSIGNED NOT NULL,
     `title` CHAR(200) NOT NULL,
-    `body` TEXT NOT NULL
+    `body` TEXT NOT NULL,
+    hits INT NOT NULL
 );
 INSERT INTO article SET
 regDate = NOW(),

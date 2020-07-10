@@ -123,6 +123,7 @@ public class ArticleDao extends Dao {
 		secSql.append(", body = ? ", body);
 		secSql.append(", displayStatus = '1'");
 		secSql.append(", cateItemId = ?", cateItemId);
+		secSql.append(", hits = '0'");
 
 		int id = dbUtil.insert(dbConn, secSql);
 
