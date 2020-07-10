@@ -1,4 +1,4 @@
-<%@ page import="com.Dto.java.blog.Article"%>
+<%@ page import="com.java.blog.dto.Article"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	

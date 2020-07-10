@@ -1,7 +1,7 @@
-<%@ page import="com.Dto.java.blog.Article"%>
+<%@ page import="com.java.blog.dto.Article"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ include file="/jsp/part/head.jspf"%>
 
 <%
@@ -37,6 +37,30 @@
 					});
 				</script>
 			</div>
+			<div class="bottom-box">
+				<span>조회수 : <%=article.getHits()%></span> <span>게시물 수정일 : <%=article.getUpdateDate()%></span>
+			</div>
+		</div>
+		<div class="update-btn">
+			<form class="input-article" method="POST" action="update"
+				onsubmit="submitUpdateForm(this); return false">
+				<input type="hidden" name="articleId" value="<%=article.getId()%>">
+				<input type="hidden" name="articleTitle"
+					value="<%=article.getTitle()%>"> <input type="hidden"
+					name="articleBody" value="<%=article.getBody()%>"> <input
+					type="hidden" name="cateItemId"
+					value="<%=article.getCateItemId()%>"> <input class="submit"
+					type='submit' value='수정하기'>
+			</form>
+		</div>
+		<div class="delete-btn">
+			<form class="input-article" method="POST" action="delete"
+				onsubmit="submitUpdateForm(this); return false">
+				<input type="hidden" name="cateItemId"
+					value="<%=article.getCateItemId()%>"> <input type="hidden"
+					name="articleId" value="<%=article.getId()%>"> <input
+					class="submit" type='submit' value='삭제하기'>
+			</form>
 		</div>
 	</div>
 </div>

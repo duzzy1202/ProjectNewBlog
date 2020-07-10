@@ -84,39 +84,39 @@ a {
 }
 
 body {
-  margin:0;
+	margin: 0;
 }
 
 .toast-youtube-embed {
-  background-color:red;
+	background-color: red;
 }
 
 .toast-youtube-embed {
-  position:relative;
+	position: relative;
 }
 
 .ratio-16-9::after {
-  content:"";
-  display:block;
-  padding-top:56.25%;
+	content: "";
+	display: block;
+	padding-top: 56.25%;
 }
 
 .ratio-1-1::after {
-  content:"";
-  display:block;
-  padding-top:100%;
+	content: "";
+	display: block;
+	padding-top: 100%;
 }
 
 .relative {
-  position:relative;
+	position: relative;
 }
 
 .abs-full {
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 
 /* 라이브러리 끝 */
@@ -292,7 +292,8 @@ html {
 	width: 100%;
 	height: 100%;
 }
-.mobile-background > img {
+
+.mobile-background>img {
 	width: 100%;
 	height: 100%;
 }
@@ -406,11 +407,11 @@ html {
 	background: rgba(0, 0, 0, 0.75);
 }
 
-.mobile-side-bar .menu-box ul>li>a:not(:only-child)::after {
+.mobile-side-bar .menu-box ul>li>a:not (:only-child )::after {
 	content: "[+]";
 }
 
-.mobile-side-bar .menu-box ul>li.active>a:not(:only-child)::after {
+.mobile-side-bar .menu-box ul>li.active>a:not (:only-child )::after {
 	content: "[-]";
 }
 
@@ -506,7 +507,7 @@ html {
 	font-size: 1.3rem;
 	font-family: 'Sunflower', sans-serif;
 	overflow: hidden; /* : 넓이가 70px를 넒어서는 내용에 대해서는 보이지 않게 처리함 */
-	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */ 
+	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */
 	white-space: nowrap;
 }
 
@@ -516,7 +517,7 @@ html {
 	padding: 10px;
 	font-size: 1.2rem;
 	overflow: hidden; /* : 넓이가 70px를 넒어서는 내용에 대해서는 보이지 않게 처리함 */
-	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */ 
+	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */
 	white-space: nowrap;
 }
 
@@ -597,12 +598,14 @@ html {
 	color: white;
 	font-family: 'Sunflower', sans-serif;
 }
+
 .detail-box .detail-title>.detail-title-box>.article-regdate {
 	display: flex;
 	width: 30%;
 	height: 100%;
 	text-align: center;
 }
+
 .detail-box .detail-title>.detail-title-box>.article-regdate>span {
 	display: block;
 	width: 100%;
@@ -612,15 +615,18 @@ html {
 	color: white;
 	font-family: 'Sunflower', sans-serif;
 }
+
 .detail-box .detail-title>.detail-title-box>.back-list-btn {
 	display: flex;
 	width: 5%;
 	background-color: #F3F781;
 	text-align: center;
 	margin: 9px;
-	font-weight: bold;padding: 5px;
+	font-weight: bold;
+	padding: 5px;
 	padding: 5px;
 }
+
 .detail-box .detail-title>.detail-title-box>.back-list-btn>a {
 	display: block;
 	color: orangered;
@@ -646,6 +652,13 @@ html {
 	overflow: auto;
 	padding: 20px;
 	border-radius: 10px;
+}
+
+.detail-box .detail-body .bottom-box {
+	display: flex;
+	justify-content: space-between; color : white;
+	font-family: 'Sunflower', sans-serif;
+	color: white;
 }
 
 /* 홈화면 최근 게시물 리스트 */
@@ -682,7 +695,8 @@ html {
 	font-family: 'Sunflower', sans-serif;
 }
 
-.lastest-article-list-box .total-article-box1>.total-article-box2>span>i {
+.lastest-article-list-box .total-article-box1>.total-article-box2>span>i
+	{
 	color: red;
 	padding: 5px;
 	font-size: 2.5rem;
@@ -741,7 +755,7 @@ html {
 	font-size: 1.3rem;
 	font-family: 'Sunflower', sans-serif;
 	overflow: hidden; /* : 넓이가 70px를 넒어서는 내용에 대해서는 보이지 않게 처리함 */
-	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */ 
+	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */
 	white-space: nowrap;
 }
 
@@ -751,17 +765,16 @@ html {
 	padding: 10px;
 	font-size: 1rem;
 	overflow: hidden; /* : 넓이가 70px를 넒어서는 내용에 대해서는 보이지 않게 처리함 */
-	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */ 
+	text-overflow: ellipsis; /* 글자가 넓이 70px를 넘을 경우 생략부호를 표시함 */
 	white-space: nowrap;
 }
 
 /* 메인화면 오른쪽 */
-
 .main-right {
 	border-radius: 10px;
 	barckground-color: black;
 	background: rgba(0, 0, 0, 0.8);
-	position : absolute;
+	position: absolute;
 	display: block;
 	width: 30%;
 	height: 643px;
@@ -769,15 +782,14 @@ html {
 	left: 72%;
 	transform: translateX(-50%);
 }
-.main-right > div {
+
+.main-right>div {
 	color: white;
 	font-size: 3rem;
 }
 
-
 /* 어바웃 미 */
-
-.aboutme-box .con > img {
+.aboutme-box .con>img {
 	background-color: black;
 	display: block;
 	position: absolute;
@@ -787,7 +799,7 @@ html {
 	border-radius: 10px;
 }
 
-.aboutme-box .con > .aboutme-body {
+.aboutme-box .con>.aboutme-body {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.8);
 	display: block;
@@ -800,17 +812,17 @@ html {
 	color: white;
 	font-size: 1.5rem;
 	font-family: 'Sunflower', sans-serif;
-	padding : 20px;
+	padding: 20px;
 	border-radius: 10px;
 }
 
-.aboutme-box .con > .aboutme-body > span {
-	display : block;
+.aboutme-box .con>.aboutme-body>span {
+	display: block;
 	padding: 15px;
 }
 
 /* 시계 */
-.clock { 
+.clock {
 	position: absolute;
 	top: 20px;
 	left: 50%;
@@ -818,16 +830,16 @@ html {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.75);
 	border-radius: 20px;
-	width: 200px; 
-	height: 55px; 
-	line-height: 50px; 
-	color: #E0ECF8; 
-	font-size: 2rem; 
+	width: 200px;
+	height: 55px;
+	line-height: 50px;
+	color: #E0ECF8;
+	font-size: 2rem;
 	text-align: center;
 }
 
 /* 글 작성하기 */
-.doWrite-box > .con {
+.doWrite-box>.con {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
 	display: block;
@@ -839,7 +851,8 @@ html {
 	transform: translateX(-50%);
 	border-radius: 10px;
 }
-.doWrite-box > .con > .doWrite-title {
+
+.doWrite-box>.con>.doWrite-title {
 	display: block;
 	margin: 20px;
 	padding: 15px;
@@ -848,11 +861,13 @@ html {
 	text-align: center;
 	border-radius: 10px;
 }
-.doWrite-box > .con > .doWrite-title > h1 {
+
+.doWrite-box>.con>.doWrite-title>h1 {
 	color: white;
 	font-family: 'Sunflower', sans-serif;
 }
-.doWrite-box > .con > .doWrite-body {
+
+.doWrite-box>.con>.doWrite-body {
 	display: block;
 	margin: 20px;
 	padding: 15px;
@@ -860,16 +875,16 @@ html {
 	background: rgba(0, 0, 0, 0.5);
 	heigth: 700px;
 	border-radius: 10px;
-	
 }
 
-.doWrite-box > .con > .doWrite-body span {
+.doWrite-box>.con>.doWrite-body > form > div > span {
 	color: white;
 	font-family: 'Sunflower', sans-serif;
 	font-size: 1.5rem;
 	text-align: center;
 }
-.doWrite-box > .con > .doWrite-body > .input-article > .inputs {
+
+.doWrite-box>.con>.doWrite-body>.input-article>.inputs {
 	display: block;
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
@@ -878,25 +893,29 @@ html {
 	padding: 8px;
 	border-radius: 10px;
 }
-.doWrite-box > .con > .doWrite-body > .input-article > .select-cateItem > select {
+
+.doWrite-box>.con>.doWrite-body>.input-article>.select-cateItem>select {
 	margin-left: auto;
 	margin-right: auto;
 }
-.doWrite-box > .con > .doWrite-body > .input-article > .input-title > input {
+
+.doWrite-box>.con>.doWrite-body>.input-article>.input-title>input {
 	width: 600px;
 	height: 30px;
 	font-size: 20px;
 	margin-left: auto;
 	margin-right: auto;
 }
-.doWrite-box > .con > .doWrite-body > .input-article > .input-body > textarea {
-	width: 600px;
+
+.doWrite-box>.con>.doWrite-body>.input-article>.input-body > div {
+	width: 800px;
 	height: 500px;
-	font-size: 15px;
+	color: black;
 	margin-left: auto;
 	margin-right: auto;
 }
-.doWrite-box > .con > .doWrite-body > .input-article > .submit {
+
+.doWrite-box>.con>.doWrite-body>.input-article>.submit {
 	display: block;
 	padding: 8px;
 	margin-left: auto;
@@ -905,7 +924,7 @@ html {
 }
 
 /* 회원가입 */
-.join-box > .con {
+.join-box>.con {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
 	display: block;
@@ -918,7 +937,7 @@ html {
 	border-radius: 10px;
 }
 
-.join-box > .con > .join-title {
+.join-box>.con>.join-title {
 	text-align: center;
 	font-family: 'Sunflower', sans-serif;
 	color: white;
@@ -930,17 +949,17 @@ html {
 	padding: 15px;
 }
 
-.join-box > .con > .join-body {
+.join-box>.con>.join-body {
 	display: flex;
 	justify-content: center;
 	margin: 0 30px;
 }
 
-.join-box > .con > .join-body > .member-join {
+.join-box>.con>.join-body>.member-join {
 	width: 75%;
 }
 
-.join-box > .con > .join-body > .member-join > div {
+.join-box>.con>.join-body>.member-join>div {
 	display: block;
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
@@ -949,7 +968,7 @@ html {
 	border-radius: 10px;
 }
 
-.join-box > .con > .join-body > .member-join > div > span {
+.join-box>.con>.join-body>.member-join>div>span {
 	color: white;
 	font-family: 'Sunflower', sans-serif;
 	font-size: 1.5rem;
@@ -957,14 +976,15 @@ html {
 	margin-right: auto;
 }
 
-.join-box > .con > .join-body > .member-join > div > input {
+.join-box>.con>.join-body>.member-join>div>input {
 	width: 200px;
 	height: 30px;
 	font-size: 20px;
 	margin-left: auto;
 	margin-right: 0;
 }
-.join-box > .con > .join-body > .member-join > .submit {
+
+.join-box>.con>.join-body>.member-join>.submit {
 	display: block;
 	padding: 8px;
 	margin-left: auto;
@@ -973,7 +993,7 @@ html {
 }
 
 /* 로그인 화면 */
-.login-box > .con {
+.login-box>.con {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
 	display: block;
@@ -986,7 +1006,7 @@ html {
 	border-radius: 10px;
 }
 
-.login-box > .con > .login-title {
+.login-box>.con>.login-title {
 	text-align: center;
 	font-family: 'Sunflower', sans-serif;
 	color: white;
@@ -998,17 +1018,17 @@ html {
 	padding: 15px;
 }
 
-.login-box > .con > .login-body {
+.login-box>.con>.login-body {
 	display: flex;
 	justify-content: center;
 	margin: 0 30px;
 }
 
-.login-box > .con > .login-body > .member-login {
+.login-box>.con>.login-body>.member-login {
 	width: 75%;
 }
 
-.login-box > .con > .login-body > .member-login > div {
+.login-box>.con>.login-body>.member-login>div {
 	display: block;
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
@@ -1017,7 +1037,7 @@ html {
 	border-radius: 10px;
 }
 
-.login-box > .con > .login-body > .member-login > div > span {
+.login-box>.con>.login-body>.member-login>div>span {
 	color: white;
 	font-family: 'Sunflower', sans-serif;
 	font-size: 1.5rem;
@@ -1025,14 +1045,15 @@ html {
 	margin-right: auto;
 }
 
-.login-box > .con > .login-body > .member-login > div > input {
+.login-box>.con>.login-body>.member-login>div>input {
 	width: 200px;
 	height: 30px;
 	font-size: 20px;
 	margin-left: auto;
 	margin-right: 0;
 }
-.login-box > .con > .login-body > .member-login > .submit {
+
+.login-box>.con>.login-body>.member-login>.submit {
 	display: block;
 	padding: 8px;
 	margin-left: auto;

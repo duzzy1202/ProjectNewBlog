@@ -55,3 +55,5 @@ CREATE TABLE `member` (
 SELECT * FROM article
 SELECT * FROM `member`
 SELECT * FROM cateItem
+
+ALTER TABLE article ADD hits INT(10) NOT NULL
