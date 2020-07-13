@@ -63,6 +63,7 @@ public class MemberController extends Controller {
 		String loginPwConfirm = req.getParameter("loginPwConfirmReal");
 		String name = req.getParameter("name");
 		String nickname = req.getParameter("nickname");
+		String email = req.getParameter("email");
 		
 		if (!loginPw.equals(loginPwConfirm)) {
 			return "html:<script> alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.'); history.back(); </script>";
@@ -74,7 +75,7 @@ public class MemberController extends Controller {
 			return "html:<script> alert('이미 사용중인 아이디입니다.'); history.back(); </script>";
 		}
 		
-		memberService.insertJoinMember(loginId, loginPw, name, nickname);
+		memberService.insertJoinMember(loginId, loginPw, name, nickname, email);
 		
 		return "html:<script> alert('[" + nickname + "]님 가입을 환영합니다.'); location.replace('/blog/s/home/main'); </script>";
 	}

@@ -7,6 +7,8 @@ public class Member extends Dto {
 	private String loginPw;
 	private String name;
 	private String nickname;
+	private String updateDate;
+	private String email;
 	
 	public Member(Map<String, Object> row) {
 		super(row);
@@ -15,6 +17,8 @@ public class Member extends Dto {
 		this.loginPw = (String) row.get("loginPw");
 		this.name = (String) row.get("name");
 		this.nickname = (String) row.get("nickname");
+		this.updateDate = (String) row.get("updateDate");
+		this.email = (String) row.get("email");
 	}
 
 	public String getLoginId() {
@@ -47,6 +51,14 @@ public class Member extends Dto {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+
+	public String getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
 
 }

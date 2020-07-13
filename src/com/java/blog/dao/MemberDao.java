@@ -24,15 +24,17 @@ public class MemberDao extends Dao {
 		dbUtil = new DBUtil(req, resp);
 	}
 
-	public void insertJoinMember(String loginId, String loginPw, String name, String nickname) {
+	public void insertJoinMember(String loginId, String loginPw, String name, String nickname, String email) {
 		SecSql secSql = new SecSql();
 		
 		secSql.append("INSERT INTO member ");
 		secSql.append("SET regDate = NOW() ");
+		secSql.append(", updateDate = NOW() ");
 		secSql.append(", loginId = ? ", loginId);
 		secSql.append(", loginPw = ? ", loginPw);
 		secSql.append(", name = ? ", name);
 		secSql.append(", nickname = ? ", nickname);
+		secSql.append(", email = ? ", email);
 		
 		int id = dbUtil.insert(dbConn, secSql);
 		

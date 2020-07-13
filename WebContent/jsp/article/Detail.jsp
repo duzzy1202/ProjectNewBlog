@@ -1,4 +1,6 @@
 <%@ page import="com.java.blog.dto.Article"%>
+<%@ page import="com.java.blog.dto.ArticleReply"%>
+<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -6,6 +8,9 @@
 
 <%
 	Article article = (Article) request.getAttribute("article");
+	List<ArticleReply> replys = (List<ArticleReply>) request.getAttribute("replys");
+	int totalPage = (int) request.getAttribute("totalPage");
+	int paramPage = (int) request.getAttribute("page");
 %>
 
 <div class="detail-box visible-md-up">
@@ -21,8 +26,10 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="detail-body">
+			<div class="bottom-box">
+				<span>조회수 : <%=article.getHits()%></span> <span>게시물 수정일 : <%=article.getUpdateDate()%></span>
+			</div>
 			<div class="detail-body-box">
 				<script type="text/x-template" id="origin1" style="display: none;"><%=article.getBody()%></script>
 				<div id="viewer1"></div>
@@ -37,32 +44,71 @@
 					});
 				</script>
 			</div>
-			<div class="bottom-box">
-				<span>조회수 : <%=article.getHits()%></span> <span>게시물 수정일 : <%=article.getUpdateDate()%></span>
+			<div class="buttons">
+				<div class="update-btn">
+					<form class="input-article" method="POST" action="update"
+						onsubmit="submitUpdateForm(this); return false">
+						<input type="hidden" name="articleId" value="<%=article.getId()%>">
+						<input type="hidden" name="articleTitle"
+							value="<%=article.getTitle()%>"> <input type="hidden"
+							name="articleBody" value="<%=article.getBody()%>"> <input
+							type="hidden" name="cateItemId"
+							value="<%=article.getCateItemId()%>"> <input
+							class="submit" type='submit' value='수정하기'>
+					</form>
+				</div>
+				<div class="delete-btn">
+					<form class="input-article" method="POST" action="delete"
+						onsubmit="submitUpdateForm(this); return false">
+						<input type="hidden" name="cateItemId"
+							value="<%=article.getCateItemId()%>"> <input
+							type="hidden" name="articleId" value="<%=article.getId()%>">
+						<input class="submit" type='submit' value='삭제하기'>
+					</form>
+				</div>
 			</div>
 		</div>
-		<div class="update-btn">
-			<form class="input-article" method="POST" action="update"
-				onsubmit="submitUpdateForm(this); return false">
-				<input type="hidden" name="articleId" value="<%=article.getId()%>">
-				<input type="hidden" name="articleTitle"
-					value="<%=article.getTitle()%>"> <input type="hidden"
-					name="articleBody" value="<%=article.getBody()%>"> <input
-					type="hidden" name="cateItemId"
-					value="<%=article.getCateItemId()%>"> <input class="submit"
-					type='submit' value='수정하기'>
-			</form>
+	</div>
+</div>
+<div class="reply-box visible-md-up">
+	<div class="reply-list-box">
+		<div class="reply-list visible-md-up">
+			<ul>
+				<%
+					for (ArticleReply reply : replys) {
+				%>
+
+				<li>
+					<div class="writer">작성자</div>
+					<div class="replyRegdate"><%=reply.getRegDate()%></div>
+					<div class="replyBody"><%=reply.getBody()%></div>
+				</li>
+
+				<%
+					}
+				%>
+			</ul>
 		</div>
-		<div class="delete-btn">
-			<form class="input-article" method="POST" action="delete"
-				onsubmit="submitUpdateForm(this); return false">
-				<input type="hidden" name="cateItemId"
-					value="<%=article.getCateItemId()%>"> <input type="hidden"
-					name="articleId" value="<%=article.getId()%>"> <input
-					class="submit" type='submit' value='삭제하기'>
+		<div class="con page-box visible-md-up">
+			<ul class="flex flex-jc-c" style="color: white; margin: 5px;">
+				<%
+					for (int i = 1; i <= totalPage; i++) {
+				%>
+				<li class="<%=i == paramPage ? "current" : ""%>" style=" padding: 10px;">
+					<a href="?id=${param.id}&page=<%=i%>" class="block"><%=i%></a>
+				</li>
+				<%
+					}
+				%>
+			</ul>
+		</div>
+		<div class="write-reply">
+			<form class="input-reply" method="POST" action="writeReply">
+				<input type="hidden" name="articleId" value="<%=article.getId()%>">
+				<textarea name="replyBody">댓글 내용을 입력해주세요</textarea>
+				<input class="submit" type='submit' value='등록하기'>
 			</form>
 		</div>
 	</div>
 </div>
-
 <%@ include file="/jsp/part/foot.jspf"%>

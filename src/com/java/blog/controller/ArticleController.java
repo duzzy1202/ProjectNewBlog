@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.blog.dto.Article;
+import com.java.blog.dto.ArticleReply;
 import com.java.blog.dto.CateItem;
 import com.java.blog.util.Util;
 
@@ -38,9 +39,20 @@ public class ArticleController extends Controller {
 			return doActionDoUpdate(req, resp);
 		case "delete":
 			return doActionDelete(req, resp);
+		case "writeReply":
+			return doActionWriteReply(req, resp);
 		}
 
 		return "";
+	}
+
+	private String doActionWriteReply(HttpServletRequest req, HttpServletResponse resp) {
+		int articleId = Util.getInt(req, "articleId");
+		String replyBody = req.getParameter("replyBody");
+		
+		articleService.writeReply(articleId, replyBody);
+		
+		return "html:<script> alert('댓글이 등록되었습니다.'); location.replace('detail?id=" + articleId + "'); </script>";
 	}
 
 	private String doActionDelete(HttpServletRequest req, HttpServletResponse resp) {
@@ -103,13 +115,33 @@ public class ArticleController extends Controller {
 		if (Util.isNum(req, "id") == false) {
 			return "html:id를 정수로 입력해주세요.";
 		}
-
+		
 		int id = Util.getInt(req, "id");
 		
+		/* 댓글 페이징 */
+		int page = 1;
+		if (!Util.empty(req, "page") && Util.isNum(req, "page")) {
+			page = Util.getInt(req, "page");
+		}
+		
+		int itemsInAPage = 5;
+		int totalCount = articleService.getForPrintListReplysCount(id);
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsInAPage);
+		
+		req.setAttribute("totalCount", totalCount);
+		req.setAttribute("totalPage", totalPage);
+		req.setAttribute("page", page);
+		
+		/* 조회수 기능 */
 		articleService.increaseHit(id);
-		Article article = articleService.getForPrintArticle(id);
 
+		/* 게시물 가져오기 */
+		Article article = articleService.getForPrintArticle(id);
 		req.setAttribute("article", article);
+		
+		/* 댓글 리스트 가져오기 */
+		List<ArticleReply> replys = articleService.getForPrintListReplys(id, itemsInAPage, page);
+		req.setAttribute("replys", replys);
 
 		return "article/detail.jsp";
 	}

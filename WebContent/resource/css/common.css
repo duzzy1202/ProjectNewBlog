@@ -557,11 +557,11 @@ html {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
 	display: block;
-	width: 60%;
+	width: 50%;
 	height: 830px;
 	position: absolute;
 	top: 10%;
-	left: 50%;
+	left: 33%;
 	transform: translateX(-50%);
 	border-radius: 10px;
 }
@@ -638,7 +638,7 @@ html {
 
 .detail-box .detail-body {
 	display: block;
-	padding: 30px;
+	padding: 20px;
 	margin: 0 30px;
 	background-color: #2E2E2E;
 	background: rgba(0, 0, 0, 0.5);
@@ -647,7 +647,7 @@ html {
 
 .detail-box .detail-body .detail-body-box {
 	display: block;
-	height: 620px;
+	height: 600px;
 	background-color: #E0F2F7;
 	overflow: auto;
 	padding: 20px;
@@ -656,10 +656,80 @@ html {
 
 .detail-box .detail-body .bottom-box {
 	display: flex;
-	justify-content: space-between; color : white;
+	margin-bottom: 5px;
+	justify-content: space-between;
 	font-family: 'Sunflower', sans-serif;
 	color: white;
 }
+
+.detail-box .detail-body .buttons {
+	display: flex;
+	justify-content: center;
+	margin: 10px;
+}
+.detail-box .detail-body .buttons > div {
+	margin: 0 20px;
+}
+
+/* 디테일 댓글 박스 */
+.reply-box {
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	display: block;
+	width: 30%;
+	position: absolute;
+	top: 10%;
+	left: 75%;
+	transform: translateX(-50%);
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.reply-box > .reply-list-box > .reply-list ul li {
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	display: flex;
+	flex-wrap : wrap;
+	font-family: 'Sunflower', sans-serif;
+	color: white;
+	border-bottom: 1px solid white;
+	margin-bottom: 10px;
+}
+.reply-box > .reply-list-box > .reply-list > ul > li > div {
+	padding: 10px;
+	border-radius: 5px;
+}
+.reply-box > .reply-list-box > .reply-list .writer {
+	width: 55%;
+	border-bottom: 1px solid grey;
+}
+.reply-box > .reply-list-box > .reply-list .replyRegdate {
+	width: 35%;
+	border-bottom: 1px solid grey;
+}
+.reply-box > .reply-list-box > .reply-list .replyBody {
+	width: 100%;
+}
+
+.reply-box > .reply-list-box > .write-reply {
+	diplay: block;
+	padding : 20px;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	border: 1px solid grey;
+}
+.reply-box > .reply-list-box > .write-reply > form > textarea {
+	width: 100%;
+	height: 60px;
+	resize: none;
+}
+
+.reply-box > .reply-list-box > .page-box > ul > li.current>a {
+	color: orangered;
+}
+
 
 /* 홈화면 최근 게시물 리스트 */
 .lastest-article-list-box {

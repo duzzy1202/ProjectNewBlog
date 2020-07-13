@@ -15,6 +15,7 @@
 				<div class="join-loginPwConfirm"><span>비밀번호 확인</span> <input type="password" name="loginPwConfirm" value="" maxlength="20"></div>
 				<div class="join-name"><span>이름</span> <input type="text" name="name" value="" maxlength="10"></div>
 				<div class="join-nickname"><span>닉네임</span> <input type="text" name="nickname" value="" maxlength="16"></div>
+				<div class="join-email"><span>이메일</span> <input type="text" name="email" value=""></div>
 				<input class="submit" type='submit' value='회원가입'>
 				<input type="hidden" name="loginPwReal">
 				<input type="hidden" name="loginPwConfirmReal">
@@ -83,6 +84,15 @@ function submitJoinForm(form) {
 	if (form.nickname.value.length == 0) {
 		alert('닉네임이 입력되지 않았습니다.');
 		form.nickname.focus();
+
+		return;
+	}
+
+	/* 이메일 입력 검사 */
+	form.email.value = form.email.value.trim();
+	if (form.email.value.length == 0) {
+		alert('이메일이 입력되지 않았습니다.');
+		form.email.focus();
 
 		return;
 	}

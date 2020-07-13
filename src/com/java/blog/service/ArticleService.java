@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.java.blog.dao.ArticleDao;
 import com.java.blog.dto.Article;
+import com.java.blog.dto.ArticleReply;
 import com.java.blog.dto.CateItem;
 
 public class ArticleService extends Service {
@@ -53,6 +54,18 @@ public class ArticleService extends Service {
 
 	public void increaseHit(int id) {
 		articleDao.increaseHit(id);
+	}
+
+	public void writeReply(int articleId, String replyBody) {
+		articleDao.writeReply(articleId, replyBody);
+	}
+
+	public List<ArticleReply> getForPrintListReplys(int id, int itemsInAPage, int page) {
+		return articleDao.getForPrintListReplys(id, itemsInAPage, page);
+	}
+
+	public int getForPrintListReplysCount(int id) {
+		return articleDao.getForPrintListReplysCount(id);
 	}
 
 }

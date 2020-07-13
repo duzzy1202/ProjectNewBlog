@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.blog.dto.Article;
+import com.java.blog.dto.ArticleReply;
 import com.java.blog.dto.CateItem;
 import com.java.blog.util.DBUtil;
 import com.java.blog.util.SecSql;
@@ -124,6 +125,7 @@ public class ArticleDao extends Dao {
 		secSql.append(", displayStatus = '1'");
 		secSql.append(", cateItemId = ?", cateItemId);
 		secSql.append(", hits = '0'");
+		secSql.append(", memberId = '0'");
 
 		int id = dbUtil.insert(dbConn, secSql);
 
@@ -160,5 +162,55 @@ public class ArticleDao extends Dao {
 		sql.append("WHERE id = ?", id);
 
 		return DBUtil.update(dbConn, sql);
+	}
+
+	public void writeReply(int articleId, String replyBody) {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("INSERT INTO reply");
+		secSql.append("SET regDate = NOW()");
+		secSql.append(", updateDate = NOW()");
+		secSql.append(", body = ? ", replyBody);
+		secSql.append(", articleId = ?", articleId);
+		secSql.append(", memberId = '0' ");
+
+		int id = dbUtil.insert(dbConn, secSql);
+		
+	}
+
+	public List<ArticleReply> getForPrintListReplys(int id, int itemsInAPage, int page) {
+		SecSql secSql = new SecSql();
+		
+		int limitFrom = (page - 1) * itemsInAPage;
+
+		secSql.append("SELECT * ");
+		secSql.append("FROM reply ");
+		secSql.append("WHERE 1 ");
+		secSql.append("AND articleId = ? ", id);
+		secSql.append("ORDER BY id ASC ");
+		secSql.append("LIMIT ?, ? ", limitFrom, itemsInAPage);
+		
+		
+		List<Map<String, Object>> rows = dbUtil.selectRows(dbConn, secSql);
+		List<ArticleReply> replys = new ArrayList<>();
+
+		for (Map<String, Object> row : rows) {
+			replys.add(new ArticleReply(row));
+		}
+		
+		return replys;
+	}
+	
+	public int getForPrintListReplysCount(int articleId) {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("SELECT COUNT(*) AS cnt ");
+		secSql.append("FROM reply ");
+		secSql.append("WHERE 1 ");
+		secSql.append("AND articleId = ? ", articleId);
+		
+		int count = dbUtil.selectRowIntValue(dbConn, secSql);
+		
+		return count;
 	}
 }

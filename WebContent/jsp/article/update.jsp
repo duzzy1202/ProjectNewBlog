@@ -85,7 +85,7 @@
 				<div class="input-body inputs">
 					<span>내용</span> <input type="hidden" name="body">
 
-					<div id="editor1" style="background-color: white;"></div>
+					<div id="editor1" style="background-color: white;"><%= articleBody %></div>
 				</div>
 				<input type="hidden" name="articleId" value="<%= articleId %>">
 				<input class="submit" type='submit' value='수정 완료'>
