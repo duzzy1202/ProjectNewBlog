@@ -10,6 +10,7 @@ import com.java.blog.dao.ArticleDao;
 import com.java.blog.dto.Article;
 import com.java.blog.dto.ArticleReply;
 import com.java.blog.dto.CateItem;
+import com.java.blog.dto.Member;
 
 public class ArticleService extends Service {
 
@@ -40,8 +41,8 @@ public class ArticleService extends Service {
 		return articleDao.getCateItem(cateItemId);
 	}
 
-	public int insertWrittenArticle(int cateItemId, String title, String body) {
-		return articleDao.insertWrittenArticle(cateItemId, title, body);
+	public int insertWrittenArticle(int cateItemId, String title, String body, int writerId) {
+		return articleDao.insertWrittenArticle(cateItemId, title, body, writerId);
 	}
 
 	public int updateArticle(int cateItemId, String title, String body, int articleId) {
@@ -56,8 +57,8 @@ public class ArticleService extends Service {
 		articleDao.increaseHit(id);
 	}
 
-	public void writeReply(int articleId, String replyBody) {
-		articleDao.writeReply(articleId, replyBody);
+	public void writeReply(int articleId, String replyBody, int replyMemberId) {
+		articleDao.writeReply(articleId, replyBody, replyMemberId);
 	}
 
 	public List<ArticleReply> getForPrintListReplys(int id, int itemsInAPage, int page) {
@@ -66,6 +67,14 @@ public class ArticleService extends Service {
 
 	public int getForPrintListReplysCount(int id) {
 		return articleDao.getForPrintListReplysCount(id);
+	}
+
+	public Member getMemberById(int memberId) {
+		return articleDao.getMemberById(memberId);
+	}
+
+	public List<Member> getReplyMembersByReplysList(List<ArticleReply> replys) {
+		return articleDao.getReplyMembersByReplysList(replys);
 	}
 
 }

@@ -7,11 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.blog.dto.Article;
-import com.java.blog.service.ArticleService;
 
 public class HomeController extends Controller {
-	public HomeController(Connection dbConn, String actionMethodName, HttpServletRequest req,
-			HttpServletResponse resp) {
+	public HomeController(Connection dbConn, String actionMethodName, HttpServletRequest req, HttpServletResponse resp) {
 		super(dbConn, actionMethodName, req, resp);
 	}
 
@@ -38,6 +36,7 @@ public class HomeController extends Controller {
 
 		List<Article> articles = articleService.getForPrintListArticles(page, itemsInAPage, cateItemId, searchKeywordType, searchKeyword);
 		req.setAttribute("articles", articles);
+		
 		return "home/main.jsp";
 	}
 

@@ -1,5 +1,6 @@
 <%@ page import="com.java.blog.dto.Article"%>
 <%@ page import="com.java.blog.dto.ArticleReply"%>
+<%@ page import="com.java.blog.dto.Member"%>
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,6 +9,9 @@
 
 <%
 	Article article = (Article) request.getAttribute("article");
+	Member writer = (Member) request.getAttribute("writer");
+	Member currentMember = (Member) request.getAttribute("currentMember");
+	List<Member> replyMembers = (List<Member>) request.getAttribute("replyMembers");
 	List<ArticleReply> replys = (List<ArticleReply>) request.getAttribute("replys");
 	int totalPage = (int) request.getAttribute("totalPage");
 	int paramPage = (int) request.getAttribute("page");
@@ -28,7 +32,9 @@
 		</div>
 		<div class="detail-body">
 			<div class="bottom-box">
-				<span>조회수 : <%=article.getHits()%></span> <span>게시물 수정일 : <%=article.getUpdateDate()%></span>
+				<span>작성자 : <%=writer.getNickname()%></span>
+				<span>조회수 : <%=article.getHits()%></span> 
+				<span>게시물 수정일 : <%=article.getUpdateDate()%></span>
 			</div>
 			<div class="detail-body-box">
 				<script type="text/x-template" id="origin1" style="display: none;"><%=article.getBody()%></script>
@@ -74,14 +80,15 @@
 	<div class="reply-list-box">
 		<div class="reply-list visible-md-up">
 			<ul>
-				<%
-					for (ArticleReply reply : replys) {
+				<%	
+					for (int i = 0; i < replys.size(); i++) {
+						String replyWriter = replyMembers.get(i).getNickname();
 				%>
 
 				<li>
-					<div class="writer">작성자</div>
-					<div class="replyRegdate"><%=reply.getRegDate()%></div>
-					<div class="replyBody"><%=reply.getBody()%></div>
+					<div class="writer"><%=replyWriter%></div>
+					<div class="replyRegdate"><%=replys.get(i).getRegDate()%></div>
+					<div class="replyBody"><%=replys.get(i).getBody()%></div>
 				</li>
 
 				<%
@@ -104,9 +111,15 @@
 		</div>
 		<div class="write-reply">
 			<form class="input-reply" method="POST" action="writeReply">
-				<input type="hidden" name="articleId" value="<%=article.getId()%>">
+				<% if (currentMember == null) { %>
+				<textarea name="replyBody">로그인 후에 댓글 작성 가능합니다.</textarea>
+				<% } 
+				else { %>
 				<textarea name="replyBody">댓글 내용을 입력해주세요</textarea>
 				<input class="submit" type='submit' value='등록하기'>
+				<input type="hidden" name="replyMemberId" value="<%=currentMember.getId()%>">
+				<input type="hidden" name="articleId" value="<%=article.getId()%>">
+				<% } %>
 			</form>
 		</div>
 	</div>

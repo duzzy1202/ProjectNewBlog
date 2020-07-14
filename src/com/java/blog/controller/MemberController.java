@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.java.blog.dto.Member;
 
@@ -16,8 +17,7 @@ public class MemberController extends Controller {
 
 	public void beforeAction() {
 		super.beforeAction();
-		// 이 메서드는 게시물 컨트롤러의 모든 액션이 실행되기 전에 실행된다.
-		// 필요없다면 지워도 된다.
+		
 	}
 
 	public String doAction() {
@@ -30,9 +30,19 @@ public class MemberController extends Controller {
 			return doActionLogin(req, resp);
 		case "doLogin":
 			return doActionDoLogin(req, resp);
+		case "logout":
+			return doActionLogout(req, resp);
 		}
 
 		return "";
+	}
+
+	private String doActionLogout(HttpServletRequest req, HttpServletResponse resp) {
+		
+		HttpSession session = req.getSession();
+		session.removeAttribute("loggedInMemberId");
+		
+		return "html:<script> alert(' 로그아웃 되었습니다. '); location.replace('/blog/s/home/main'); </script>";
 	}
 
 	private String doActionDoLogin(HttpServletRequest req, HttpServletResponse resp) {
@@ -48,6 +58,12 @@ public class MemberController extends Controller {
 		Member member = memberService.getMemberByLoginId(loginId);
 		
 		String nickname = member.getNickname();
+		
+		int currentMemberId = member.getId();
+		
+		HttpSession session = req.getSession();
+		
+		session.setAttribute("loggedInMemberId", currentMemberId);
 		
 		return "html:<script> alert('[" + nickname + "]님 환영합니다.'); location.replace('/blog/s/home/main'); </script>";
 	}

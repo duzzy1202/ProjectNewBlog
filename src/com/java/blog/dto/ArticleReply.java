@@ -6,7 +6,7 @@ public class ArticleReply extends Dto{
 	String updateDate;
 	int articleId;
 	String body;
-	String writer;
+	int memberId;
 	
 	public ArticleReply(Map<String, Object> row) {
 		super(row);
@@ -14,6 +14,7 @@ public class ArticleReply extends Dto{
 		this.updateDate = (String) row.get("updateDate");
 		this.articleId = (int) row.get("articleId");
 		this.body = (String) row.get("body");
+		this.memberId = (int) row.get("memberId");
 	}
 
 	public String getUpdateDate() {
@@ -40,13 +41,12 @@ public class ArticleReply extends Dto{
 		this.body = body;
 	}
 
-	public String getWriter() {
-		return writer;
+	public int getMemberId() {
+		return memberId;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
-	
 	
 }

@@ -1,9 +1,14 @@
 <%@ page import="com.java.blog.dto.CateItem"%>
+<%@ page import="com.java.blog.dto.Member"%>
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/jsp/part/head.jspf"%>
+
+<%
+	Member currentMember = (Member) request.getAttribute("currentMember");
+%>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -79,6 +84,7 @@
 					<div id="editor1" style="background-color: white;"></div>
 				</div>
 				<input class="submit" type='submit' value='작성 완료'>
+				<input type="hidden" name="writerId" value="<%=currentMember.getId() %>">
 			</form>
 		</div>
 	</div>

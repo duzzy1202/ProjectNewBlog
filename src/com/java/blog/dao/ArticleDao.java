@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.java.blog.dto.Article;
 import com.java.blog.dto.ArticleReply;
 import com.java.blog.dto.CateItem;
+import com.java.blog.dto.Member;
 import com.java.blog.util.DBUtil;
 import com.java.blog.util.SecSql;
 
@@ -114,7 +115,7 @@ public class ArticleDao extends Dao {
 		return new CateItem(dbUtil.selectRow(dbConn, secSql));
 	}
 
-	public int insertWrittenArticle(int cateItemId, String title, String body) {
+	public int insertWrittenArticle(int cateItemId, String title, String body, int writerId) {
 		SecSql secSql = new SecSql();
 
 		secSql.append("INSERT INTO article");
@@ -125,7 +126,7 @@ public class ArticleDao extends Dao {
 		secSql.append(", displayStatus = '1'");
 		secSql.append(", cateItemId = ?", cateItemId);
 		secSql.append(", hits = '0'");
-		secSql.append(", memberId = '0'");
+		secSql.append(", memberId = ? ", writerId);
 
 		int id = dbUtil.insert(dbConn, secSql);
 
@@ -164,7 +165,7 @@ public class ArticleDao extends Dao {
 		return DBUtil.update(dbConn, sql);
 	}
 
-	public void writeReply(int articleId, String replyBody) {
+	public void writeReply(int articleId, String replyBody, int replyMemberId) {
 		SecSql secSql = new SecSql();
 		
 		secSql.append("INSERT INTO reply");
@@ -172,7 +173,7 @@ public class ArticleDao extends Dao {
 		secSql.append(", updateDate = NOW()");
 		secSql.append(", body = ? ", replyBody);
 		secSql.append(", articleId = ?", articleId);
-		secSql.append(", memberId = '0' ");
+		secSql.append(", memberId = ? ", replyMemberId);
 
 		int id = dbUtil.insert(dbConn, secSql);
 		
@@ -212,5 +213,37 @@ public class ArticleDao extends Dao {
 		int count = dbUtil.selectRowIntValue(dbConn, secSql);
 		
 		return count;
+	}
+
+	public Member getMemberById(int memberId) {
+		SecSql secSql = new SecSql();
+
+		secSql.append("SELECT * ");
+		secSql.append("FROM member ");
+		secSql.append("WHERE 1 ");
+		secSql.append("AND id = ? ", memberId);
+		
+		Member member = new Member(dbUtil.selectRow(dbConn, secSql));
+
+		return member;
+	}
+
+	public List<Member> getReplyMembersByReplysList(List<ArticleReply> replys) {
+		SecSql secSql = new SecSql();
+		
+		List<Member> members = new ArrayList<>();
+		for ( ArticleReply reply : replys) {
+			
+			secSql.append("SELECT * ");
+			secSql.append("FROM member ");
+			secSql.append("WHERE 1 ");
+			secSql.append("AND id = ? ", reply.getMemberId());
+			
+			Member member = new Member(dbUtil.selectRow(dbConn, secSql));
+			
+			members.add(member);
+		}
+		
+		return members;
 	}
 }

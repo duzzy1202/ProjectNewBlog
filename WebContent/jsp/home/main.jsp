@@ -7,6 +7,12 @@
 
 <%
 	List<Article> articles = (List<Article>) request.getAttribute("articles");
+
+ 	int currentMemberId = -1;
+ 	
+ 	if ( session.getAttribute("loggedInMemberId") != null ) {
+ 		currentMemberId = (int)session.getAttribute("loggedInMemberId");
+ 	}
 %>
 
 <div class="lastest-article-list-box visible-md-up">
@@ -73,8 +79,13 @@
 <div class="main-right visible-md-up">
 		<form>
 			<button type="button" onclick="location.href='/blog/s/article/write' ">글쓰기</button>
-			<button type="button" onclick="location.href='/blog/s/member/join' ">회원가입</button>
+			<% if ( currentMemberId == -1 ) {%>
 			<button type="button" onclick="location.href='/blog/s/member/login' ">로그인</button>
+			<button type="button" onclick="location.href='/blog/s/member/join' ">회원가입</button>
+			<% } 
+			else { %>
+			<button type="button" onclick="location.href='/blog/s/member/logout' ">로그아웃</button>
+			<% }%>
 		</form>
 	</div>
 <%@ include file="/jsp/part/foot.jspf"%>

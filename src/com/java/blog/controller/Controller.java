@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.java.blog.dto.CateItem;
 import com.java.blog.service.ArticleService;
@@ -24,6 +25,7 @@ public abstract class Controller {
 		this.actionMethodName = actionMethodName;
 		this.req = req;
 		this.resp = resp;
+		
 		articleService = new ArticleService(dbConn, req, resp);
 		memberService = new MemberService(dbConn, req, resp);
 	}

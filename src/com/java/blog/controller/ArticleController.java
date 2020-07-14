@@ -5,13 +5,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.java.blog.dto.Article;
 import com.java.blog.dto.ArticleReply;
 import com.java.blog.dto.CateItem;
+import com.java.blog.dto.Member;
 import com.java.blog.util.Util;
 
 public class ArticleController extends Controller {
+	
 	public ArticleController(Connection dbConn, String actionMethodName, HttpServletRequest req,
 			HttpServletResponse resp) {
 		super(dbConn, actionMethodName, req, resp);
@@ -49,8 +52,9 @@ public class ArticleController extends Controller {
 	private String doActionWriteReply(HttpServletRequest req, HttpServletResponse resp) {
 		int articleId = Util.getInt(req, "articleId");
 		String replyBody = req.getParameter("replyBody");
+		int replyMemberId = Util.getInt(req, "replyMemberId");
 		
-		articleService.writeReply(articleId, replyBody);
+		articleService.writeReply(articleId, replyBody, replyMemberId);
 		
 		return "html:<script> alert('댓글이 등록되었습니다.'); location.replace('detail?id=" + articleId + "'); </script>";
 	}
@@ -91,6 +95,16 @@ public class ArticleController extends Controller {
 
 	private String doActionWrite(HttpServletRequest req, HttpServletResponse resp) {	
 		
+		HttpSession session = req.getSession();
+		if ( session.getAttribute("loggedInMemberId") == null ) {
+			return "html:<script> alert('게시물을 작성하려면 로그인이 필요합니다.'); location.replace('/blog/s/member/login'); </script>";
+		}
+		
+		int currentMemberId = (int)session.getAttribute("loggedInMemberId");
+		Member currentMember = articleService.getMemberById(currentMemberId);
+		
+		req.setAttribute("currentMember", currentMember);
+		
 		List<CateItem> cateItems = articleService.getForPrintCateItems();
 		req.setAttribute("cateItems", cateItems);
 		
@@ -101,8 +115,10 @@ public class ArticleController extends Controller {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int cateItemId = Util.getInt(req, "cateItem");
+		
+		int writerId = Util.getInt(req, "writerId");
 
-		int id = articleService.insertWrittenArticle(cateItemId, title, body);
+		int id = articleService.insertWrittenArticle(cateItemId, title, body, writerId);
 
 		return "html:<script> alert('" + id + "번 게시물이 생성되었습니다.'); location.replace('detail?id=" + id + "'); </script>";
 	}
@@ -139,9 +155,30 @@ public class ArticleController extends Controller {
 		Article article = articleService.getForPrintArticle(id);
 		req.setAttribute("article", article);
 		
+		/* 게시물 작성자 가져오기 */
+		int memberId = article.getMemberId();
+		Member writer = articleService.getMemberById(memberId);
+		req.setAttribute("writer", writer);
+		
 		/* 댓글 리스트 가져오기 */
 		List<ArticleReply> replys = articleService.getForPrintListReplys(id, itemsInAPage, page);
 		req.setAttribute("replys", replys);
+		
+		/* 댓글 작성자들 가져오기 */
+		List<Member> replyMembers = articleService.getReplyMembersByReplysList(replys);
+		req.setAttribute("replyMembers", replyMembers);
+		
+		/* 현재 로그인된 이용자 가져오기 */
+		HttpSession session = req.getSession();
+		
+		int currentMemberId = -1;
+		Member currentMember = null;
+		
+	 	if ( session.getAttribute("loggedInMemberId") != null ) {
+	 		currentMemberId = (int)session.getAttribute("loggedInMemberId");
+	 		currentMember = articleService.getMemberById(currentMemberId);
+	 	}
+	 	req.setAttribute("currentMember", currentMember);
 
 		return "article/detail.jsp";
 	}
