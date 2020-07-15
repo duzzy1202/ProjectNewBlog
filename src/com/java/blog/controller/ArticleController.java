@@ -31,7 +31,7 @@ public class ArticleController extends Controller {
 		case "list":
 			return doActionList(req, resp);
 		case "detail":
-			return doActionDetail(req, resp);
+			return doActionDetail(req, resp, 0);
 		case "write":
 			return doActionWrite(req, resp);
 		case "doWrite":
@@ -44,9 +44,32 @@ public class ArticleController extends Controller {
 			return doActionDelete(req, resp);
 		case "writeReply":
 			return doActionWriteReply(req, resp);
+		case "updateReply":
+			return doActionUpdateReply(req, resp);
+		case "deleteReply":
+			return doActionDeleteReply(req, resp);
 		}
 
 		return "";
+	}
+
+	private String doActionDeleteReply(HttpServletRequest req, HttpServletResponse resp) {
+		int replyId = Util.getInt(req, "replyId");
+		int articleId = Util.getInt(req, "articleId");
+		
+		articleService.deleteReply(replyId);
+		
+		return "html:<script> alert('댓글이 삭제되었습니다.'); location.replace('detail?id=" + articleId + "'); </script>";
+	}
+
+	private String doActionUpdateReply(HttpServletRequest req, HttpServletResponse resp) {
+		int replyId = Util.getInt(req, "replyId");
+		int articleId = Util.getInt(req, "articleId");
+		String replyBody = req.getParameter("replyBody");
+		
+		articleService.UpdateReply(replyId, replyBody);
+		
+		return "html:<script> alert('댓글이 수정되었습니다.'); location.replace('detail?id=" + articleId + "'); </script>";
 	}
 
 	private String doActionWriteReply(HttpServletRequest req, HttpServletResponse resp) {
@@ -123,7 +146,7 @@ public class ArticleController extends Controller {
 		return "html:<script> alert('" + id + "번 게시물이 생성되었습니다.'); location.replace('detail?id=" + id + "'); </script>";
 	}
 
-	private String doActionDetail(HttpServletRequest req, HttpServletResponse resp) {
+	private String doActionDetail(HttpServletRequest req, HttpServletResponse resp, int replyUpdateMode) {
 		if (Util.empty(req, "id")) {
 			return "html:id를 입력해주세요.";
 		}
@@ -179,6 +202,10 @@ public class ArticleController extends Controller {
 	 		currentMember = articleService.getMemberById(currentMemberId);
 	 	}
 	 	req.setAttribute("currentMember", currentMember);
+	 	
+	 	/* 댓글 수정 모드  */
+	 	int replyUpdateModeValue = replyUpdateMode;
+	 	req.setAttribute("replyUpdateMode", replyUpdateModeValue);
 
 		return "article/detail.jsp";
 	}

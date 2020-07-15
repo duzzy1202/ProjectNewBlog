@@ -694,7 +694,7 @@ html {
 	font-family: 'Sunflower', sans-serif;
 	color: white;
 	border-bottom: 1px solid white;
-	margin-bottom: 10px;
+	margin-top: 10px;
 }
 .reply-box > .reply-list-box > .reply-list > ul > li > div {
 	padding: 10px;
@@ -730,6 +730,17 @@ html {
 	color: orangered;
 }
 
+.reply-box > .reply-list-box > .reply-list > ul > li > .update-reply {
+	display: none;
+	margin: 3px;
+	width: 95%;
+}
+
+.reply-box > .reply-list-box > .reply-list > ul > li > .update-reply > textarea {
+	margin: 3px;
+	width: 95%;
+	resize: none;
+}
 
 /* 홈화면 최근 게시물 리스트 */
 .lastest-article-list-box {

@@ -229,10 +229,10 @@ public class ArticleDao extends Dao {
 	}
 
 	public List<Member> getReplyMembersByReplysList(List<ArticleReply> replys) {
-		SecSql secSql = new SecSql();
-		
 		List<Member> members = new ArrayList<>();
 		for ( ArticleReply reply : replys) {
+			
+			SecSql secSql = new SecSql();
 			
 			secSql.append("SELECT * ");
 			secSql.append("FROM member ");
@@ -245,5 +245,25 @@ public class ArticleDao extends Dao {
 		}
 		
 		return members;
+	}
+
+	public void UpdateReply(int replyId, String replyBody) {
+		SecSql secSql = new SecSql();
+
+		secSql.append("UPDATE reply");
+		secSql.append("SET updateDate = NOW()");
+		secSql.append(", body = ? ", replyBody);
+		secSql.append("WHERE Id = ? ", replyId);
+
+		int id = dbUtil.update(dbConn, secSql);
+	}
+
+	public void deleteReply(int replyId) {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("DELETE FROM reply");
+		secSql.append("WHERE id = ? ", replyId);
+		
+		int id = dbUtil.update(dbConn, secSql);
 	}
 }

@@ -15,6 +15,7 @@
 	List<ArticleReply> replys = (List<ArticleReply>) request.getAttribute("replys");
 	int totalPage = (int) request.getAttribute("totalPage");
 	int paramPage = (int) request.getAttribute("page");
+	int replyUpdateMode = (int) request.getAttribute("replyUpdateMode");
 %>
 
 <div class="detail-box visible-md-up">
@@ -32,8 +33,7 @@
 		</div>
 		<div class="detail-body">
 			<div class="bottom-box">
-				<span>작성자 : <%=writer.getNickname()%></span>
-				<span>조회수 : <%=article.getHits()%></span> 
+				<span>작성자 : <%=writer.getNickname()%></span> <span>조회수 : <%=article.getHits()%></span>
 				<span>게시물 수정일 : <%=article.getUpdateDate()%></span>
 			</div>
 			<div class="detail-body-box">
@@ -80,7 +80,7 @@
 	<div class="reply-list-box">
 		<div class="reply-list visible-md-up">
 			<ul>
-				<%	
+				<%
 					for (int i = 0; i < replys.size(); i++) {
 						String replyWriter = replyMembers.get(i).getNickname();
 				%>
@@ -88,12 +88,28 @@
 				<li>
 					<div class="writer"><%=replyWriter%></div>
 					<div class="replyRegdate"><%=replys.get(i).getRegDate()%></div>
-					<div class="replyBody"><%=replys.get(i).getBody()%></div>
+					<div class="replyBody" id="replyBody(<%=replys.get(i).getId()%>)"><%=replys.get(i).getBody()%></div>
+					<form class="update-reply" method="POST" action="updateReply" id="updateReply(<%=replys.get(i).getId()%>)" >
+						<textarea name="replyBody"><%=replys.get(i).getBody()%></textarea>
+						<input type="hidden" name="replyId" value="<%=replys.get(i).getId()%>">
+						<input type="hidden" name="articleId" value="<%=article.getId()%>">  
+						<input class="submit" type='submit' value='수정완료' onclick="javascript:changeDisplayNone(<%=replys.get(i).getId()%>)">
+					</form>
 				</li>
+				<% if (currentMember == null) {
+						}
 
-				<%
-					}
-				%>
+						else if (replys.get(i).getMemberId() == currentMember.getId()) { %>
+				<div class="reply-buttons" style="display: flex; justify-content: flex-end;">
+					<input type="button" name="updateReply" value="수정" onclick="javascript:changeDisplayBlock(<%=replys.get(i).getId()%>);">
+					<form class="deleteReply" method="POST" action="deleteReply" style="margin: 0 10px; padding: 0;"> 
+						<input type="hidden" name="replyId" value="<%=replys.get(i).getId() %>">
+						<input type="hidden" name="articleId" value="<%=article.getId()%>">  
+						<input type="submit" name="deleteReply" value="삭제">
+					</form>
+				</div>
+				<% } %>
+				<% } %>
 			</ul>
 		</div>
 		<div class="con page-box visible-md-up">
@@ -101,9 +117,9 @@
 				<%
 					for (int i = 1; i <= totalPage; i++) {
 				%>
-				<li class="<%=i == paramPage ? "current" : ""%>" style=" padding: 10px;">
-					<a href="?id=${param.id}&page=<%=i%>" class="block"><%=i%></a>
-				</li>
+				<li class="<%=i == paramPage ? "current" : ""%>"
+					style="padding: 10px;"><a href="?id=${param.id}&page=<%=i%>"
+					class="block"><%=i%></a></li>
 				<%
 					}
 				%>
@@ -111,17 +127,41 @@
 		</div>
 		<div class="write-reply">
 			<form class="input-reply" method="POST" action="writeReply">
-				<% if (currentMember == null) { %>
+				<%
+					if (currentMember == null) {
+				%>
 				<textarea name="replyBody">로그인 후에 댓글 작성 가능합니다.</textarea>
-				<% } 
-				else { %>
+				<%
+					} else {
+				%>
 				<textarea name="replyBody">댓글 내용을 입력해주세요</textarea>
-				<input class="submit" type='submit' value='등록하기'>
-				<input type="hidden" name="replyMemberId" value="<%=currentMember.getId()%>">
+				<input class="submit" type='submit' value='등록하기'> 
+				<input type="hidden" name="replyMemberId" value="<%=currentMember.getId()%>"> 
 				<input type="hidden" name="articleId" value="<%=article.getId()%>">
-				<% } %>
+				<%
+					}
+				%>
 			</form>
 		</div>
 	</div>
 </div>
 <%@ include file="/jsp/part/foot.jspf"%>
+
+<script>
+	function changeDisplayBlock(id) {
+		var updateReply = document.getElementById('updateReply('+id+')');
+		var replyBody = document.getElementById('replyBody('+id+')');
+		
+		updateReply.style.display = 'block';
+		replyBody.style.display = 'none';
+	}
+	
+	function changeDisplayNone(id) {
+		var updateReply = document.getElementById('updateReply('+id+')');
+		var replyBody = document.getElementById('replyBody('+id+')');
+		
+		updateReply.style.display = 'none';
+		replyBody.style.display = 'block';
+	}
+
+</script>

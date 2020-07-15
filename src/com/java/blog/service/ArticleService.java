@@ -77,4 +77,12 @@ public class ArticleService extends Service {
 		return articleDao.getReplyMembersByReplysList(replys);
 	}
 
+	public void UpdateReply(int replyId, String replyBody) {
+		articleDao.UpdateReply(replyId, replyBody);
+	}
+
+	public void deleteReply(int replyId) {
+		articleDao.deleteReply(replyId);
+	}
+
 }
