@@ -48,6 +48,9 @@
 					case 7:
 						cateName = "축구";
 						break;
+					case 8:
+						cateName = "유튜브";
+						break;
 					}
 			%>
 

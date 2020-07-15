@@ -23,18 +23,15 @@
 		<div class="detail-title">
 			<div class="detail-title-box">
 				<i class="fab fa-free-code-camp"></i><span><%=article.getTitle()%></span>
-				<div class="article-regdate">
-					<span><%=article.getRegDate()%></span>
-				</div>
 				<div class="back-list-btn">
-					<a href="javascript:history.back();">목록</a>
+					<button type="button" onclick="javascript:location.replace('detail?id="<%=article.getCateItemId()%>"');">목록</button>
 				</div>
 			</div>
 		</div>
 		<div class="detail-body">
 			<div class="bottom-box">
-				<span>작성자 : <%=writer.getNickname()%></span> <span>조회수 : <%=article.getHits()%></span>
-				<span>게시물 수정일 : <%=article.getUpdateDate()%></span>
+				<span>작성자 : <%=writer.getNickname()%></span> <span>게시물 작성일 : <%=article.getRegDate()%></span> 
+				 <span>조회수 : <%=article.getHits()%></span> <span>게시물 수정일 : <%=article.getUpdateDate()%></span>
 			</div>
 			<div class="detail-body-box">
 				<script type="text/x-template" id="origin1" style="display: none;"><%=article.getBody()%></script>
@@ -101,8 +98,8 @@
 
 						else if (replys.get(i).getMemberId() == currentMember.getId()) { %>
 				<div class="reply-buttons" style="display: flex; justify-content: flex-end;">
-					<input type="button" name="updateReply" value="수정" onclick="javascript:changeDisplayBlock(<%=replys.get(i).getId()%>);">
-					<form class="deleteReply" method="POST" action="deleteReply" style="margin: 0 10px; padding: 0;"> 
+					<input type="button" name="updateReply" value="수정" style="margin: 5px; onclick="javascript:changeDisplayBlock(<%=replys.get(i).getId()%>);">
+					<form class="deleteReply" method="POST" action="deleteReply" style="margin: 5px; padding: 0;"> 
 						<input type="hidden" name="replyId" value="<%=replys.get(i).getId() %>">
 						<input type="hidden" name="articleId" value="<%=article.getId()%>">  
 						<input type="submit" name="deleteReply" value="삭제">
