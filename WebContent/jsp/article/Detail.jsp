@@ -72,7 +72,7 @@
 					<div class="writer"><%=reply.getExtra().get("replyWriter")%></div>
 					<div class="replyRegdate"><%=reply.getRegDate()%></div>
 					<div class="replyBody" id="replyBody(<%=reply.getId()%>)"><%=reply.getBody()%></div>
-					<form class="update-reply" method="POST" action="updateReply" id="updateReply(<%=reply.getId()%>)" >
+					<form class="update-reply" method="POST" action="updateReply" id="updateReply(<%=reply.getId()%>)" onsubmit="submitReplyForm(this); return false;">
 						<textarea name="replyBody"><%=reply.getBody()%></textarea>
 						<input type="hidden" name="replyId" value="<%=reply.getId()%>">
 						<input type="hidden" name="articleId" value="<%=article.getId()%>">  
@@ -109,7 +109,7 @@
 			</ul>
 		</div>
 		<div class="write-reply">
-			<form class="input-reply" method="POST" action="writeReply">
+			<form class="input-reply" method="POST" action="writeReply" onsubmit="submitReplyForm(this); return false;">
 				<%
 					if (currentMember == null) {
 				%>
@@ -146,5 +146,19 @@
 		updateReply.style.display = 'none';
 		replyBody.style.display = 'block';
 	}
+
+	function submitReplyForm(form) {
+
+		/* 댓글 입력 검사 */
+		form.replyBody.value = form.replyBody.value.trim();
+		if (form.replyBody.value.length == 0) {
+			alert('댓글 내용이 입력되지 않았습니다.');
+			form.replyBody.focus();
+
+			return;
+		}
+		form.submit();
+	}
+
 
 </script>
