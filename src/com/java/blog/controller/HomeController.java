@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.blog.dto.Article;
+import com.java.blog.dto.Member;
 
 public class HomeController extends Controller {
 	public HomeController(Connection dbConn, String actionMethodName, HttpServletRequest req, HttpServletResponse resp) {
@@ -17,15 +18,15 @@ public class HomeController extends Controller {
 	public String doAction() {
 		switch (actionMethodName) {
 		case "main":
-			return doActionMain(req, resp);
-		case "aboutme":
-			return doActionAboutMe(req, resp);
+			return doActionMain();
+		case "aboutMe":
+			return doActionAboutMe();
 		}
 
 		return "";
 	}
 
-	private String doActionMain(HttpServletRequest req, HttpServletResponse resp) {
+	private String doActionMain() {
 		int cateItemId = 0;
 		String searchKeywordType = "";
 		String searchKeyword = "";
@@ -40,8 +41,8 @@ public class HomeController extends Controller {
 		return "home/main.jsp";
 	}
 
-	private String doActionAboutMe(HttpServletRequest req, HttpServletResponse resp) {
-		return "home/aboutme.jsp";
+	private String doActionAboutMe() {
+		return "home/aboutMe.jsp";
 	}
 
 }

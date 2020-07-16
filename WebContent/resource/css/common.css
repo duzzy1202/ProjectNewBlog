@@ -205,7 +205,7 @@ html {
 	color: #F3F781;
 	padding: 0 10px;
 	display: flex;
-	width: 80px;
+	width: 90px;
 	height: 60px;
 	align-items: center;
 	justify-content: center;
@@ -611,6 +611,9 @@ html {
 }
 .detail-box .detail-body .buttons > div {
 	margin: 0 20px;
+	border: 1px solid skyblue;
+	padding: 5px;
+	color: white;
 }
 
 /* 디테일 댓글 박스 */

@@ -12,17 +12,12 @@ public class MemberService extends Service {
 
 	private MemberDao memberDao;
 
-	public MemberService(Connection dbConn, HttpServletRequest req, HttpServletResponse resp) {
-		super(req, resp);
-		memberDao = new MemberDao(dbConn, req, resp);
+	public MemberService(Connection dbConn) {
+		memberDao = new MemberDao(dbConn);
 	}
 
 	public void insertJoinMember(String loginId, String loginPw, String name, String nickname, String email) {
 		memberDao.insertJoinMember(loginId, loginPw, name, nickname, email);
-	}
-
-	public boolean checkIsExistsLoginId(String loginId) {
-		return memberDao.checkIsExistsLoginId(loginId);
 	}
 
 	public boolean checkIsExistsLoginIdAndLoginPw(String loginId, String loginPw) {
@@ -33,5 +28,19 @@ public class MemberService extends Service {
 		return memberDao.getMemberByLoginId(loginId);
 	}
 
+	public boolean isJoinableLoginId(String loginId) {
+		return memberDao.isJoinableLoginId(loginId);
+	}
+	
+	public boolean isJoinableNickname(String nickname) {
+		return memberDao.isJoinableNickname(nickname);
+	}
 
+	public boolean isJoinableEmail(String email) {
+		return memberDao.isJoinableEmail(email);
+	}
+	
+	public Member getMemberById(int id) {
+		return memberDao.getMemberById(id);
+	}
 }

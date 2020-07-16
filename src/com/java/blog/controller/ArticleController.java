@@ -29,31 +29,31 @@ public class ArticleController extends Controller {
 	public String doAction() {
 		switch (actionMethodName) {
 		case "list":
-			return doActionList(req, resp);
+			return doActionList();
 		case "detail":
-			return doActionDetail(req, resp, 0);
+			return doActionDetail();
 		case "write":
-			return doActionWrite(req, resp);
+			return doActionWrite();
 		case "doWrite":
-			return doActionDoWrite(req, resp);
+			return doActionDoWrite();
 		case "update":
-			return doActionUpdate(req, resp);
+			return doActionUpdate();
 		case "doUpdate":
-			return doActionDoUpdate(req, resp);
+			return doActionDoUpdate();
 		case "delete":
-			return doActionDelete(req, resp);
+			return doActionDelete();
 		case "writeReply":
-			return doActionWriteReply(req, resp);
+			return doActionWriteReply();
 		case "updateReply":
-			return doActionUpdateReply(req, resp);
+			return doActionUpdateReply();
 		case "deleteReply":
-			return doActionDeleteReply(req, resp);
+			return doActionDeleteReply();
 		}
 
 		return "";
 	}
 
-	private String doActionDeleteReply(HttpServletRequest req, HttpServletResponse resp) {
+	private String doActionDeleteReply() {
 		int replyId = Util.getInt(req, "replyId");
 		int articleId = Util.getInt(req, "articleId");
 		
@@ -62,7 +62,7 @@ public class ArticleController extends Controller {
 		return "html:<script> alert('댓글이 삭제되었습니다.'); location.replace('detail?id=" + articleId + "'); </script>";
 	}
 
-	private String doActionUpdateReply(HttpServletRequest req, HttpServletResponse resp) {
+	private String doActionUpdateReply() {
 		int replyId = Util.getInt(req, "replyId");
 		int articleId = Util.getInt(req, "articleId");
 		String replyBody = req.getParameter("replyBody");
@@ -72,7 +72,7 @@ public class ArticleController extends Controller {
 		return "html:<script> alert('댓글이 수정되었습니다.'); location.replace('detail?id=" + articleId + "'); </script>";
 	}
 
-	private String doActionWriteReply(HttpServletRequest req, HttpServletResponse resp) {
+	private String doActionWriteReply() {
 		int articleId = Util.getInt(req, "articleId");
 		String replyBody = req.getParameter("replyBody");
 		int replyMemberId = Util.getInt(req, "replyMemberId");
@@ -82,16 +82,19 @@ public class ArticleController extends Controller {
 		return "html:<script> alert('댓글이 등록되었습니다.'); location.replace('detail?id=" + articleId + "'); </script>";
 	}
 
-	private String doActionDelete(HttpServletRequest req, HttpServletResponse resp) {
-		int cateItemId = Util.getInt(req, "cateItemId");
-		int articleId = Util.getInt(req, "articleId");
+	private String doActionDelete() {
+		int articleId = Util.getInt(req, "id");
+	
+		/* 게시물 가져오기 */
+		Article article = articleService.getForPrintArticle(articleId);
+		int cateItemId = article.getCateItemId();
 		
 		articleService.deleteArticle(articleId);
 		
 		return "html:<script> alert('" + articleId + "번 게시물이 삭제되었습니다.'); location.replace('list?cateItemId=" + cateItemId + "'); </script>";
 	}
 
-	private String doActionDoUpdate(HttpServletRequest req, HttpServletResponse resp) {
+	private String doActionDoUpdate() {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int cateItemId = Util.getInt(req, "cateItem");
@@ -102,21 +105,25 @@ public class ArticleController extends Controller {
 		return "html:<script> alert('" + articleId + "번 게시물이 수정되었습니다.'); location.replace('detail?id=" + articleId + "'); </script>";
 	}
 
-	private String doActionUpdate(HttpServletRequest req, HttpServletResponse resp) {
-		String title = req.getParameter("articleTitle");
-		String body = req.getParameter("articleBody");
-		int id = Util.getInt(req, "articleId");
-		int cateItemId = Util.getInt(req, "cateItemId");
+	private String doActionUpdate() {
+		if (Util.empty(req, "id")) {
+			return "html:id를 입력해주세요.";
+		}
+
+		if (Util.isNum(req, "id") == false) {
+			return "html:id를 정수로 입력해주세요.";
+		}
 		
-		req.setAttribute("id", id);
-		req.setAttribute("title", title);
-		req.setAttribute("body", body);
-		req.setAttribute("cateItemId", cateItemId);
+		int id = Util.getInt(req, "id");
+		
+		/* 게시물 가져오기 */
+		Article article = articleService.getForPrintArticle(id);
+		req.setAttribute("article", article);
 		
 		return "article/update.jsp";
 	}
 
-	private String doActionWrite(HttpServletRequest req, HttpServletResponse resp) {	
+	private String doActionWrite() {	
 		
 		HttpSession session = req.getSession();
 		if ( session.getAttribute("loggedInMemberId") == null ) {
@@ -134,7 +141,7 @@ public class ArticleController extends Controller {
 		return "article/write.jsp";
 	}
 	
-	private String doActionDoWrite(HttpServletRequest req, HttpServletResponse resp) {
+	private String doActionDoWrite() {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int cateItemId = Util.getInt(req, "cateItem");
@@ -146,7 +153,7 @@ public class ArticleController extends Controller {
 		return "html:<script> alert('" + id + "번 게시물이 생성되었습니다.'); location.replace('detail?id=" + id + "'); </script>";
 	}
 
-	private String doActionDetail(HttpServletRequest req, HttpServletResponse resp, int replyUpdateMode) {
+	private String doActionDetail() {
 		if (Util.empty(req, "id")) {
 			return "html:id를 입력해주세요.";
 		}
@@ -178,18 +185,9 @@ public class ArticleController extends Controller {
 		Article article = articleService.getForPrintArticle(id);
 		req.setAttribute("article", article);
 		
-		/* 게시물 작성자 가져오기 */
-		int memberId = article.getMemberId();
-		Member writer = articleService.getMemberById(memberId);
-		req.setAttribute("writer", writer);
-		
 		/* 댓글 리스트 가져오기 */
 		List<ArticleReply> replys = articleService.getForPrintListReplys(id, itemsInAPage, page);
 		req.setAttribute("replys", replys);
-		
-		/* 댓글 작성자들 가져오기 */
-		List<Member> replyMembers = articleService.getReplyMembersByReplysList(replys);
-		req.setAttribute("replyMembers", replyMembers);
 		
 		/* 현재 로그인된 이용자 가져오기 */
 		HttpSession session = req.getSession();
@@ -202,15 +200,11 @@ public class ArticleController extends Controller {
 	 		currentMember = articleService.getMemberById(currentMemberId);
 	 	}
 	 	req.setAttribute("currentMember", currentMember);
-	 	
-	 	/* 댓글 수정 모드  */
-	 	int replyUpdateModeValue = replyUpdateMode;
-	 	req.setAttribute("replyUpdateMode", replyUpdateModeValue);
 
 		return "article/detail.jsp";
 	}
 
-	private String doActionList(HttpServletRequest req, HttpServletResponse resp) {
+	private String doActionList() {
 		int page = 1;
 
 		if (!Util.empty(req, "page") && Util.isNum(req, "page")) {

@@ -258,3 +258,9 @@ function getUrlParams(url) {
 	return params;
 }
 // lib 끝
+
+/* </script> 글작성시 오류 수정 */
+
+function getBodyFromXTemplate(selector) {
+	return $(selector).html().trim().replace(/<!--REPLACE:script-->/gi, 'script');
+}

@@ -58,7 +58,7 @@
 				<div><i class="fab fa-free-code-camp"></i></div>
 				<div class="articleId"><%=article.getId()%></div> 
 				<div class="cateName"><%=cateName%></div>
-				<div class="articleTitle"><a href="./detail?id=<%=article.getId()%>"><%=article.getTitle()%></a></div>
+				<div class="articleTitle"><a href="./detail?id=<%=article.getId()%>&cateItemId=${param.cateItemId}"><%=article.getTitle()%></a></div>
 				<div class="articleRegDate"><%=article.getRegDate()%></div>
 			</li>
 			

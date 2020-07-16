@@ -1,4 +1,4 @@
-<%@ page import="com.java.blog.dto.CateItem"%>
+<%@ page import="com.java.blog.dto.Article"%>
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -45,11 +45,7 @@
 	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
 <%
-	List<CateItem> cateItems = (List<CateItem>) request.getAttribute("cateItems");
-	int articleId = (int) request.getAttribute("id");
-	int articleCateItemId = (int) request.getAttribute("cateItemId");
-	String articleTitle = (String) request.getAttribute("title");
-	String articleBody = (String) request.getAttribute("body");
+	Article article = (Article) request.getAttribute("article");
 %>
 <div class="doWrite-box">
 	<div class="con">
@@ -59,6 +55,8 @@
 		<div class="doWrite-body">
 			<form class="input-article" method="POST" action="doUpdate"
 				onsubmit="submitWriteForm(this); return false">
+				<input type="hidden" name="body">
+				<input type="hidden" name="articleId" value="<%=article.getId()%>">
 				<div class="select-cateItem inputs">
 					<span>카테고리</span> <select name="cateItem" id="select-cate">
 						<%
@@ -66,7 +64,7 @@
 								String cateItemName = cateItem.getName();
 								int cateItemId = cateItem.getId();
 								String selected = "";
-								if (cateItemId == articleCateItemId) {
+								if (cateItemId == article.getCateItemId()) {
 									selected = "selected=\"selected\"";
 								}
 						%>
@@ -79,15 +77,14 @@
 					</select>
 				</div>
 				<div class="input-title inputs">
-					<span>제목</span> <input type="text" name="title" value="<%= articleTitle %>"
-						maxlength="50">
+					<span>제목</span> <input type="text" name="title" value="<%=article.getTitle()%>" maxlength="50">
 				</div>
 				<div class="input-body inputs">
-					<span>내용</span> <input type="hidden" name="body">
+					<span>내용</span> 
 
-					<div id="editor1" style="background-color: white;"><%= articleBody %></div>
+					<script type="text/x-template" id="origin1"><%=article.getBodyForXTemplate()%></script>
+					<div id="editor1" style="background-color: white;"></div>
 				</div>
-				<input type="hidden" name="articleId" value="<%= articleId %>">
 				<input class="submit" type='submit' value='수정 완료'>
 			</form>
 		</div>
@@ -102,7 +99,7 @@
 		width : "600px",
 		height : "500px",
 		previewStyle : "vertical",
-		initialValue : "",
+		initialValue : getBodyFromXTemplate('#origin1'),
 		plugins : [ toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin,
 				replPlugin, codepenPlugin ]
 	});

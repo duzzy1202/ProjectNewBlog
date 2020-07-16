@@ -63,4 +63,9 @@ public class SecSql {
 	public static SecSql from(String sql) {
 		return new SecSql().append(sql);
 	}
+	
+	@Override
+	public String toString() {
+		return "sql=" + getFormat() + ", data=" + datas;
+	}
 }

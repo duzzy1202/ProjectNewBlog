@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.java.blog.dto.CateItem;
+import com.java.blog.dto.Member;
 import com.java.blog.service.ArticleService;
 import com.java.blog.service.MemberService;
 
@@ -16,6 +17,7 @@ public abstract class Controller {
 	protected String actionMethodName;
 	protected HttpServletRequest req;
 	protected HttpServletResponse resp;
+	protected HttpSession session;
 
 	protected ArticleService articleService;
 	protected MemberService memberService;
@@ -25,18 +27,34 @@ public abstract class Controller {
 		this.actionMethodName = actionMethodName;
 		this.req = req;
 		this.resp = resp;
+		this.session = req.getSession();
 		
-		articleService = new ArticleService(dbConn, req, resp);
-		memberService = new MemberService(dbConn, req, resp);
+		articleService = new ArticleService(dbConn);
+		memberService = new MemberService(dbConn);
 	}
 
 	public void beforeAction() {
 		// 액션 전 실행
 		// 이 메서드는 모든 컨트롤러의 모든 액션이 실행되기 전에 실행된다.
 		List<CateItem> cateItems = articleService.getForPrintCateItems();
-		
+
 		req.setAttribute("cateItems", cateItems);
-	}
+
+		// 사용자 관련 정보를 리퀘스트 객체에 정리해서 넣기
+		int loggedInMemberId = -1;
+		boolean isLoggedIn = false;
+		Member loggedInMember = null;
+
+		if ( session.getAttribute("loggedInMemberId") != null ) {
+			loggedInMemberId = (int)session.getAttribute("loggedInMemberId");
+			isLoggedIn = true;
+			loggedInMember = memberService.getMemberById(loggedInMemberId);
+		}
+
+		req.setAttribute("loggedInMemberId", loggedInMemberId);
+		req.setAttribute("loggedInMember", loggedInMember);
+		req.setAttribute("isloggedIn", isLoggedIn);
+	}	
 
 	public void afterAction() {
 		// 액션 후 실행

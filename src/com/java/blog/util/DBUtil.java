@@ -18,15 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.java.blog.exception.SQLErrorException;
 
 public class DBUtil {
-	private HttpServletRequest req;
-	private HttpServletResponse resp;
-
-	public DBUtil(HttpServletRequest req, HttpServletResponse resp) {
-		this.req = req;
-		this.resp = resp;
-	}
-
-	public Map<String, Object> selectRow(Connection dbConn, SecSql sql) {
+	public static Map<String, Object> selectRow(Connection dbConn, SecSql sql) {
 		List<Map<String, Object>> rows = selectRows(dbConn, sql);
 
 		if (rows.size() == 0) {
@@ -36,7 +28,7 @@ public class DBUtil {
 		return rows.get(0);
 	}
 
-	public List<Map<String, Object>> selectRows(Connection dbConn, SecSql sql) throws SQLErrorException {
+	public static List<Map<String, Object>> selectRows(Connection dbConn, SecSql sql) throws SQLErrorException {
 		List<Map<String, Object>> rows = new ArrayList<>();
 		
 		PreparedStatement stmt = null;
@@ -86,7 +78,7 @@ public class DBUtil {
 		return rows;
 	}
 
-	public int selectRowIntValue(Connection dbConn, SecSql sql) {
+	public static int selectRowIntValue(Connection dbConn, SecSql sql) {
 		Map<String, Object> row = selectRow(dbConn, sql);
 
 		for (String key : row.keySet()) {
@@ -96,7 +88,7 @@ public class DBUtil {
 		return -1;
 	}
 
-	public String selectRowStringValue(Connection dbConn, SecSql sql) {
+	public static String selectRowStringValue(Connection dbConn, SecSql sql) {
 		Map<String, Object> row = selectRow(dbConn, sql);
 
 		for (String key : row.keySet()) {
@@ -106,7 +98,7 @@ public class DBUtil {
 		return "";
 	}
 
-	public boolean selectRowBooleanValue(Connection dbConn, SecSql sql) {
+	public static boolean selectRowBooleanValue(Connection dbConn, SecSql sql) {
 		Map<String, Object> row = selectRow(dbConn, sql);
 
 		for (String key : row.keySet()) {
@@ -116,7 +108,7 @@ public class DBUtil {
 		return false;
 	}
 	
-	public int insert(Connection dbConn, SecSql sql) {
+	public static int insert(Connection dbConn, SecSql sql) {
 		int id = -1;
 
 		PreparedStatement stmt = null;
@@ -151,7 +143,7 @@ public class DBUtil {
 		return id;
 	}
 	
-	public void justInsert(Connection dbConn, SecSql sql) {
+	public static void justInsert(Connection dbConn, SecSql sql) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 

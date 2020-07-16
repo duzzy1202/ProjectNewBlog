@@ -24,7 +24,7 @@ public class Article extends Dto {
 	@Override
 	public String toString() {
 		return "Article [updateDate=" + updateDate + ", cateItemId=" + cateItemId + ", title=" + title + ", body="
-				+ body + ", dto=" + super.toString() + "]";
+				+ body + ", hits=" + hits + ", dto=" + super.toString() + "]";
 	}
 
 	public String getUpdateDate() {
@@ -75,4 +75,7 @@ public class Article extends Dto {
 		this.memberId = memberId;
 	}
 
+	public String getBodyForXTemplate() {
+		return body.replaceAll("(?i)script", "<!--REPLACE:script-->");
+	}
 }

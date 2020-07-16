@@ -15,7 +15,7 @@
 	List<ArticleReply> replys = (List<ArticleReply>) request.getAttribute("replys");
 	int totalPage = (int) request.getAttribute("totalPage");
 	int paramPage = (int) request.getAttribute("page");
-	int replyUpdateMode = (int) request.getAttribute("replyUpdateMode");
+	int articleCateItemId = article.getCateItemId();
 %>
 
 <div class="detail-box visible-md-up">
@@ -24,20 +24,20 @@
 			<div class="detail-title-box">
 				<i class="fab fa-free-code-camp"></i><span><%=article.getTitle()%></span>
 				<div class="back-list-btn">
-					<button type="button" onclick="javascript:location.replace('detail?id="<%=article.getCateItemId()%>"');">목록</button>
+					<button type="button" onclick="javascript:location.replace('list?cateItemId=<%=articleCateItemId%>');">목록</button>
 				</div>
 			</div>
 		</div>
 		<div class="detail-body">
 			<div class="bottom-box">
-				<span>작성자 : <%=writer.getNickname()%></span> <span>게시물 작성일 : <%=article.getRegDate()%></span> 
+				<span>작성자 : <%=article.getExtra().get("writer")%></span> <span>게시물 작성일 : <%=article.getRegDate()%></span> 
 				 <span>조회수 : <%=article.getHits()%></span> <span>게시물 수정일 : <%=article.getUpdateDate()%></span>
 			</div>
 			<div class="detail-body-box">
-				<script type="text/x-template" id="origin1" style="display: none;"><%=article.getBody()%></script>
+				<script type="text/x-template" id="origin1" style="display: none;"><%=article.getBodyForXTemplate()%></script>
 				<div id="viewer1"></div>
 				<script>
-					var editor1__initialValue = $('#origin1').html();
+					var editor1__initialValue = getBodyFromXTemplate('#origin1');
 					var editor1 = new toastui.Editor({
 						el : document.querySelector("#viewer1"),
 						viewer : true,
@@ -47,29 +47,16 @@
 					});
 				</script>
 			</div>
+			<% if ( loggedInMemberId == article.getMemberId()) { %>
 			<div class="buttons">
 				<div class="update-btn">
-					<form class="input-article" method="POST" action="update"
-						onsubmit="submitUpdateForm(this); return false">
-						<input type="hidden" name="articleId" value="<%=article.getId()%>">
-						<input type="hidden" name="articleTitle"
-							value="<%=article.getTitle()%>"> <input type="hidden"
-							name="articleBody" value="<%=article.getBody()%>"> <input
-							type="hidden" name="cateItemId"
-							value="<%=article.getCateItemId()%>"> <input
-							class="submit" type='submit' value='수정하기'>
-					</form>
+					<a href="update?id=${param.id}">수정하기</a>
 				</div>
 				<div class="delete-btn">
-					<form class="input-article" method="POST" action="delete"
-						onsubmit="submitUpdateForm(this); return false">
-						<input type="hidden" name="cateItemId"
-							value="<%=article.getCateItemId()%>"> <input
-							type="hidden" name="articleId" value="<%=article.getId()%>">
-						<input class="submit" type='submit' value='삭제하기'>
-					</form>
+					<a href="delete?id=${param.id}" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;">삭제하기</a>
 				</div>
 			</div>
+			<% } %>
 		</div>
 	</div>
 </div>
@@ -78,31 +65,30 @@
 		<div class="reply-list visible-md-up">
 			<ul>
 				<%
-					for (int i = 0; i < replys.size(); i++) {
-						String replyWriter = replyMembers.get(i).getNickname();
+					for (ArticleReply reply : replys) {
 				%>
 
 				<li>
-					<div class="writer"><%=replyWriter%></div>
-					<div class="replyRegdate"><%=replys.get(i).getRegDate()%></div>
-					<div class="replyBody" id="replyBody(<%=replys.get(i).getId()%>)"><%=replys.get(i).getBody()%></div>
-					<form class="update-reply" method="POST" action="updateReply" id="updateReply(<%=replys.get(i).getId()%>)" >
-						<textarea name="replyBody"><%=replys.get(i).getBody()%></textarea>
-						<input type="hidden" name="replyId" value="<%=replys.get(i).getId()%>">
+					<div class="writer"><%=reply.getExtra().get("replyWriter")%></div>
+					<div class="replyRegdate"><%=reply.getRegDate()%></div>
+					<div class="replyBody" id="replyBody(<%=reply.getId()%>)"><%=reply.getBody()%></div>
+					<form class="update-reply" method="POST" action="updateReply" id="updateReply(<%=reply.getId()%>)" >
+						<textarea name="replyBody"><%=reply.getBody()%></textarea>
+						<input type="hidden" name="replyId" value="<%=reply.getId()%>">
 						<input type="hidden" name="articleId" value="<%=article.getId()%>">  
-						<input class="submit" type='submit' value='수정완료' onclick="javascript:changeDisplayNone(<%=replys.get(i).getId()%>)">
+						<input class="submit" type='submit' value='수정완료' onclick="javascript:changeDisplayNone(<%=reply.getId()%>)">
 					</form>
 				</li>
 				<% if (currentMember == null) {
 						}
 
-						else if (replys.get(i).getMemberId() == currentMember.getId()) { %>
+						else if (reply.getMemberId() == currentMember.getId()) { %>
 				<div class="reply-buttons" style="display: flex; justify-content: flex-end;">
-					<input type="button" name="updateReply" value="수정" style="margin: 5px; onclick="javascript:changeDisplayBlock(<%=replys.get(i).getId()%>);">
+					<input type="button" name="updateReply" value="수정" style="margin: 5px;"" onclick="javascript:changeDisplayBlock(<%=reply.getId()%>)">
 					<form class="deleteReply" method="POST" action="deleteReply" style="margin: 5px; padding: 0;"> 
-						<input type="hidden" name="replyId" value="<%=replys.get(i).getId() %>">
+						<input type="hidden" name="replyId" value="<%=reply.getId() %>">
 						<input type="hidden" name="articleId" value="<%=article.getId()%>">  
-						<input type="submit" name="deleteReply" value="삭제">
+						<input type="submit" name="deleteReply" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;" value="삭제">
 					</form>
 				</div>
 				<% } %>

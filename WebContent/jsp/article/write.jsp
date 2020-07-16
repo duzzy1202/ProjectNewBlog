@@ -47,10 +47,6 @@
 <!-- 토스트 UI 에디터, CSS 코어 -->
 <link rel="stylesheet"
 	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-
-<%
-	List<CateItem> cateItems = (List<CateItem>) request.getAttribute("cateItems");
-%>
 <div class="doWrite-box">
 	<div class="con">
 		<div class="doWrite-title">

@@ -1,5 +1,16 @@
+<%@ page import="com.java.blog.dto.Article"%>
+<%@ page import="com.java.blog.dto.CateItem"%>
+<%@ page import="com.java.blog.dto.Member"%>
+<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%
+	List<CateItem> cateItems = (List<CateItem>) request.getAttribute("cateItems");
+	int loggedInMemberId = (int) request.getAttribute("loggedInMemberId");
+	Member loggedInMember = (Member) request.getAttribute("loggedInMember");
+	boolean isloggedIn = (boolean) request.getAttribute("isloggedIn");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -66,9 +77,29 @@
 <!-- 토스트 UI 에디터, CSS 코어 -->
 <link rel="stylesheet"
 	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-	
+
 <title>불피우는곳</title>
 
+<script>
+	var loggedInMemberId = parseInt("${loggedInMemberId}");
+	var isloggedIn = "${isloggedIn}" == "true";
+	var loggedInMember = null;
+</script>
+<%
+	if (isloggedIn) {
+%>
+<script>
+	loggedInMember = {};
+	loggedInMember["id"] = parseInt("${loggedInMember.id}");
+	loggedInMember["regDate"] = "${loggedInMember.regDate}";
+	loggedInMember["loginId"] = "${loggedInMember.loginId}";
+	loggedInMember["name"] = "${loggedInMember.name}";
+	loggedInMember["nickname"] = "${loggedInMember.nickname}";
+	loggedInMember["email"] = "${loggedInMember.email}";
+</script>
+<%
+	}
+%>
 </head>
 
 <body>
@@ -83,19 +114,26 @@
 			<nav class="menu-box-1">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/s/home/main" class="">홈</a></li>
-					<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=0">게시판</a>  
-							<ul>
-								<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=1">잡담</a></li>
-								<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=2">IT기타</a></li>
-								<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=3">프론트엔드</a></li>
-								<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=4">백엔드</a></li>
-								<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=5">알고리즘</a></li>
-								<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=6">게임</a></li>
-								<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=7">축구</a></li>
-								<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=8">유튜브</a></li>
-							</ul> 
-					</li>
-					<li><a href="${pageContext.request.contextPath}/s/home/aboutme">주인장</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/article/write">글쓰기</a></li>
+					<% if (isloggedIn == false) { %>
+					<li><a href="${pageContext.request.contextPath}/s/member/login">로그인</a></li>
+					<li><a href="${pageContext.request.contextPath}/s/member/join">회원가입</a></li>
+					<% } else { %>
+					<li><a href="${pageContext.request.contextPath}/s/member/logout">로그아웃</a></li>
+					<% } %>
+					<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=0">게시판</a>
+						<ul>
+							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=1">잡담</a></li>
+							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=2">IT기타</a></li>
+							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=3">프론트엔드</a></li>
+							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=4">백엔드</a></li>
+							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=5">알고리즘</a></li>
+							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=6">게임</a></li>
+							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=7">축구</a></li>
+							<li><a href="${pageContext.request.contextPath}/s/article/list?cateItemId=8">유튜브</a></li>
+						</ul></li>
+					<li><a href="${pageContext.request.contextPath}/s/home/aboutMe">주인장</a></li>
+					
 				</ul>
 			</nav>
 		</div>
@@ -141,7 +179,7 @@
 						<li><a
 							href="${pageContext.request.contextPath}/s/article/list?cateItemId=8">유튜브</a></li>
 					</ul></li>
-				<li><a href="${pageContext.request.contextPath}/s/home/aboutme">주인장</a></li>
+				<li><a href="${pageContext.request.contextPath}/s/home/aboutMe">주인장</a></li>
 			</ul>
 		</div>
 	</div>

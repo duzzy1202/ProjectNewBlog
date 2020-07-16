@@ -68,5 +68,12 @@ public class Member extends Dto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@Override
+	public String toString() {
+		return "Member [updateDate=" + updateDate + ", loginId=" + loginId + ", loginPw=" + loginPw + ", name=" + name
+				+ ", nickname=" + nickname + ", email=" + email + ", getId()=" + getId() + ", getRegDate()="
+				+ getRegDate() + ", getExtra()=" + getExtra() + "]";
+	}
 
 }
