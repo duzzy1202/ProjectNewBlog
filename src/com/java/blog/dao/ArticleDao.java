@@ -27,10 +27,13 @@ public class ArticleDao extends Dao {
 		SecSql secSql = new SecSql();
 
 		int limitFrom = (page - 1) * itemsInAPage;
-
-		secSql.append("SELECT * ");
-		secSql.append("FROM article ");
-		secSql.append("WHERE displayStatus = 1 ");
+	
+		secSql.append("SELECT A.* ");
+		secSql.append(", M.nickname AS extra__writer ");
+		secSql.append("FROM article AS A");
+		secSql.append("INNER JOIN member AS M");
+		secSql.append("ON A.memberId = M.id");
+		secSql.append("WHERE A.displayStatus = 1");
 		
 		if (cateItemId != 0) {
 			secSql.append("AND cateItemId = ? ", cateItemId);

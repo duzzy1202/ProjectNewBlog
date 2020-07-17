@@ -194,7 +194,7 @@ html {
 
 .top-bar .menu-box-1>ul {
 	display: block;
-	border-left: 2px solid skyblue;
+	border-left: 2px solid blue;
 }
 
 .top-bar .menu-box-1>ul>li>a {
@@ -202,14 +202,14 @@ html {
 	background: rgba(0, 0, 0, 0.7);
 	font-family: 'Sunflower', sans-serif;
 	font-size: 1.2rem;
-	color: #F3F781;
+	color: white;
 	padding: 0 10px;
 	display: flex;
 	width: 90px;
 	height: 60px;
 	align-items: center;
 	justify-content: center;
-	transition: width .5s;
+	/* transition: width .5s; */
 	box-sizing: border-box;
 }
 
@@ -217,9 +217,10 @@ html {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.8);
 	color: orangered;
-	width: 120px;
+	/* width: 120px; */
 }
 /* ul ul 시작 */
+/*
 .top-bar .menu-box-1 > ul ul {
 	position: relative;
 	border-left: 2px solid blue;
@@ -232,7 +233,7 @@ html {
 	background: rgba(0, 0, 0, 0.5);
 	font-family: 'Sunflower', sans-serif;
 	font-size: 1.1rem;
-	color: #F3F781;
+	color: white;
 	padding: 0 10px;
 	width: 100px;
 	height: 0;
@@ -250,6 +251,65 @@ html {
 	color: orangered;
 	width: 130px;
 	height: 80px;
+}
+*/
+
+.top-bar .menu-box-1 > ul ul > li > a {
+	position: absolute;
+	display: flex;
+	transition: width .5s, background-color .5s, top .5s ease .3s, opacity .5s, visibility .5s;
+	top: 0;
+	left: 100%;
+	opacity: 0;
+	visibility: hidden;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.7);
+	font-family: 'Sunflower', sans-serif;
+	font-size: 1.1rem;
+	color: white;
+	padding: 0 10px;
+	width: 80px;
+	height: 60px;
+	border-left: 2px solid skyblue;
+}
+
+.top-bar .menu-box-1 > ul> li:hover > ul > li > a {
+	opacity: 1;
+	visibility: visible;
+}
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(1) > a {
+	top: 0;
+	z-index: 1;
+}
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(2) > a {
+	top: 60px;
+}
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(3) > a {
+	top: 120px;
+}
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(4) > a {
+	top: 180px;
+}
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(5) > a {
+	top: 240px;
+}
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(6) > a {
+	top: 300px;
+}
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(7) > a {
+	top: 360px;
+}
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(8) > a {
+	top: 420px;
+}
+
+.top-bar .menu-box-1 ul ul > li:hover > a {
+	display: flex;
+	background-color: black;
+	color: orangered;
+	width: 100px;
 }
 
 /* 모바일 배경 */
@@ -397,13 +457,15 @@ html {
 }
 
 .article-list-box .total-article-box1 {
-	background-color: orangered;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.75);
 	padding: 15px;
 	border-radius: 10px;
 }
 
 .article-list-box .total-article-box1>.total-article-box2 {
-	background-color: orange;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
 	display: flex;
 	justify-content: center;
 	border-radius: 10px;
@@ -411,7 +473,7 @@ html {
 
 .article-list-box .total-article-box1>.total-article-box2>span {
 	display: block;
-	color: black;
+	color: white;
 	font-size: 2rem;
 	padding: 5px;
 	font-family: 'Sunflower', sans-serif;
@@ -704,13 +766,15 @@ html {
 }
 
 .lastest-article-list-box .total-article-box1 {
-	background-color: orangered;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.75);
 	padding: 15px;
 	border-radius: 10px;
 }
 
 .lastest-article-list-box .total-article-box1>.total-article-box2 {
-	background-color: orange;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
 	display: flex;
 	justify-content: center;
 	border-radius: 10px;
@@ -718,7 +782,7 @@ html {
 
 .lastest-article-list-box .total-article-box1>.total-article-box2>span {
 	display: block;
-	color: black;
+	color: white;
 	font-size: 2rem;
 	padding: 5px;
 	font-family: 'Sunflower', sans-serif;

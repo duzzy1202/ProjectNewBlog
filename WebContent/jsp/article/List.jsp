@@ -9,13 +9,13 @@
 	List<Article> articles = (List<Article>) request.getAttribute("articles");
 	int totalPage = (int) request.getAttribute("totalPage");
 	int paramPage = (int) request.getAttribute("page");
+	String cateItemName = (String) request.getAttribute("cateItemName");
 %>
 
 <div class="article-list-box  visible-md-up">
 	<div class="total-article-box1 visible-md-up">
 		<div class="total-article-box2">
-			<span> <i class="fab fa-free-code-camp"></i> 불타고 있는 모닥불 갯수 :
-				${totalCount} 개 <i class="fab fa-free-code-camp"></i>
+			<span> <i class="fab fa-free-code-camp"></i> <%=cateItemName %> 게시판 : ${totalCount} 개 <i class="fab fa-free-code-camp"></i>
 			</span>
 		</div>
 	</div>
@@ -57,7 +57,11 @@
 			<li>
 				<div><i class="fab fa-free-code-camp"></i></div>
 				<div class="articleId"><%=article.getId()%></div> 
+				<% if (cateItemName.equals("전체")) { %>
 				<div class="cateName"><%=cateName%></div>
+				<% } else { %>
+				<div class="cateName"><%=article.getExtra().get("writer")%></div>
+				<% } %>
 				<div class="articleTitle"><a href="./detail?id=<%=article.getId()%>&cateItemId=${param.cateItemId}"><%=article.getTitle()%></a></div>
 				<div class="articleRegDate"><%=article.getRegDate()%></div>
 			</li>
