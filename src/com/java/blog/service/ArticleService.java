@@ -10,6 +10,7 @@ import com.java.blog.dao.ArticleDao;
 import com.java.blog.dto.Article;
 import com.java.blog.dto.ArticleReply;
 import com.java.blog.dto.CateItem;
+import com.java.blog.dto.Chat;
 import com.java.blog.dto.Member;
 
 public class ArticleService extends Service {
@@ -78,6 +79,18 @@ public class ArticleService extends Service {
 
 	public void deleteReply(int replyId) {
 		articleDao.deleteReply(replyId);
+	}
+
+	public List<ArticleReply> getAllReplysCount() {
+		return articleDao.getAllReplysCount();
+	}
+
+	public List<Chat> getChatting() {
+		return articleDao.getChatting();
+	}
+
+	public void writeChat(int memberId, String body) {
+		articleDao.writeChat(memberId, body);
 	}
 
 }

@@ -13,6 +13,7 @@ CREATE TABLE cateItem (
     regDate DATETIME NOT NULL,
     `name` CHAR(100) NOT NULL UNIQUE
 );
+
 # 카테고리 아이템
 INSERT INTO cateItem SET regDate = NOW(), `name` = "잡담";
 INSERT INTO cateItem SET regDate = NOW(), `name` = "공부/IT기타";
@@ -33,8 +34,10 @@ CREATE TABLE article (
     displayStatus TINYINT(1) UNSIGNED NOT NULL,
     `title` CHAR(200) NOT NULL,
     `body` TEXT NOT NULL,
-    hits INT NOT NULL
+    hits INT NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL
 );
+
 INSERT INTO article SET
 regDate = NOW(),
 updateDate = NOW(),
@@ -47,14 +50,39 @@ DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
-    `loginId` CHAR(50) NOT NULL,
+    updateDate DATETIME NOT NULL,
+    `loginId` CHAR(100) NOT NULL UNIQUE,
     `loginPw` CHAR(255) NOT NULL,
-    `name` CHAR(30) NOT NULL,
-    `nickname` CHAR(30) NOT NULL
+    `name` CHAR(100) NOT NULL,
+    email CHAR(200) NOT NULL,
+    `nickname` CHAR(200) NOT NULL,
+    `level` INT(10) UNSIGNED NOT NULL
 );
+
+DROP TABLE IF EXISTS reply;
+CREATE TABLE reply (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    articleId INT(10) UNSIGNED NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL,
+    `body` TEXT NOT NULL
+);
+
+
+articleReply
+
+SELECT *
+FROM article
+WHERE id = 60;
+
+
 
 SELECT * FROM article
 SELECT * FROM `member`
 SELECT * FROM cateItem
+SELECT * FROM reply
 
-ALTER TABLE article ADD hits INT(10) NOT NULL
+ALTER TABLE `member` ADD `level` INT(10) UNSIGNED NOT NULL
+
+ALTER TABLE reply MODIFY memberId INT(10) UNSIGNED NOT NULL

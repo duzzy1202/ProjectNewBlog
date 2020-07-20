@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.blog.dto.Article;
-import com.java.blog.dto.Member;
+import com.java.blog.dto.ArticleReply;
+import com.java.blog.dto.Chat;
+import com.java.blog.util.Util;
 
 public class HomeController extends Controller {
 	public HomeController(Connection dbConn, String actionMethodName, HttpServletRequest req, HttpServletResponse resp) {
@@ -21,9 +23,25 @@ public class HomeController extends Controller {
 			return doActionMain();
 		case "aboutMe":
 			return doActionAboutMe();
+		case "writeChat":
+			return doActionwriteChat();
 		}
 
 		return "";
+	}
+	
+	private String doActionwriteChat() {
+		int memberId = Util.getInt(req, "memberId");
+		String body = req.getParameter("chattingBody");
+		
+		articleService.writeChat(memberId, body);
+		
+		return "html:<script> location.replace('/blog/s/home/main'); </script>";
+	}
+
+	@Override
+	public String getControllerName() {
+		return "home";
 	}
 
 	private String doActionMain() {
@@ -37,6 +55,12 @@ public class HomeController extends Controller {
 
 		List<Article> articles = articleService.getForPrintListArticles(page, itemsInAPage, cateItemId, searchKeywordType, searchKeyword);
 		req.setAttribute("articles", articles);
+		
+		List<ArticleReply> replys = articleService.getAllReplysCount();
+		req.setAttribute("replysCount", replys);
+		
+		List<Chat> chattings = articleService.getChatting();
+		req.setAttribute("chattings", chattings);
 		
 		return "home/main.jsp";
 	}

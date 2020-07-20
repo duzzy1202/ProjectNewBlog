@@ -262,5 +262,22 @@ function getUrlParams(url) {
 /* </script> 글작성시 오류 수정 */
 
 function getBodyFromXTemplate(selector) {
-	return $(selector).html().trim().replace(/<!--REPLACE:script-->/gi, 'script');
+	return $(selector).html().trim().replace(/<!--REPLACE:script-->/gi,
+			'script');
+}
+
+/* 채팅 만들어봄 */
+/*
+function asasas(){  
+    setTimeout('location.reload()',100); 
+}
+
+window.setInterval("refreshDiv()", 100);
+function refreshDiv() {
+	$("#chattingBox").load(window.location.href + "#chattingBox");
+}
+*/
+function chattingScroll() {
+	var objDiv = document.getElementById("chattingBox");
+	objDiv.scrollTop = objDiv.scrollHeight;
 }

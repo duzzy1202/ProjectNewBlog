@@ -876,10 +876,6 @@ html {
 	transform: translateX(-50%);
 }
 
-.main-right>div {
-	color: white;
-	font-size: 3rem;
-}
 
 /* 어바웃 미 */
 .aboutme-box .con>img {
@@ -1152,4 +1148,52 @@ html {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 15px;
+}
+
+/* 채팅박스 */
+.main-right > .chatting {
+	padding: 10px;
+	color: white;
+}
+.main-right > .chatting > .chatting-box {
+	color: white;
+}
+
+.main-right > .chatting > .chatting-box  {
+	padding: 15px;
+	font-size: 1rem;
+	font-family: 'Sunflower', sans-serif;
+	overflow-x: auto;
+	height: 500px;
+	color: white;
+}
+
+.main-right > .chatting > .chatting-box .chatList {
+	display: flex;
+	flex-wrap: wrap;
+}
+.main-right > .chatting > .chatting-box .chatList .nick {
+	width: 45%;
+}
+.main-right > .chatting > .chatting-box .chatList .time {
+	width: 45%;
+}
+.main-right > .chatting > .chatting-box .chatList .body {
+	width: 95%;
+	padding: 5px;
+}
+.main-right > .chatting > .chatting-box > form {
+	position: absolute;
+	bottom: 2%;
+	width: 95%;
+	display: flex;
+}
+.main-right > .chatting > .chatting-box > form > textarea {
+	resize: none;
+	height: 50px;
+	width: 84%;
+}
+.main-right > .chatting > .chatting-box > form > .submit {
+	height: 50px;
+	margin: 5px;
 }

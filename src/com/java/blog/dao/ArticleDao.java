@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.java.blog.dto.Article;
 import com.java.blog.dto.ArticleReply;
 import com.java.blog.dto.CateItem;
+import com.java.blog.dto.Chat;
 import com.java.blog.dto.Member;
 import com.java.blog.util.DBUtil;
 import com.java.blog.util.SecSql;
@@ -309,5 +310,54 @@ public class ArticleDao extends Dao {
 		}
 		
 		return replys;
+	}
+	
+	public List<ArticleReply> getAllReplysCount() {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("SELECT * ");
+		secSql.append("FROM reply ");
+		secSql.append("WHERE 1 ");
+		
+		List<Map<String, Object>> rows = DBUtil.selectRows(dbConn, secSql);
+		List<ArticleReply> replys = new ArrayList<>();
+
+		for (Map<String, Object> row : rows) {
+			replys.add(new ArticleReply(row));
+		}
+		
+		return replys;
+	}
+
+	public List<Chat> getChatting() {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("SELECT C.* ");
+		secSql.append(", M.nickname AS extra__writer ");
+		secSql.append("FROM chatting AS C");
+		secSql.append("INNER JOIN member AS M");
+		secSql.append("ON C.memberId = M.id");
+		secSql.append("WHERE 1");
+		secSql.append("ORDER BY id ASC ");
+		
+		List<Map<String, Object>> rows = DBUtil.selectRows(dbConn, secSql);
+		List<Chat> chat = new ArrayList<>();
+
+		for (Map<String, Object> row : rows) {
+			chat.add(new Chat(row));
+		}
+		
+		return chat;
+	}
+
+	public void writeChat(int memberId, String body) {
+		SecSql secSql = new SecSql();
+
+		secSql.append("INSERT INTO chatting");
+		secSql.append("SET regDate = NOW()");
+		secSql.append(", body = ? ", body);
+		secSql.append(", memberId = ? ", memberId);
+
+		int id = DBUtil.insert(dbConn, secSql);
 	}
 }

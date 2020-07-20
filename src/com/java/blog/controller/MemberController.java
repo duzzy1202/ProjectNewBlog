@@ -36,6 +36,11 @@ public class MemberController extends Controller {
 
 		return "";
 	}
+	
+	@Override
+	public String getControllerName() {
+		return "member";
+	}
 
 	private String doActionLogout() {
 		

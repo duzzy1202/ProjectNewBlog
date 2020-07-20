@@ -1,5 +1,6 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.java.blog.dto.Article"%>
+<%@ page import="com.java.blog.dto.ArticleReply"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
@@ -7,6 +8,7 @@
 
 <%
 	List<Article> articles = (List<Article>) request.getAttribute("articles");
+	List<ArticleReply> replysCount = (List<ArticleReply>) request.getAttribute("replysCount");
 	int totalPage = (int) request.getAttribute("totalPage");
 	int paramPage = (int) request.getAttribute("page");
 	String cateItemName = (String) request.getAttribute("cateItemName");
@@ -61,8 +63,15 @@
 				<div class="cateName"><%=cateName%></div>
 				<% } else { %>
 				<div class="cateName"><%=article.getExtra().get("writer")%></div>
-				<% } %>
-				<div class="articleTitle"><a href="./detail?id=<%=article.getId()%>&cateItemId=${param.cateItemId}"><%=article.getTitle()%></a></div>
+				<% }
+					int replyCount = 0;
+					for (ArticleReply reply : replysCount) {
+						if (reply.getArticleId() == article.getId()) {
+							replyCount += 1;
+						}
+					}
+				%>
+				<div class="articleTitle"><a href="./detail?id=<%=article.getId()%>&cateItemId=${param.cateItemId}"><%=article.getTitle()%> (<%=replyCount%>)</a></div>
 				<div class="articleRegDate"><%=article.getRegDate()%></div>
 			</li>
 			

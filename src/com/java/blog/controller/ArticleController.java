@@ -23,7 +23,6 @@ public class ArticleController extends Controller {
 	public void beforeAction() {
 		super.beforeAction();
 		// 이 메서드는 게시물 컨트롤러의 모든 액션이 실행되기 전에 실행된다.
-		// 필요없다면 지워도 된다.
 	}
 
 	public String doAction() {
@@ -51,6 +50,11 @@ public class ArticleController extends Controller {
 		}
 
 		return "";
+	}
+	
+	@Override
+	public String getControllerName() {
+		return "article";
 	}
 
 	private String doActionDeleteReply() {
@@ -124,11 +128,6 @@ public class ArticleController extends Controller {
 	}
 
 	private String doActionWrite() {	
-		
-		HttpSession session = req.getSession();
-		if ( session.getAttribute("loggedInMemberId") == null ) {
-			return "html:<script> alert('게시물을 작성하려면 로그인이 필요합니다.'); location.replace('/blog/s/member/login'); </script>";
-		}
 		
 		int currentMemberId = (int)session.getAttribute("loggedInMemberId");
 		Member currentMember = articleService.getMemberById(currentMemberId);
@@ -249,6 +248,10 @@ public class ArticleController extends Controller {
 		List<Article> articles = articleService.getForPrintListArticles(page, itemsInAPage, cateItemId,
 				searchKeywordType, searchKeyword);
 		req.setAttribute("articles", articles);
+		
+		List<ArticleReply> replys = articleService.getAllReplysCount();
+		req.setAttribute("replysCount", replys);
+		
 		return "article/list.jsp";
 	}
 }
