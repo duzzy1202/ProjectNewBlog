@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.java.blog.dto.CateItem;
 import com.java.blog.dto.Member;
 import com.java.blog.service.ArticleService;
+import com.java.blog.service.MailService;
 import com.java.blog.service.MemberService;
 
 public abstract class Controller {
@@ -21,7 +22,25 @@ public abstract class Controller {
 
 	protected ArticleService articleService;
 	protected MemberService memberService;
+	protected MailService mailService;
+	
+	protected String gmailId;
+	protected String gmailPw;
 
+	public Controller(Connection dbConn, String actionMethodName, HttpServletRequest req, HttpServletResponse resp, String gmailId, String gmailPw, MailService mailService) {
+		this.dbConn = dbConn;
+		this.actionMethodName = actionMethodName;
+		this.req = req;
+		this.resp = resp;
+		this.session = req.getSession();
+		this.gmailId = gmailId;
+		this.gmailPw = gmailPw;
+		this.mailService = mailService;
+		
+		articleService = new ArticleService(dbConn);
+		memberService = new MemberService(dbConn);
+	}
+	
 	public Controller(Connection dbConn, String actionMethodName, HttpServletRequest req, HttpServletResponse resp) {
 		this.dbConn = dbConn;
 		this.actionMethodName = actionMethodName;
@@ -45,8 +64,8 @@ public abstract class Controller {
 		boolean isLoggedIn = false;
 		Member loggedInMember = null;
 
-		if ( session.getAttribute("loggedInMemberId") != null ) {
-			loggedInMemberId = (int)session.getAttribute("loggedInMemberId");
+		if (session.getAttribute("loggedInMemberId") != null) {
+			loggedInMemberId = (int) session.getAttribute("loggedInMemberId");
 			isLoggedIn = true;
 			loggedInMember = memberService.getMemberById(loggedInMemberId);
 		}
@@ -54,14 +73,14 @@ public abstract class Controller {
 		req.setAttribute("loggedInMemberId", loggedInMemberId);
 		req.setAttribute("loggedInMember", loggedInMember);
 		req.setAttribute("isloggedIn", isLoggedIn);
-	}	
+	}
 
 	public void afterAction() {
 		// 액션 후 실행
 	}
 
 	public abstract String doAction();
-	
+
 	public String executeAction() {
 		beforeAction();
 
@@ -104,8 +123,15 @@ public abstract class Controller {
 				break;
 			}
 			break;
-		}
 
+		case "home":
+			switch (actionMethodName) {
+			case "writeChat":
+				needToLogin = true;
+				break;
+			}
+			break;
+		}
 		if (needToLogin && isloggedIn == false) {
 			return "html:<script> alert('로그인 후 이용해주세요.'); location.href = '../member/login'; </script>";
 		}
@@ -125,13 +151,13 @@ public abstract class Controller {
 			break;
 		}
 
-		if (needToLogout && isloggedIn ) {
+		if (needToLogout && isloggedIn) {
 			return "html:<script> alert('로그아웃 후 이용해주세요.'); history.back(); </script>";
 		}
 		// 로그아웃에 관련된 가드 끝
 
 		return null;
 	}
-	
+
 	public abstract String getControllerName();
 }

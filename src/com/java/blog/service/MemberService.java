@@ -43,4 +43,24 @@ public class MemberService extends Service {
 	public Member getMemberById(int id) {
 		return memberDao.getMemberById(id);
 	}
+
+	public boolean isExistsMember(String loginId, String name, String email) {
+		return memberDao.isExistsMember(loginId, name, email);
+	}
+
+	public void updateTempPw(int memberId, String tempPw) {
+		memberDao.updateTempPw(memberId, tempPw);
+	}
+
+	public boolean isExistsMemberByLoginIdAndEmail(String name, String email) {
+		return memberDao.isExistsMemberByLoginIdAndEmail(name, email);
+	}
+
+	public Member getMemberByNameAndEmail(String name, String email) {
+		return memberDao.getMemberByNameAndEmail(name, email);
+	}
+
+	public void updateMember(String loginId, String loginPw) {
+		memberDao.updateMember(loginId, loginPw);
+	}
 }

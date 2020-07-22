@@ -8,22 +8,28 @@ import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.java.blog.controller.ArticleController;
 import com.java.blog.controller.Controller;
 import com.java.blog.controller.HomeController;
 import com.java.blog.controller.MemberController;
 import com.java.blog.exception.SQLErrorException;
+import com.java.blog.service.MailService;
 import com.java.blog.util.Util;
 
 public class App {
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
+	private String gmailId;
+	private String gmailPw;
+	private MailService mailService;
 
-	public App(HttpServletRequest req, HttpServletResponse resp) {
+	public App(HttpServletRequest req, HttpServletResponse resp, String gmailId, String gmailPw, MailService mailService) {
 		this.req = req;
 		this.resp = resp;
+		this.gmailId = gmailId;
+		this.gmailPw = gmailPw;
+		this.mailService = mailService;
 	}
 
 	private void loadDbDriver() throws IOException {
@@ -98,7 +104,7 @@ public class App {
 			controller = new ArticleController(dbConn, actionMethodName, req, resp);
 			break;
 		case "member":
-			controller = new MemberController(dbConn, actionMethodName, req, resp);
+			controller = new MemberController(dbConn, actionMethodName, req, resp, gmailId, gmailPw, mailService);
 			break;
 		case "home":
 			controller = new HomeController(dbConn, actionMethodName, req, resp);

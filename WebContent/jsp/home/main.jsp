@@ -85,15 +85,30 @@
 </div>
 <div class="main-right visible-md-up">
 	<div class="chatting visible-md-up" id="chatting">
-		<div class="chatting-box" onload="javascript: chattingScroll();"
-			id="chattingBox">
+		<div class="chatting-title">
+			<span> (( 유저 채팅방 ))</span>
+		</div>
+		<div class="chatting-box" id="chattingBox">
 			<div class="chatting-insidebox" id="chattinginsidebox">
 				<%
 					for (Chat chat : chattings) {
 				%>
 				<div class="chatList" id="chatList">
-					<div class="nick"><%=chat.getExtra().get("writer")%></div>
-					<div class="time"><%=chat.getRegDate()%></div>
+					<div class="nick">
+						[
+						<%=chat.getExtra().get("writer")%>
+						]
+						<%
+						if (chat.getMemberId() == loggedInMemberId) {
+					%>
+						( 나 )
+						<%
+						}
+					%>
+					</div>
+					<div class="time">
+						[<%=chat.getRegDate()%>]
+					</div>
 					<div class="body"><%=chat.getBody()%></div>
 				</div>
 				<%
@@ -101,13 +116,14 @@
 				%>
 			</div>
 
-			<form class="input-chat" method="POST" action="writeChat">
-				<textarea name="chattingBody">채팅 입력</textarea>
-				<input type="hidden" name="memberId" value="<%=loggedInMemberId%>">
+			<form class="input-chat" id="inputChat" method="POST"
+				action="writeChat">
+				<input type="text" name="chattingBody" class="chattingBody" autocomplete="off" id="chattext" autofocus > 
+					<input type="hidden" name="memberId" value="<%=loggedInMemberId%>">
 				<%
 					if (isloggedIn == true) {
 				%>
-				<input class="submit" type='submit' value='[ > ]'>
+				<input class="submit" type='submit' onclick="submit()" value='[ > ]'>
 				<%
 					}
 				%>
@@ -119,20 +135,46 @@
 <%@ include file="/jsp/part/foot.jspf"%>
 
 <script>
+	/* 0.5초마다 채팅창을 로드 */
 	/*
-	 window.setInterval("refreshDiv()", 1000);
-	 function refreshDiv() {
-		 $("#chattingBox").load(document.reload("#chatList"));
-		 }
-	 */
-	
 	setInterval(function() {
-	$('#chattinginsidebox').reload(location.URL + '#chatList');
-	}, 1000);
+		$("#chattinginsidebox").load(location.href + " #chattinginsidebox");
+		$('#chattingBox').scrollTop($('#chattingBox').prop('scrollHeight'));
+	}, 500);
+	*/
+	
+	/* 스크롤바가 바닥 또는 바닥에서 60픽셀 떨어진곳 안쪽에 위치하면 자동으로 채팅창 로드 밑 스크롤을 아래로 */
+	var checkbottom;
+	jQuery(function($) {
+		$('#chattingBox').on('scroll', function() {
+			var check = $(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight - 60;
+			if (check) { 
+				checkbottom = "bottom";
+			} else {
+			checkbottom = "nobottom";
+			}
+		})
+	});
+	setInterval(function() {
+		if (checkbottom == "bottom") {
+			$("#chattinginsidebox").load(location.href + " #chattinginsidebox");
+			$('#chattingBox').scrollTop($('#chattingBox').prop('scrollHeight'));
+		}
+	}, 500);
 	
 
-	/*
-	 function asasas(){  
-	 setTimeout('location.reload()',1000); 
-	 }*/
+	/* 채팅창 스크롤 위치를 맨 아래로 */
+	$('#chattingBox').scrollTop($('#chattingBox').prop('scrollHeight'));
+
+	/* 채팅 입력 후 키보드의 Enter 입력으로 서밋 */
+	$("#chattingBody").keyup(function(e) {
+		if (e.keyCode == 13)
+			submit();
+	});
+
+	/* 커서를 채팅창 텍스트박스에 위치 */
+	function inItCursor(){
+		chattext.focus();
+	}
+	
 </script>

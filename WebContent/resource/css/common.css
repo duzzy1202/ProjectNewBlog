@@ -1087,7 +1087,6 @@ html {
 	background: rgba(0, 0, 0, 0.5);
 	display: block;
 	width: 40%;
-	height: 350px;
 	position: absolute;
 	top: 10%;
 	left: 50%;
@@ -1148,15 +1147,34 @@ html {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 15px;
+	margin-bottom: 15px;
 }
-
+.login-box > .con > .findbox {
+	 display: block; 
+	 text-align: center;
+	 margin-top: 15px;
+	 margin-bottom: 15px;
+}
+.login-box > .con > .findbox > a {
+	display: block;
+	margin: 10px;
+	color: white;
+	text-decoration: underline;
+	font-style: italic;
+}
 /* 채팅박스 */
 .main-right > .chatting {
 	padding: 10px;
 	color: white;
 }
-.main-right > .chatting > .chatting-box {
+.main-right > .chatting > .chatting-title {
 	color: white;
+	font-size: 1.2rem;
+	font-family: 'Sunflower', sans-serif;
+	text-align: center;
+	border-radius: 5px;
+	border-bottom: 1px solid grey;
+	padding: 3px;
 }
 
 .main-right > .chatting > .chatting-box  {
@@ -1166,14 +1184,19 @@ html {
 	overflow-x: auto;
 	height: 500px;
 	color: white;
+	margin-top: 10px;
 }
 
 .main-right > .chatting > .chatting-box .chatList {
 	display: flex;
 	flex-wrap: wrap;
+	border-radius: 8px;
+	margin: 3px;
+	border: 1px solid grey;
+	padding: 3px;
 }
 .main-right > .chatting > .chatting-box .chatList .nick {
-	width: 45%;
+	width: 55%;
 }
 .main-right > .chatting > .chatting-box .chatList .time {
 	width: 45%;
@@ -1188,12 +1211,205 @@ html {
 	width: 95%;
 	display: flex;
 }
-.main-right > .chatting > .chatting-box > form > textarea {
+.main-right > .chatting > .chatting-box > form > .chattingBody {
 	resize: none;
-	height: 50px;
-	width: 84%;
+	height: 25px;
+	width: 80%;
 }
 .main-right > .chatting > .chatting-box > form > .submit {
-	height: 50px;
+	height: 25px;
+	width: 40px;
 	margin: 5px;
+}
+
+/* 비밀번호 찾기 화면 */
+
+.findPw-box >.con {
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	display: block;
+	width: 40%;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 10px;
+}
+
+.findPw-box >.con>.findPw-title {
+	text-align: center;
+	font-family: 'Sunflower', sans-serif;
+	color: white;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	display: block;
+	margin: 20px;
+	padding: 15px;
+}
+
+.findPw-box >.con>.findPw-body {
+	display: flex;
+	justify-content: center;
+	margin: 0 30px;
+}
+
+.findPw-box >.con>.findPw-body >.findPw {
+	width: 75%;
+}
+
+.findPw-box >.con>.findPw-body >.findPw>div {
+	display: block;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	padding: 15px;
+	border-radius: 10px;
+}
+
+.findPw-box >.con>.findPw-body >.findPw >div>span {
+	color: white;
+	font-family: 'Sunflower', sans-serif;
+	font-size: 1.5rem;
+	margin-left: 0;
+	margin-right: auto;
+}
+
+.findPw-box >.con>.findPw-body >.findPw >div>input {
+	width: 200px;
+	height: 30px;
+	font-size: 20px;
+	margin-left: auto;
+	margin-right: 0;
+}
+
+.findPw-box >.con>.findPw-body >.findPw >.submit {
+	display: block;
+	padding: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	margin-bottom: 30px;
+}
+
+/* 아이디 찾기 화면 */
+
+.findId-box >.con {
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	display: block;
+	width: 40%;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 10px;
+}
+
+.findId-box >.con>.findId-title {
+	text-align: center;
+	font-family: 'Sunflower', sans-serif;
+	color: white;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	display: block;
+	margin: 20px;
+	padding: 15px;
+}
+
+.findId-box >.con>.findId-body {
+	display: flex;
+	justify-content: center;
+	margin: 0 30px;
+}
+
+.findId-box >.con>.findId-body >.findId {
+	width: 75%;
+}
+
+.findId-box >.con>.findId-body >.findId>div {
+	display: block;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	padding: 15px;
+	border-radius: 10px;
+}
+
+.findId-box >.con>.findId-body >.findId >div>span {
+	color: white;
+	font-family: 'Sunflower', sans-serif;
+	font-size: 1.5rem;
+	margin-left: 0;
+	margin-right: auto;
+}
+
+.findId-box >.con>.findId-body >.findId >div>input {
+	width: 200px;
+	height: 30px;
+	font-size: 20px;
+	margin-left: auto;
+	margin-right: 0;
+}
+
+.findId-box >.con>.findId-body >.findId >.submit {
+	display: block;
+	padding: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	margin-bottom: 30px;
+}
+
+/* 회원 정보 화면 */
+.myInfo-box > .con {
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	display: block;
+	width: 40%;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 10px;
+}
+
+.myInfo-box > .con > .myInfo-title {
+	text-align: center;
+	font-family: 'Sunflower', sans-serif;
+	color: white;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	display: block;
+	margin: 20px;
+	padding: 15px;
+}
+
+.myInfo-box > .con > .myInfo-body {
+	display: block;
+	justify-content: center;
+	margin: 0 30px;
+} 
+
+.myInfo-box > .con > .myInfo-body > .Information {
+	color: white;
+	font-family: 'Sunflower', sans-serif;
+	text-align: center;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	padding: 30px;
+	font-size: 1.5rem;
+	display: block;
+}
+.myInfo-box > .con > .myInfo-body > .Information > div { 
+	margin: 10px;
+}
+
+.myInfo-box > .con > .myInfo-body > .btn-box {
+	display: block;
+	text-align: center;
+	margin: 20px;
 }
