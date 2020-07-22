@@ -24,13 +24,20 @@ public class HomeController extends Controller {
 		case "aboutMe":
 			return doActionAboutMe();
 		case "writeChat":
-			return doActionwriteChat();
+			return doActionWriteChat();
+		case "deleteAllChats":
+			return doActionDeleteAllChats();
 		}
 
 		return "";
 	}
 	
-	private String doActionwriteChat() {
+	private String doActionDeleteAllChats() {
+		articleService.deleteAllChats();
+		return "html:<script> location.replace('/blog/s/home/main'); </script>";
+	}
+
+	private String doActionWriteChat() {
 		int memberId = Util.getInt(req, "memberId");
 		String body = req.getParameter("chattingBody");
 		

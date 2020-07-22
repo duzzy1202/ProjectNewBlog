@@ -133,7 +133,14 @@
 		</div>
 	</div>
 </div>
-
+<% if ( isloggedIn == true ) { 
+	if ( loggedInMember.getLevel() == 10 ) {%>
+<div class="admin" style="display: block; text-align: center; position: absolute; top: 82%; left: 40%;">
+	<form class="admin-btn" action="deleteAllChats">
+		<input type='submit' value="[관리자] 채팅 내역 삭제하기" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;" style=" width: 300px; height: 150px;">
+	</form>
+</div>
+<% } } %>
 <%@ include file="/jsp/part/foot.jspf"%>
 
 <script>
@@ -157,6 +164,7 @@
 			}
 		})
 	});
+	
 	setInterval(function() {
 		if (checkbottom == "bottom") {
 			$("#chattinginsidebox").load(location.href + " #chattinginsidebox");

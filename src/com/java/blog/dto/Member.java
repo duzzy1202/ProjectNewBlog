@@ -9,6 +9,7 @@ public class Member extends Dto {
 	private String nickname;
 	private String updateDate;
 	private String email;
+	private int level;
 	
 	public Member(Map<String, Object> row) {
 		super(row);
@@ -19,6 +20,7 @@ public class Member extends Dto {
 		this.nickname = (String) row.get("nickname");
 		this.updateDate = (String) row.get("updateDate");
 		this.email = (String) row.get("email");
+		this.level = (int) row.get("level");
 	}
 
 	public String getLoginId() {
@@ -69,6 +71,14 @@ public class Member extends Dto {
 		this.email = email;
 	}
 	
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [updateDate=" + updateDate + ", loginId=" + loginId + ", loginPw=" + loginPw + ", name=" + name

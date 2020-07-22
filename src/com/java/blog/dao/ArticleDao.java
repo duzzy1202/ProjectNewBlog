@@ -360,4 +360,12 @@ public class ArticleDao extends Dao {
 
 		int id = DBUtil.insert(dbConn, secSql);
 	}
+
+	public void deleteAllChats() {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("DELETE FROM chatting ");
+		
+		int id = DBUtil.update(dbConn, secSql);
+	}
 }

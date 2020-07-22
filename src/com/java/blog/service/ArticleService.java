@@ -93,4 +93,8 @@ public class ArticleService extends Service {
 		articleDao.writeChat(memberId, body);
 	}
 
+	public void deleteAllChats() {
+		articleDao.deleteAllChats();
+	}
+
 }
