@@ -11,6 +11,7 @@
 	Member loggedInMember = (Member) request.getAttribute("loggedInMember");
 	boolean isloggedIn = (boolean) request.getAttribute("isloggedIn");
 %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -139,6 +140,15 @@
 					
 				</ul>
 			</nav>
+		</div>
+	</div>
+	<div class="welcome">
+		<div class="welcomeBox">
+			<% if (isloggedIn == true) { %>
+			<span>[ <%=loggedInMember.getNickname()%> ]님</span>
+			<% } else { %>
+			<span>[ Guest ]님</span>
+			<% } %>
 		</div>
 	</div>
 	<div class="mobile-background visible-sm-down">

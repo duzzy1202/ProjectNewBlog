@@ -1188,22 +1188,36 @@ html {
 }
 
 .main-right > .chatting > .chatting-box .chatList {
+	background-color: black;
+	background: rgba(150, 150, 150, 0.5);
 	display: flex;
 	flex-wrap: wrap;
 	border-radius: 8px;
-	margin: 3px;
+	margin: 5px;
 	border: 1px solid grey;
 	padding: 3px;
 }
 .main-right > .chatting > .chatting-box .chatList .nick {
-	width: 55%;
+	width: 53%;
+	background: rgba(0, 0, 0, 0.6);
+	padding: 3px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border-radius: 5px;
+	margin-right: 3px;
 }
 .main-right > .chatting > .chatting-box .chatList .time {
-	width: 45%;
+	width: 42%;
+	background: rgba(0, 0, 0, 0.6);
+	padding: 3px;
+	border-radius: 5px;
 }
 .main-right > .chatting > .chatting-box .chatList .body {
-	width: 95%;
+	width: 97%;
 	padding: 5px;
+	margin-top: 3px;
+	background: rgba(0, 0, 0, 0.6);
+	border-radius: 5px;
 }
 .main-right > .chatting > .chatting-box > form {
 	position: absolute;
@@ -1412,4 +1426,21 @@ html {
 	display: block;
 	text-align: center;
 	margin: 20px;
+}
+
+/* 웰컴 박스 */
+.welcome {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.welcome > .welcomeBox {
+	text-align: center;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 10px;
+	color: white;
+	font-size: 1.3rem;
+	font-family: 'Sunflower', sans-serif;
+	padding: 25px;
 }

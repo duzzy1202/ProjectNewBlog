@@ -93,7 +93,10 @@
 				<%
 					for (Chat chat : chattings) {
 				%>
-				<div class="chatList" id="chatList">
+				<div class="chatList" id="chatList" 
+				<% if (chat.getMemberId() == loggedInMemberId) { %>
+				style="background: rgba(200, 230, 255, 0.5);" <% } %>
+				>
 					<div class="nick">
 						[
 						<%=chat.getExtra().get("writer")%>
@@ -116,14 +119,13 @@
 				%>
 			</div>
 
-			<form class="input-chat" id="inputChat" method="POST"
-				action="writeChat">
-				<input type="text" name="chattingBody" class="chattingBody" autocomplete="off" id="chattext" autofocus > 
+			<form class="input-chat" id="inputChat" method="POST" action="writeChat"  onsubmit="submitChatForm(this); return false;">
+				<input type="text" name="chattingBody" class="chattingBody" autocomplete="off" id="chattext" autofocus> 
 					<input type="hidden" name="memberId" value="<%=loggedInMemberId%>">
 				<%
 					if (isloggedIn == true) {
 				%>
-				<input class="submit" type='submit' onclick="submit()" value='[ > ]'>
+				<button class="submit" type='button' onclick="submitChatForm(inputChat); return false;">[ > ]</button>
 				<%
 					}
 				%>
@@ -141,17 +143,17 @@
 		$("#chattinginsidebox").load(location.href + " #chattinginsidebox");
 		$('#chattingBox').scrollTop($('#chattingBox').prop('scrollHeight'));
 	}, 500);
-	*/
-	
+	 */
+
 	/* 스크롤바가 바닥 또는 바닥에서 60픽셀 떨어진곳 안쪽에 위치하면 자동으로 채팅창 로드 밑 스크롤을 아래로 */
 	var checkbottom;
 	jQuery(function($) {
 		$('#chattingBox').on('scroll', function() {
 			var check = $(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight - 60;
-			if (check) { 
+			if (check) {
 				checkbottom = "bottom";
 			} else {
-			checkbottom = "nobottom";
+				checkbottom = "nobottom";
 			}
 		})
 	});
@@ -161,7 +163,6 @@
 			$('#chattingBox').scrollTop($('#chattingBox').prop('scrollHeight'));
 		}
 	}, 500);
-	
 
 	/* 채팅창 스크롤 위치를 맨 아래로 */
 	$('#chattingBox').scrollTop($('#chattingBox').prop('scrollHeight'));
@@ -173,8 +174,19 @@
 	});
 
 	/* 커서를 채팅창 텍스트박스에 위치 */
-	function inItCursor(){
+	function inItCursor() {
 		chattext.focus();
 	}
-	
+
+	/* 채팅내용 입력 검사 */
+	function submitChatForm(form) {
+		form.chattingBody.value = form.chattingBody.value.trim();
+		if (form.chattingBody.value.length == 0) {
+			alert('채팅 내용을 입력해주세요.');
+			form.chattingBody.focus();
+
+			return;
+		} 
+		else { form.submit(); }
+	}
 </script>
