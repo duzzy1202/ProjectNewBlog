@@ -63,13 +63,12 @@ public class MailService {
 		String to = member.getEmail();
 		String code = member.getMailAuthCode();
 		String nickname = member.getNickname();
-		String loginId = member.getLoginId();
 			
 		String title = "LCF 블로그 이메일 인증 메일입니다.";
 		
 		String body = "[ " + nickname + "]님, LCF를 이용해주셔서 감사합니다!\n";
 		body += "아래의 링크를 클릭하여 이동하시면 인증이 완료됩니다.\n";
-		body += "[ <a href=\"https://littlecampfire.my.iu.gy/blog/s/member/doAuthMail?code="+ code +"\" ] \n";
+		body += "[ https://littlecampfire.my.iu.gy/blog/s/member/doAuthMail?code="+ code +" ] \n";
 		body += "감사합니다.\n";
 		
 		this.send(to, title, body);

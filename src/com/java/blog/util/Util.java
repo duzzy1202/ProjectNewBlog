@@ -105,6 +105,9 @@ public class Util {
 			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			msg.setSubject(title, "UTF-8");
 			msg.setText(body, "UTF-8");
+			
+			// 메일 내용을 html로 바꿔주는 코드
+			// msg.setContent(body, "text/html; charset=euc-kr");
 
 			Transport.send(msg);
 
