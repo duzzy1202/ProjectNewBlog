@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.java.blog.dto.Member;
 import com.java.blog.service.MailService;
+import com.java.blog.util.Util;
 
 public class MemberController extends Controller {
 	
@@ -49,11 +50,55 @@ public class MemberController extends Controller {
 			return doActionUpdateMember();
 		case "doUpdateMember" :
 			return doActionDoUpdateMember();
+		case "authMail" :
+			return doActionAuthMail();
+		case "doAuthMail" :
+			return doActionDOAuthMail();
 		}
 
 		return "";
 	}
 	
+	private String doActionDOAuthMail() {
+		String code = req.getParameter("code");
+		
+		HttpSession session = req.getSession();
+		
+		int currentMemberId = -1;
+		Member currentMember = null;
+		
+	 	if ( session.getAttribute("loggedInMemberId") != null ) {
+	 		currentMemberId = (int)session.getAttribute("loggedInMemberId");
+	 		currentMember = articleService.getMemberById(currentMemberId);
+	 	}
+	 	
+	 	if (!currentMember.getMailAuthCode().equals(code)) {
+	 		return "html:<script> alert('인증에 실패하였습니다. 다시 시도해주시기 바랍니다.'); location.replace('/blog/s/home/main'); </script>";
+	 	}
+		
+	 	int memberId = currentMember.getId();
+	 	memberService.updateMailAuthStatus(memberId);
+		
+	 	return "html:<script> alert('이메일 인증에 성공하였습니다!'); location.replace('/blog/s/member/myInfo'); </script>";
+	}
+
+	private String doActionAuthMail() {
+		HttpSession session = req.getSession();
+		
+		int currentMemberId = -1;
+		Member currentMember = null;
+		
+	 	if ( session.getAttribute("loggedInMemberId") != null ) {
+	 		currentMemberId = (int)session.getAttribute("loggedInMemberId");
+	 		currentMember = articleService.getMemberById(currentMemberId);
+	 	}
+		String email = currentMember.getEmail();
+	 	
+		mailService.writeAuthMail(currentMember);
+
+		return "html:<script> alert('["+ email +"]이메일로 인증 메일을 발송하였습니다.'); location.replace('/blog/s/member/myInfo'); </script>";
+	}
+
 	private String doActionDoUpdateMember() {
 		String loginId = req.getParameter("loginId");
 		String loginPw = req.getParameter("loginPwReal");
@@ -106,7 +151,6 @@ public class MemberController extends Controller {
 	}
 
 	private String doActionFindId() {
-
 		return "member/findId.jsp";
 	}
 
@@ -115,6 +159,7 @@ public class MemberController extends Controller {
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");
 		String tempPw = req.getParameter("loginPwReal");
+		String tempPwNotSec = req.getParameter("loginPw");
 		
 		boolean isExistsMember = memberService.isExistsMember(loginId, name, email);
 		if (isExistsMember == false) {
@@ -123,7 +168,7 @@ public class MemberController extends Controller {
 		
 		Member member = memberService.getMemberByLoginId(loginId);
 		
-		mailService.writeFindPwMail(email);
+		mailService.writeFindPwMail(email, tempPwNotSec);
 		
 		int memberId = member.getId();
 		memberService.updateTempPw(memberId, tempPw);
@@ -132,6 +177,9 @@ public class MemberController extends Controller {
 	}
 
 	private String doActionFindPw() {
+		
+		String tempPw = Util.makeTempPw();
+		req.setAttribute("tempPw", tempPw);
 		
 		return "member/findPw.jsp";
 	}
@@ -207,12 +255,13 @@ public class MemberController extends Controller {
 			return String.format("html:<script> alert('%s(은)는 이미 사용중인 이메일 입니다.'); history.back(); </script>", email);
 		}
 		
+		String mailAuthCode = Util.makeMailAuthCode(loginId);
 		
-		memberService.insertJoinMember(loginId, loginPw, name, nickname, email);
+		memberService.insertJoinMember(loginId, loginPw, name, nickname, email, mailAuthCode);
 		
 		mailService.writeWelcomeMail(email, name, nickname);
 		
-		return "html:<script> alert('[" + nickname + "]님 가입을 환영합니다.'); location.replace('/blog/s/home/main'); </script>";
+		return "html:<script> alert('[" + nickname + "]님 가입을 환영합니다.'); location.replace('/blog/s/member/login'); </script>";
 	}
 
 	private String doActionJoin() {

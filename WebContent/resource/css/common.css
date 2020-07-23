@@ -1423,9 +1423,19 @@ html {
 }
 
 .myInfo-box > .con > .myInfo-body > .btn-box {
-	display: block;
-	text-align: center;
+	display: flex;
+	justify-content: center;
 	margin: 20px;
+	color: white;
+	text-decoration: underline;
+}
+.myInfo-box > .con > .myInfo-body > .btn-box > a {
+	text-align: center;
+	padding: 15px;
+	border-radius: 5px;
+	background: rgba(0, 0, 0, 0.5);
+	margin: 5px;
+	width: 30%;
 }
 
 /* 웰컴 박스 */

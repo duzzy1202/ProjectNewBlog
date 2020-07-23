@@ -1,5 +1,6 @@
 package com.java.blog.service;
 
+import com.java.blog.dto.Member;
 import com.java.blog.util.Util;
 
 public class MailService {
@@ -30,12 +31,12 @@ public class MailService {
 		this.send(to, title, body);
 	}
 
-	public void writeFindPwMail(String email) {
+	public void writeFindPwMail(String email, String tempPwNotSec) {
 		String to = email;
 		
 		String title = "요청하신 임시 비밀번호 입니다.";
 		
-		String body = "회원님의 임시 비밀번호는 [ 1234 ] 입니다. \n";
+		String body = "회원님의 임시 비밀번호는 [ " + tempPwNotSec + " ] 입니다. \n";
 		body += "임시 비밀번호를 이용하여 로그인 하신 후, 반드시 비밀번호를 변경하여주시길 바랍니다. \n";
 		body += "비밀번호 변경은 [내정보] > [정보 변경하기] 에서 가능합니다. \n";
 		body += "이용해주셔서 감사합니다. \n";
@@ -54,6 +55,22 @@ public class MailService {
 		body += " - 2 : 이러쿵 저러쿵 \n";
 		body += " - 3 : 블라블라 \n";
 		body += "이용 수칙을 지켜주시길 바라며 즐거운 하루되십시오. ^^ \n";
+		
+		this.send(to, title, body);
+	}
+	
+	public void writeAuthMail(Member member) {
+		String to = member.getEmail();
+		String code = member.getMailAuthCode();
+		String nickname = member.getNickname();
+		String loginId = member.getLoginId();
+			
+		String title = "LCF 블로그 이메일 인증 메일입니다.";
+		
+		String body = "[ " + nickname + "]님, LCF를 이용해주셔서 감사합니다!\n";
+		body += "아래의 링크를 클릭하여 이동하시면 인증이 완료됩니다.\n";
+		body += "[ <a href=\"https://littlecampfire.my.iu.gy/blog/s/member/doAuthMail?code="+ code +"\" ] \n";
+		body += "감사합니다.\n";
 		
 		this.send(to, title, body);
 	}

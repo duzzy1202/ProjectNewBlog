@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -15,8 +16,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.java.blog.dto.Member;
 
 public class Util {
 	public static boolean empty(HttpServletRequest req, String paramName) {
@@ -121,5 +120,41 @@ public class Util {
 		}
 
 		return 1;
+	}
+
+	public static String makeMailAuthCode(String loginId) {
+		Random random = new Random();
+
+    	int fCode = random.nextInt(9999);
+    	int bCode = random.nextInt(9999);
+    	
+    	String Code = fCode + loginId + bCode;
+
+		return Code;
+	}
+	
+	public static String makeTempPw() {
+		Random random = new Random();
+
+		StringBuffer rdCode = new StringBuffer();
+
+		for (int i = 0; i < 20; i++) {
+
+			// rnd.nextBoolean() 는 랜덤으로 true, false 를 리턴. true일 시 랜덤 한 소문자를, false 일 시 랜덤 한
+			// 숫자를 StringBuffer 에 append 한다.
+
+			if (random.nextBoolean()) {
+
+				rdCode.append((char) ((int) (random.nextInt(26)) + 97));
+
+			} else {
+
+				rdCode.append((random.nextInt(10)));
+			}
+		}
+		
+		String randomCode = rdCode.toString();
+		
+		return randomCode;
 	}
 }

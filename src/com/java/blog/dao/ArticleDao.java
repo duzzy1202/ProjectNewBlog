@@ -170,7 +170,7 @@ public class ArticleDao extends Dao {
 	public void writeReply(int articleId, String replyBody, int replyMemberId) {
 		SecSql secSql = new SecSql();
 		
-		secSql.append("INSERT INTO reply");
+		secSql.append("INSERT INTO articleReply");
 		secSql.append("SET regDate = NOW()");
 		secSql.append(", updateDate = NOW()");
 		secSql.append(", body = ? ", replyBody);
@@ -209,7 +209,7 @@ public class ArticleDao extends Dao {
 		SecSql secSql = new SecSql();
 		
 		secSql.append("SELECT COUNT(*) AS cnt ");
-		secSql.append("FROM reply ");
+		secSql.append("FROM articleReply ");
 		secSql.append("WHERE 1 ");
 		secSql.append("AND articleId = ? ", articleId);
 		
@@ -255,7 +255,7 @@ public class ArticleDao extends Dao {
 	public void UpdateReply(int replyId, String replyBody) {
 		SecSql secSql = new SecSql();
 
-		secSql.append("UPDATE reply");
+		secSql.append("UPDATE articleReply");
 		secSql.append("SET updateDate = NOW()");
 		secSql.append(", body = ? ", replyBody);
 		secSql.append("WHERE Id = ? ", replyId);
@@ -266,7 +266,7 @@ public class ArticleDao extends Dao {
 	public void deleteReply(int replyId) {
 		SecSql secSql = new SecSql();
 		
-		secSql.append("DELETE FROM reply");
+		secSql.append("DELETE FROM articleReply");
 		secSql.append("WHERE id = ? ", replyId);
 		
 		int id = DBUtil.update(dbConn, secSql);
@@ -294,7 +294,7 @@ public class ArticleDao extends Dao {
 
 		secSql.append("SELECT R.* ");
 		secSql.append(", M.nickname AS extra__replyWriter ");
-		secSql.append("FROM reply AS R");
+		secSql.append("FROM articleReply AS R");
 		secSql.append("INNER JOIN member AS M");
 		secSql.append("ON R.memberId = M.id");
 		secSql.append("WHERE 1");
@@ -316,7 +316,7 @@ public class ArticleDao extends Dao {
 		SecSql secSql = new SecSql();
 		
 		secSql.append("SELECT * ");
-		secSql.append("FROM reply ");
+		secSql.append("FROM articleReply ");
 		secSql.append("WHERE 1 ");
 		
 		List<Map<String, Object>> rows = DBUtil.selectRows(dbConn, secSql);

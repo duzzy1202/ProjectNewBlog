@@ -16,8 +16,8 @@ public class MemberService extends Service {
 		memberDao = new MemberDao(dbConn);
 	}
 
-	public void insertJoinMember(String loginId, String loginPw, String name, String nickname, String email) {
-		memberDao.insertJoinMember(loginId, loginPw, name, nickname, email);
+	public void insertJoinMember(String loginId, String loginPw, String name, String nickname, String email, String mailAuthCode ) {
+		memberDao.insertJoinMember(loginId, loginPw, name, nickname, email, mailAuthCode);
 	}
 
 	public boolean checkIsExistsLoginIdAndLoginPw(String loginId, String loginPw) {
@@ -62,5 +62,10 @@ public class MemberService extends Service {
 
 	public void updateMember(String loginId, String loginPw) {
 		memberDao.updateMember(loginId, loginPw);
+	}
+
+	public void updateMailAuthStatus(int memberId) {
+		memberDao.updateMailAuthStatus(memberId);
+		
 	}
 }

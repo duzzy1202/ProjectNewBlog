@@ -6,6 +6,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/jsp/part/head.jspf"%>
+<%@ include file="/jsp/part/toastUiEditor.jspf"%>
 
 <%
 	Article article = (Article) request.getAttribute("article");
@@ -34,18 +35,8 @@
 				 <span>조회수 : <%=article.getHits()%></span> <span>게시물 수정일 : <%=article.getUpdateDate()%></span>
 			</div>
 			<div class="detail-body-box">
-				<script type="text/x-template" id="origin1" style="display: none;"><%=article.getBodyForXTemplate()%></script>
-				<div id="viewer1"></div>
-				<script>
-					var editor1__initialValue = getBodyFromXTemplate('#origin1');
-					var editor1 = new toastui.Editor({
-						el : document.querySelector("#viewer1"),
-						viewer : true,
-						initialValue : editor1__initialValue,
-						plugins : [ toastui.Editor.plugin.codeSyntaxHighlight,
-								youtubePlugin, replPlugin, codepenPlugin ]
-					});
-				</script>
+				<script type="text/x-template"><%=article.getBodyForXTemplate()%></script>
+				<div class="toast-editor toast-editor-viewer"></div>
 			</div>
 			<% if ( loggedInMemberId == article.getMemberId()) { %>
 			<div class="buttons">

@@ -10,6 +10,8 @@ public class Member extends Dto {
 	private String updateDate;
 	private String email;
 	private int level;
+	private String mailAuthCode;
+	private int mailAuthStatus;
 	
 	public Member(Map<String, Object> row) {
 		super(row);
@@ -21,6 +23,8 @@ public class Member extends Dto {
 		this.updateDate = (String) row.get("updateDate");
 		this.email = (String) row.get("email");
 		this.level = (int) row.get("level");
+		this.mailAuthCode = (String) row.get("mailAuthCode");
+		this.mailAuthStatus = (int) row.get("mailAuthStatus");
 	}
 
 	public String getLoginId() {
@@ -77,6 +81,22 @@ public class Member extends Dto {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	public String getMailAuthCode() {
+		return mailAuthCode;
+	}
+
+	public void setMailAuthCode(String mailAuthCode) {
+		this.mailAuthCode = mailAuthCode;
+	}
+
+	public int getMailAuthStatus() {
+		return mailAuthStatus;
+	}
+
+	public void setMailAuthStatus(int mailAuthStatus) {
+		this.mailAuthStatus = mailAuthStatus;
 	}
 
 	@Override

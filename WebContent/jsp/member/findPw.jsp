@@ -3,6 +3,10 @@
 	
 <%@ include file="/jsp/part/head.jspf"%>
 
+<%
+	String tempPw = (String) request.getAttribute("tempPw");
+%>
+
 <div class="findPw-box">
 	<div class="con">
 		<div class="findPw-title">
@@ -13,7 +17,7 @@
 				<div class="find-loginId"><span>ID</span> <input type="text" name="loginId" value="" maxlength="20"></div>
 				<div class="find-name"><span>이름</span> <input type="text" name="name" value="" maxlength="10"></div>
 				<div class="find-email"><span>이메일</span> <input type="email" name="email" value=""></div>
-				<input type="hidden" name="loginPw" value="1234">
+				<input type="hidden" name="loginPw" value="<%=tempPw%>">
 				<input type="hidden" name="loginPwReal">
 				<input class="submit" type='submit' value='찾기'>
 			</form>
@@ -62,7 +66,6 @@ function submitFindForm(form) {
 	}
 
 	form.loginPwReal.value = sha256(form.loginPw.value);
-	form.loginPw.value = '';
 
 	form.submit();
 	joinFormSubmitted = true;
