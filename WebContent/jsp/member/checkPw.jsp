@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 
 <%@ include file="/jsp/part/head.jspf"%>
 
@@ -11,12 +15,12 @@
 		<div class="login-body">
 			<form class="member-login" method="POST" action="updateMember" onsubmit="submitLoginForm(this); return false;">
 				<div class="login-loginId">
-					<span>ID : <%=loggedInMember.getLoginId() %></span>
+					<span>ID : ${loggedInMember.loginId }</span>
 				</div>
 				<div class="login-loginPw">
 					<span>비밀번호</span> <input type="password" name="loginPw" value="" maxlength="20">
 				</div>
-				<input type="hidden" name="loginId" value="<%=loggedInMember.getLoginId() %>">
+				<input type="hidden" name="loginId" value="${loggedInMember.loginId }">
 				<input type="hidden" name="loginPwReal">
 				<input class="submit" type='submit' value='확인'> 
 			</form>

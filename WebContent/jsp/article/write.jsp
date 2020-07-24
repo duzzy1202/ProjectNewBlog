@@ -3,13 +3,11 @@
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ include file="/jsp/part/head.jspf"%>
 <%@ include file="/jsp/part/toastUiEditor.jspf"%>
-
-<%
-	Member currentMember = (Member) request.getAttribute("currentMember");
-%>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,17 +22,13 @@
 				onsubmit="submitWriteForm(this); return false">
 				<div class="select-cateItem inputs">
 					<span>카테고리</span> <select name="cateItem" id="select-cate">
-						<%
-							for (CateItem cateItem : cateItems) {
-								String cateItemName = cateItem.getName();
-								int cateItemId = cateItem.getId();
-						%>
-						<option value="<%=cateItemId%>">
-							<%=cateItemName%>
-						</option>
-						<%
-							}
-						%>
+						<c:forEach var="cateItem" items="${cateItems}" begin="0" end="${fn:length(cateItems)}" step="1">
+							<c:set var="cateItemName" value="${cateItem.name}"/>
+							<c:set var="cateItemId" value="${cateItem.id}"/>
+    						<option value="${cateItemId}">
+								${cateItemName}
+							</option>
+					</c:forEach>
 					</select>
 				</div>
 				<div class="input-title inputs">
@@ -47,7 +41,7 @@
 					<div class="toast-editor" style="background-color: white;"></div>
 				</div>
 				<input class="submit" type='submit' value='작성 완료'> 
-				<input type="hidden" name="writerId" value="<%=currentMember.getId()%>">
+				<input type="hidden" name="writerId" value="${currentMember.id}">
 			</form>
 		</div>
 	</div>

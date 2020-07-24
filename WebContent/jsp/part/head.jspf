@@ -103,7 +103,7 @@
 	<div class="welcome">
 		<div class="welcomeBox">
 			<c:choose>
-				<c:when test="${isloggedIn}">
+				<c:when test="${isLoggedIn}">
 					<span>[ ${loggedInMember.nickname} ]님</span>
 				</c:when>
 				<c:otherwise>

@@ -72,7 +72,7 @@ public abstract class Controller {
 
 		req.setAttribute("loggedInMemberId", loggedInMemberId);
 		req.setAttribute("loggedInMember", loggedInMember);
-		req.setAttribute("isloggedIn", isLoggedIn);
+		req.setAttribute("isLoggedIn", isLoggedIn);
 	}
 
 	public void afterAction() {
@@ -97,7 +97,7 @@ public abstract class Controller {
 	}
 
 	private String doGuard() {
-		boolean isloggedIn = (boolean) req.getAttribute("isloggedIn");
+		boolean isloggedIn = (boolean) req.getAttribute("isLoggedIn");
 
 		// 로그인에 관련된 가드 시작
 		boolean needToLogin = false;
