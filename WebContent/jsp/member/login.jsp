@@ -33,10 +33,6 @@
 	</div>
 </div>
 
-<div style="display: block; text-align: center;">
-	<a href="/blog/s/member/findPw">비밀번호 찾기</a>
-</div>
-
 <%@ include file="/jsp/part/foot.jspf"%>
 
 <script
