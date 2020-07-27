@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.java.blog.dto.Article;
 import com.java.blog.dto.CateItem;
 import com.java.blog.dto.Member;
 import com.java.blog.service.ArticleService;
@@ -73,6 +74,9 @@ public abstract class Controller {
 		req.setAttribute("loggedInMemberId", loggedInMemberId);
 		req.setAttribute("loggedInMember", loggedInMember);
 		req.setAttribute("isLoggedIn", isLoggedIn);
+		
+		Article topNoticeArticle = articleService.getLastestNoticeArticle();
+		req.setAttribute("topNoticeArticle", topNoticeArticle);
 	}
 
 	public void afterAction() {

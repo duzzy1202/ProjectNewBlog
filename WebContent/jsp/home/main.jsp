@@ -24,32 +24,11 @@
 		<ul>
 			<c:forEach var="article" items="${articles}" begin="0" end="${fn:length(articles) }" step="1" >
 				<c:set var="cateItemName" />
-				<c:choose>
-					<c:when test="${article.cateItemId == 1}">
-						<c:set var="cateItemName" value="${cateItems[0].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 2}">
-						<c:set var="cateItemName" value="${cateItems[1].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 3}">
-						<c:set var="cateItemName" value="${cateItems[2].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 4}">
-						<c:set var="cateItemName" value="${cateItems[3].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 5}">
-						<c:set var="cateItemName" value="${cateItems[4].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 6}">
-						<c:set var="cateItemName" value="${cateItems[5].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 7}">
-						<c:set var="cateItemName" value="${cateItems[6].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 8}">
-						<c:set var="cateItemName" value="${cateItems[7].name }" />
-					</c:when>
-				</c:choose>
+				<c:forEach var="i" begin="1" end="${fn:length(cateItems)}" step="1">
+					<c:if test="${article.cateItemId == i}">
+						<c:set var="cateItemName" value="${cateItems[i-1].name}" />
+					</c:if>
+				</c:forEach>
 				<li>
 					<div><i class="fab fa-free-code-camp"></i></div>
 					<div class="articleId">${article.id }</div>
@@ -142,15 +121,10 @@
 		})
 	});
 
-	setInterval(
-			function() {
-				if (checkbottom == "bottom") {
-					$("#chattinginsidebox").load(
-							location.href + " #chattinginsidebox");
-					$('#chattingBox').scrollTop(
-							$('#chattingBox').prop('scrollHeight'));
-				}
-			}, 500);
+	setInterval(function() { 
+		if (checkbottom == "bottom") { $("#chattinginsidebox").load( location.href + " #chattinginsidebox");
+			$('#chattingBox').scrollTop($('#chattingBox').prop('scrollHeight'));
+			}}, 500);
 
 	/* 채팅창 스크롤 위치를 맨 아래로 */
 	$('#chattingBox').scrollTop($('#chattingBox').prop('scrollHeight'));

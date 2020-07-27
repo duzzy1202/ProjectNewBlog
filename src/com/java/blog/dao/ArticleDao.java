@@ -287,10 +287,8 @@ public class ArticleDao extends Dao {
 		return new Article(DBUtil.selectRow(dbConn, secSql));
 	}
 	
-	public List<ArticleReply> getForPrintListReplys(int id, int itemsInAPage, int page) {
+	public List<ArticleReply> getForPrintListReplys(int id) {
 		SecSql secSql = new SecSql();
-		
-		int limitFrom = (page - 1) * itemsInAPage;
 
 		secSql.append("SELECT R.* ");
 		secSql.append(", M.nickname AS extra__replyWriter ");
@@ -300,7 +298,6 @@ public class ArticleDao extends Dao {
 		secSql.append("WHERE 1");
 		secSql.append("AND R.articleId = ?", id);
 		secSql.append("ORDER BY id ASC ");
-		secSql.append("LIMIT ?, ? ", limitFrom, itemsInAPage);
 		
 		List<Map<String, Object>> rows = DBUtil.selectRows(dbConn, secSql);
 		List<ArticleReply> replys = new ArrayList<>();
@@ -329,7 +326,7 @@ public class ArticleDao extends Dao {
 		return replys;
 	}
 
-	public List<Chat> getChatting() {
+	public List<Chat> getChatting(int printChattingStart) {
 		SecSql secSql = new SecSql();
 		
 		secSql.append("SELECT C.* ");
@@ -339,6 +336,7 @@ public class ArticleDao extends Dao {
 		secSql.append("ON C.memberId = M.id");
 		secSql.append("WHERE 1");
 		secSql.append("ORDER BY id ASC ");
+		secSql.append("LIMIT ?, 100 ", printChattingStart);
 		
 		List<Map<String, Object>> rows = DBUtil.selectRows(dbConn, secSql);
 		List<Chat> chat = new ArrayList<>();
@@ -367,5 +365,28 @@ public class ArticleDao extends Dao {
 		secSql.append("DELETE FROM chatting ");
 		
 		int id = DBUtil.update(dbConn, secSql);
+	}
+	
+	public int getChattingCount() {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("SELECT COUNT(*) AS cnt ");
+		secSql.append("FROM chatting ");
+
+		int count = DBUtil.selectRowIntValue(dbConn, secSql);
+		return count;
+	}
+
+	public Article getLastestNoticeArticle() {
+		SecSql secSql = new SecSql();
+		
+		secSql.append("SELECT * ");
+		secSql.append("FROM article");
+		secSql.append("WHERE displayStatus = 1");
+		secSql.append("AND cateItemId = 9");
+		secSql.append("ORDER BY id DESC ");
+		secSql.append("LIMIT 1 ");
+		
+		return new Article(DBUtil.selectRow(dbConn, secSql));
 	}
 }

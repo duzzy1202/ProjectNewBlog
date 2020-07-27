@@ -46,7 +46,7 @@
 <div class="reply-box visible-md-up">
 	<div class="reply-list-box">
 		<div class="reply-list visible-md-up">
-			<ul>
+			<ul style="overflow: auto; height: 600px;">
 				<c:forEach var="reply" items="${replys }" begin="0" end="${fn:length(replys) }" step="1">
 
 				<li>
@@ -90,7 +90,7 @@
 						<textarea name="replyBody">로그인 후에 댓글 작성 가능합니다.</textarea>
 					</c:when>
 					<c:otherwise>
-						<textarea name="replyBody">댓글 내용을 입력해주세요</textarea>
+						<textarea name="replyBody"></textarea>
 						<input class="submit" type='submit' value='등록하기'> 
 						<input type="hidden" name="replyMemberId" value="${currentMember.id }"> 
 						<input type="hidden" name="articleId" value="${article.id }">

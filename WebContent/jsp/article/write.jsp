@@ -22,7 +22,7 @@
 				onsubmit="submitWriteForm(this); return false">
 				<div class="select-cateItem inputs">
 					<span>카테고리</span> <select name="cateItem" id="select-cate">
-						<c:forEach var="cateItem" items="${cateItems}" begin="0" end="${fn:length(cateItems)}" step="1">
+						<c:forEach var="cateItem" items="${cateItems}" begin="0" end="${fn:length(cateItems)-1}" step="1">
 							<c:set var="cateItemName" value="${cateItem.name}"/>
 							<c:set var="cateItemId" value="${cateItem.id}"/>
     						<option value="${cateItemId}">

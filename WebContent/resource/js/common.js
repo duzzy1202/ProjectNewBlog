@@ -102,3 +102,4 @@ function getBodyFromXTemplate(selector) {
 	return $(selector).html().trim().replace(/<!--REPLACE:script-->/gi,
 			'script');
 }
+

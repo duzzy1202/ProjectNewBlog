@@ -56,10 +56,13 @@ CREATE TABLE `member` (
     `name` CHAR(100) NOT NULL,
     email CHAR(200) NOT NULL,
     `nickname` CHAR(200) NOT NULL,
-    `level` INT(10) UNSIGNED NOT NULL
+    `level` INT(10) UNSIGNED NOT NULL,
+    mailAuthCode CHAR(255) NOT NULL,
+    mailAuthStatus TINYINT(1) UNSIGNED
 );
 
-DROP TABLE IF EXISTS reply;
+/* articleReply 로 이름 변경 예정 */
+DROP TABLE IF EXISTS articleReply;
 CREATE TABLE reply (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
@@ -69,8 +72,14 @@ CREATE TABLE reply (
     `body` TEXT NOT NULL
 );
 
+DROP TABLE IF EXISTS chatting;
+CREATE TABLE chatting (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL,
+    `body` TEXT NOT NULL
+);
 
-articleReply
 
 SELECT *
 FROM article
@@ -81,8 +90,10 @@ WHERE id = 60;
 SELECT * FROM article
 SELECT * FROM `member`
 SELECT * FROM cateItem
-SELECT * FROM reply
+SELECT * FROM articleReply
+SELECT * FROM chatting
 
-ALTER TABLE `member` ADD `level` INT(10) UNSIGNED NOT NULL
-
+ALTER TABLE `member` ADD mailAuthStatus TINYINT(1) UNSIGNED
+ALTER TABLE `member` CHANGE mailAuthCod mailAuthCode CHAR(255) NOT NULL
 ALTER TABLE reply MODIFY memberId INT(10) UNSIGNED NOT NULL
+ALTER TABLE reply RENAME articleReply

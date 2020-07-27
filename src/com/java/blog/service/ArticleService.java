@@ -61,8 +61,8 @@ public class ArticleService extends Service {
 		articleDao.writeReply(articleId, replyBody, replyMemberId);
 	}
 
-	public List<ArticleReply> getForPrintListReplys(int id, int itemsInAPage, int page) {
-		return articleDao.getForPrintListReplys(id, itemsInAPage, page);
+	public List<ArticleReply> getForPrintListReplys(int id) {
+		return articleDao.getForPrintListReplys(id);
 	}
 
 	public int getForPrintListReplysCount(int id) {
@@ -85,8 +85,8 @@ public class ArticleService extends Service {
 		return articleDao.getAllReplysCount();
 	}
 
-	public List<Chat> getChatting() {
-		return articleDao.getChatting();
+	public List<Chat> getChatting(int printChattingStart) {
+		return articleDao.getChatting(printChattingStart);
 	}
 
 	public void writeChat(int memberId, String body) {
@@ -95,6 +95,15 @@ public class ArticleService extends Service {
 
 	public void deleteAllChats() {
 		articleDao.deleteAllChats();
+	}
+	
+	public int getChattingCount() {
+		return articleDao.getChattingCount();
+	}
+
+	public Article getLastestNoticeArticle() {
+		// TODO Auto-generated method stub
+		return articleDao.getLastestNoticeArticle();
 	}
 
 }

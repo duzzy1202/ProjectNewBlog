@@ -66,7 +66,9 @@ public class HomeController extends Controller {
 		List<ArticleReply> replys = articleService.getAllReplysCount();
 		req.setAttribute("replysCount", replys);
 		
-		List<Chat> chattings = articleService.getChatting();
+		int printChattingStart = articleService.getChattingCount() - 100;
+		
+		List<Chat> chattings = articleService.getChatting(printChattingStart);
 		req.setAttribute("chattings", chattings);
 		
 		return "home/main.jsp";

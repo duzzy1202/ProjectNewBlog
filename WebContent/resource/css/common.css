@@ -22,6 +22,10 @@ a {
 	text-decoration: none;
 }
 
+body {
+	overflow: hidden;
+}
+
 /* 라이브러리 */
 .border-red {
 	border: 3px solid red;
@@ -184,7 +188,7 @@ html {
 
 .top-bar {
 	left: 8%;
-	top: 13%;
+	top: 14%;
 	position: fixed;
 }
 
@@ -257,8 +261,8 @@ html {
 .top-bar .menu-box-1 > ul ul > li > a {
 	position: absolute;
 	display: flex;
-	transition: width .5s, background-color .5s, top .5s ease .3s, opacity .5s, visibility .5s;
-	top: 0;
+	transition: width .5s, background-color .5s, top .3s ease .2s, opacity .5s, visibility .5s;
+	top: 240px;
 	left: 100%;
 	opacity: 0;
 	visibility: hidden;
@@ -280,29 +284,32 @@ html {
 	visibility: visible;
 }
 .top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(1) > a {
-	top: 0;
-	z-index: 1;
-}
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(2) > a {
 	top: 60px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(3) > a {
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(2) > a {
 	top: 120px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(4) > a {
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(3) > a {
 	top: 180px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(5) > a {
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(4) > a {
 	top: 240px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(6) > a {
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(5) > a {
 	top: 300px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(7) > a {
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(6) > a {
 	top: 360px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(8) > a {
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(7) > a {
 	top: 420px;
+}
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(8) > a {
+	top: 480px;
+}
+.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(9) > a {
+	top: 0px;
+	z-index: 1;
 }
 
 .top-bar .menu-box-1 ul ul > li:hover > a {
@@ -311,6 +318,44 @@ html {
 	color: orangered;
 	width: 100px;
 }
+
+/* 상단 공지사항 */
+.top-notice {
+	position: absolute;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.6);
+	height: 50px;
+	width: 100%;
+	top: 8%;
+	color: white;
+	font-family: 'Sunflower', sans-serif;
+	font-size: 1.2rem;
+}
+
+.top-notice > .moiving-notice > a {
+	position: absolute;
+	display: block;
+	padding: 13px;
+	right: -526px;
+	width: 500px;
+	animation-duration: 15s;
+ 	animation-name: slidein;
+ 	animation-iteration-count: infinite;
+ 	animation-timing-function: linear;
+ 	overflow: hidden;
+	text-overflow: ellipsis;
+}
+@keyframes slidein {
+  from {
+    right: -526px;
+  }
+
+  to {
+    right: 130%;
+  }
+}
+
+
 
 /* 모바일 배경 */
 .mobile-background {
@@ -450,7 +495,7 @@ html {
 	display: block;
 	width: 60%;
 	position: absolute;
-	top: 10%;
+	top: 14%;
 	left: 50%;
 	transform: translateX(-50%);
 	border-radius: 10px;
@@ -589,7 +634,7 @@ html {
 	display: block;
 	width: 40%;
 	position: absolute;
-	top: 10%;
+	top: 14%;
 	left: 38%;
 	transform: translateX(-50%);
 	border-radius: 10px;
@@ -685,7 +730,7 @@ html {
 	display: block;
 	width: 30%;
 	position: absolute;
-	top: 10%;
+	top: 14%;
 	left: 75%;
 	transform: translateX(-50%);
 	border-radius: 10px;
@@ -759,7 +804,7 @@ html {
 	display: block;
 	width: 40%;
 	position: absolute;
-	top: 10%;
+	top: 14%;
 	left: 40%;
 	transform: translateX(-50%);
 	border-radius: 10px;
@@ -870,7 +915,7 @@ html {
 	display: block;
 	width: 25%;
 	height: 643px;
-	top: 10%;
+	top: 14%;
 	left: 75%;
 	transform: translateX(-50%);
 }
@@ -934,7 +979,7 @@ html {
 	width: 60%;
 	height: 830px;
 	position: absolute;
-	top: 10%;
+	top: 14%;
 	left: 50%;
 	transform: translateX(-50%);
 	border-radius: 10px;
@@ -1019,7 +1064,7 @@ html {
 	width: 40%;
 	height: 550px;
 	position: absolute;
-	top: 10%;
+	top: 14%;
 	left: 50%;
 	transform: translateX(-50%);
 	border-radius: 10px;
@@ -1087,7 +1132,7 @@ html {
 	display: block;
 	width: 40%;
 	position: absolute;
-	top: 10%;
+	top: 14%;
 	left: 50%;
 	transform: translateX(-50%);
 	border-radius: 10px;
@@ -1243,7 +1288,7 @@ html {
 	display: block;
 	width: 40%;
 	position: absolute;
-	top: 10%;
+	top: 14%;
 	left: 50%;
 	transform: translateX(-50%);
 	border-radius: 10px;
@@ -1313,7 +1358,7 @@ html {
 	display: block;
 	width: 40%;
 	position: absolute;
-	top: 10%;
+	top: 14%;
 	left: 50%;
 	transform: translateX(-50%);
 	border-radius: 10px;
@@ -1382,7 +1427,7 @@ html {
 	display: block;
 	width: 40%;
 	position: absolute;
-	top: 10%;
+	top: 14%;
 	left: 50%;
 	transform: translateX(-50%);
 	border-radius: 10px;
@@ -1451,5 +1496,5 @@ html {
 	color: white;
 	font-size: 1.3rem;
 	font-family: 'Sunflower', sans-serif;
-	padding: 25px;
+	padding: 20px;
 }

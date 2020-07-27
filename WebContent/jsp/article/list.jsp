@@ -20,37 +20,13 @@
 
 	<div class="article-list-body visible-md-up">
 		<ul>
-			<c:forEach var="article" items="${articles}" begin="0" end="${fn:length(articles) }" step="1" >
-				<c:set var="cateItemN" />
-				<c:choose>
-					<c:when test="${article.cateItemId == 1}">
-						<c:set var="cateItemN" value="${cateItems[0].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 2}">
-						<c:set var="cateItemN" value="${cateItems[1].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 3}">
-						<c:set var="cateItemN" value="${cateItems[2].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 4}">
-						<c:set var="cateItemN" value="${cateItems[3].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 5}">
-						<c:set var="cateItemN" value="${cateItems[4].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 6}">
-						<c:set var="cateItemN" value="${cateItems[5].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 7}">
-						<c:set var="cateItemN" value="${cateItems[6].name }" />
-					</c:when>
-					<c:when test="${article.cateItemId == 8}">
-						<c:set var="cateItemN" value="${cateItems[7].name }" />
-					</c:when>
-					<c:otherwise>
-						<c:set var="cateItemN" value="전체" />
-					</c:otherwise>
-				</c:choose>
+			<c:forEach var="article" items="${articles}" begin="0" end="${fn:length(articles)}" step="1" >
+				<c:set var="cateItemN" value="전체" />
+				<c:forEach var="i" begin="1" end="${fn:length(cateItems)}" step="1">
+					<c:if test="${article.cateItemId == i}">
+						<c:set var="cateItemN" value="${cateItems[i-1].name}" />
+					</c:if>
+				</c:forEach>
 			<li>
 				<div><i class="fab fa-free-code-camp"></i></div>
 				<div class="articleId">${article.id }</div> 

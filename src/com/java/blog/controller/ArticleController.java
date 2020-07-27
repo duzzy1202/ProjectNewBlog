@@ -164,6 +164,7 @@ public class ArticleController extends Controller {
 		int id = Util.getInt(req, "id");
 		
 		/* 댓글 페이징 */
+		/*
 		int page = 1;
 		if (!Util.empty(req, "page") && Util.isNum(req, "page")) {
 			page = Util.getInt(req, "page");
@@ -176,6 +177,7 @@ public class ArticleController extends Controller {
 		req.setAttribute("totalCount", totalCount);
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("page", page);
+		*/
 		
 		/* 조회수 기능 */
 		articleService.increaseHit(id);
@@ -185,7 +187,7 @@ public class ArticleController extends Controller {
 		req.setAttribute("article", article);
 		
 		/* 댓글 리스트 가져오기 */
-		List<ArticleReply> replys = articleService.getForPrintListReplys(id, itemsInAPage, page);
+		List<ArticleReply> replys = articleService.getForPrintListReplys(id);
 		req.setAttribute("replys", replys);
 		
 		/* 현재 로그인된 이용자 가져오기 */
