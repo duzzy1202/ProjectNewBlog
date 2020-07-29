@@ -102,6 +102,13 @@ public abstract class Controller {
 
 	private String doGuard() {
 		boolean isloggedIn = (boolean) req.getAttribute("isLoggedIn");
+		
+		Member loggedInMember;
+		int isMailAuthed = 0;
+		if (isloggedIn) {
+			loggedInMember = (Member) req.getAttribute("loggedInMember");
+			isMailAuthed = loggedInMember.getMailAuthStatus();
+		}
 
 		// 로그인에 관련된 가드 시작
 		boolean needToLogin = false;
@@ -159,6 +166,33 @@ public abstract class Controller {
 			return "html:<script> alert('로그아웃 후 이용해주세요.'); history.back(); </script>";
 		}
 		// 로그아웃에 관련된 가드 끝
+		
+		// 메일인증에 관련된 가드 시작
+		boolean needToMailAuth = false;
+
+		switch (controllerName) {
+		case "article":
+			switch (actionMethodName) {
+			case "write":
+			case "doWrite":
+			case "writeReply":
+				needToMailAuth = true;
+				break;
+			}
+			break;
+
+		case "home":
+			switch (actionMethodName) {
+			case "writeChat":
+				needToMailAuth = true;
+				break;
+			}
+			break;
+		}
+		if (isloggedIn & needToMailAuth && isMailAuthed == 0) {
+			return "html:<script> alert('이메일 인증 후 이용하실 수 있습니다. \\n인증은 [내 정보] 에서 가능합니다.'); location.href = '../member/myInfo'; </script>";
+		}
+		// 메일인증에 관련되 가드 끝
 
 		return null;
 	}

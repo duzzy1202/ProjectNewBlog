@@ -82,7 +82,7 @@
 					autocomplete="off" id="chattext" autofocus> <input
 					type="hidden" name="memberId" value="${loggedInMemberId}">
 					
-				<c:if test="${isLoggedIn}" >
+				<c:if test="${isLoggedIn && loggedInMember.mailAuthStatus == 1}" >
 				<button class="submit" type='button'
 					onclick="submitChatForm(inputChat); return false;">[ > ]</button>
 				</c:if>

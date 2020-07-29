@@ -61,8 +61,8 @@
 					</form>
 				</li>
 				<c:choose>
-					<c:when test="${currentMember == null }"></c:when>
-					<c:when test="${reply.memberId == currentMemeber.id }">
+					<c:when test="${loggedInMember == null }"></c:when>
+					<c:when test="${reply.memberId == loggedInMember.id }">
 						<div class="reply-buttons" style="display: flex; justify-content: flex-end;">
 							<input type="button" name="updateReply" value="수정" style="margin: 5px;" onclick="javascript:changeDisplayBlock(${reply.id })">
 							<form class="deleteReply" method="POST" action="deleteReply" style="margin: 5px; padding: 0;"> 
@@ -86,13 +86,16 @@
 		<div class="write-reply">
 			<form class="input-reply" method="POST" action="writeReply" onsubmit="submitReplyForm(this); return false;">
 				<c:choose>
-					<c:when test="${currentMember == null }">
+					<c:when test="${loggedInMember == null }">
 						<textarea name="replyBody">로그인 후에 댓글 작성 가능합니다.</textarea>
+					</c:when>
+					<c:when test="${loggedInMember.mailAuthStatus == 0}">
+						<textarea name="replyBody">이메일 인증 후에 작성 가능합니다.</textarea>
 					</c:when>
 					<c:otherwise>
 						<textarea name="replyBody"></textarea>
 						<input class="submit" type='submit' value='등록하기'> 
-						<input type="hidden" name="replyMemberId" value="${currentMember.id }"> 
+						<input type="hidden" name="replyMemberId" value="${loggedInMember.id }"> 
 						<input type="hidden" name="articleId" value="${article.id }">
 					</c:otherwise>
 				</c:choose>

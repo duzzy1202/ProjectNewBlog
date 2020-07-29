@@ -336,8 +336,8 @@ html {
 	position: absolute;
 	display: block;
 	padding: 13px;
-	right: -526px;
-	width: 500px;
+	right: -626px;
+	width: 600px;
 	animation-duration: 15s;
  	animation-name: slidein;
  	animation-iteration-count: infinite;
@@ -347,7 +347,7 @@ html {
 }
 @keyframes slidein {
   from {
-    right: -526px;
+    right: -626px;
   }
 
   to {
@@ -922,36 +922,136 @@ html {
 
 
 /* 어바웃 미 */
-.aboutme-box .con>img {
+
+.aboutme-box .con {
 	background-color: black;
-	display: block;
+	background: rgba(0, 0, 0, 0.7);
+	border-radius: 30px;
+	width: 60%;
 	position: absolute;
-	top: 15%;
-	left: 40%;
+	left: 50%;
 	transform: translateX(-50%);
+	height: 600px;
+	top: 15%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	color: white;
+}
+
+.aboutme-box .con > .aboutme-catebox {
+	font-size: 2rem;
+	height: 90%;
+	width: 15%;
+}
+.aboutme-box .con > .aboutme-catebox > ul > li {
+	border-top: 2px solid grey;
+	border-bottom: 2px solid grey;
+	margin-top: 10px;
+}
+.aboutme-box .con > .aboutme-catebox > ul > li > a {
+	display: block;
+	padding: 5px;
+	text-align: right;
+	width: 40%;
+	transition: width .5s;
+}
+
+.aboutme-box .con > .aboutme-catebox > ul > li:hover > a {
+	width: 80%;
+}
+
+.aboutme-box .con > .right-screen {
+	width: 80%;
+	height: 90%;
+	background-color: black;
+	background: rgba(180, 180, 180, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
 	border-radius: 10px;
 }
 
-.aboutme-box .con>.aboutme-body {
+.aboutme-box > .con > .right-screen > .aboutme-body {
 	background-color: black;
-	background: rgba(0, 0, 0, 0.8);
-	display: block;
-	width: 300px;;
-	height: 640px;
-	position: absolute;
-	top: 15%;
-	left: 70%;
-	transform: translateX(-50%);
+	background: rgba(0, 0, 0, 0.7);
+	width: 94%;
+	height: 90%;
 	color: white;
 	font-size: 1.5rem;
 	font-family: 'Sunflower', sans-serif;
 	padding: 20px;
 	border-radius: 10px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
-.aboutme-box .con>.aboutme-body>span {
+.aboutme-box > .con > .right-screen > .first-screen {
+	display: flex;
+	opacity: 1;
+	visibility: visible;
+}
+
+.aboutme-box > .con > .right-screen > .first-screen > .pic {
+	width: 300px;
+	height: 300px;
+	background-color: grey;
+	padding:0;
+}
+
+.aboutme-box > .con > .right-screen > .first-screen > .pic > img {
+	width:100%;
+	height:100%;
+	margin:0;
+}
+
+.aboutme-box > .con > .right-screen > .first-screen > .introduce {
+	width: 55%;
+	height: 100%;
+	align-items: flex-start;
+}
+
+.aboutme-box > .con > .right-screen > .first-screen > .introduce > h2 {
 	display: block;
-	padding: 15px;
+	text-align: center;
+}
+
+.aboutme-box > .con > .right-screen > .first-screen > .introduce > span {
+	display: block;
+	padding: 10px;
+}
+
+.aboutme-box > .con > .right-screen > .second-screen {
+	display:none;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.aboutme-box > .con > .right-screen > .second-screen > .history {
+	width: 100%;
+	height: 100%;
+}
+
+.aboutme-box > .con > .right-screen > .second-screen > .history > h2 {
+	display: block;
+	text-align: center;
+	margin:0;
+	padding: 10px;
+}
+
+.aboutme-box > .con > .right-screen > .second-screen > .history > .history-body {
+	overflow: auto;
+	height: 85%;
+}
+
+.aboutme-box > .con > .right-screen > .second-screen > .history > .history-body > span {
+	display: block;
+	padding: 8px;
+	font-size: 1.2rem;
+	margin-left: 10px;
 }
 
 /* 시계 */
