@@ -12,6 +12,7 @@ public class Member extends Dto {
 	private int level;
 	private String mailAuthCode;
 	private int mailAuthStatus;
+	private int delStatus;
 	
 	public Member(Map<String, Object> row) {
 		super(row);
@@ -25,6 +26,7 @@ public class Member extends Dto {
 		this.level = (int) row.get("level");
 		this.mailAuthCode = (String) row.get("mailAuthCode");
 		this.mailAuthStatus = (int) row.get("mailAuthStatus");
+		this.delStatus = (int) row.get("delStatus");
 	}
 
 	public String getLoginId() {
@@ -97,6 +99,14 @@ public class Member extends Dto {
 
 	public void setMailAuthStatus(int mailAuthStatus) {
 		this.mailAuthStatus = mailAuthStatus;
+	}
+	
+	public int getDelStatus() {
+		return delStatus;
+	}
+
+	public void setDelStatus(int delStatus) {
+		this.delStatus = delStatus;
 	}
 
 	@Override

@@ -103,12 +103,32 @@ public class MemberController extends Controller {
 		String loginId = req.getParameter("loginId");
 		String loginPw = req.getParameter("loginPwReal");
 		String loginPwConfirm = req.getParameter("loginPwConfirmReal");
+		String nickname = req.getParameter("nickname");
+		String email = req.getParameter("email");
 		
 		if (!loginPw.equals(loginPwConfirm)) {
 			return "html:<script> alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.'); history.back(); </script>";
 		}
+		
+		HttpSession session = req.getSession();
+		int currentMemberId = (int)session.getAttribute("loggedInMemberId");
+		Member currentMember = memberService.getMemberById(currentMemberId);
+		
+		if (!currentMember.getNickname().equals(nickname) ) {
+			boolean isJoinableNickname = memberService.isJoinableNickname(nickname);
+			if ( isJoinableNickname == false ) {
+				return String.format("html:<script> alert('%s(은)는 이미 사용중인 닉네임 입니다.'); history.back(); </script>", nickname);
+			}
+		}
+		
+		if (!currentMember.getEmail().equals(email) ) {
+			boolean isJoinableEmail = memberService.isJoinableEmail(email);
+			if ( isJoinableEmail == false ) {
+				return String.format("html:<script> alert('%s(은)는 이미 사용중인 이메일 입니다.'); history.back(); </script>", email);
+			}
+		}
 
-		memberService.updateMember(loginId, loginPw);
+		memberService.updateMember(loginId, loginPw, nickname, email);
 		
 		return "html:<script> alert('회원정보가 수정되었습니다.'); location.replace('/blog/s/member/myInfo'); </script>";
 	}

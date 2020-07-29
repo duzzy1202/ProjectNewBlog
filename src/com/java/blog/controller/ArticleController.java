@@ -152,6 +152,16 @@ public class ArticleController extends Controller {
 		int cateItemId = Util.getInt(req, "cateItem");
 
 		int writerId = Util.getInt(req, "writerId");
+		
+		HttpSession session = req.getSession();
+		int currentMemberId = (int)session.getAttribute("loggedInMemberId");
+		Member currentMember = memberService.getMemberById(currentMemberId);
+		
+		if (cateItemId == 9) {
+			if (currentMember.getLevel() != 10) {
+				return "html:<script> alert('공지사항은 관리자만 작성 가능합니다.'); history.back(); </script>"; 
+			}
+		}
 
 		int id = articleService.insertWrittenArticle(cateItemId, title, body, writerId);
 

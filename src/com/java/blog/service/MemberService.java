@@ -60,8 +60,8 @@ public class MemberService extends Service {
 		return memberDao.getMemberByNameAndEmail(name, email);
 	}
 
-	public void updateMember(String loginId, String loginPw) {
-		memberDao.updateMember(loginId, loginPw);
+	public void updateMember(String loginId, String loginPw, String nickname, String email) {
+		memberDao.updateMember(loginId, loginPw, nickname, email);
 	}
 
 	public void updateMailAuthStatus(int memberId) {

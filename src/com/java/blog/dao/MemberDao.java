@@ -35,6 +35,7 @@ public class MemberDao extends Dao {
 		secSql.append(", level = 1 ");
 		secSql.append(", mailAuthCode = ? ", mailAuthCode);
 		secSql.append(", mailAuthStatus = 0 ");
+		secSql.append(", delStatus = 0 ");
 		
 		int id = DBUtil.insert(dbConn, secSql);
 		
@@ -144,12 +145,14 @@ public class MemberDao extends Dao {
 		return new Member(DBUtil.selectRow(dbConn, secSql));
 	}
 
-	public void updateMember(String loginId, String loginPw) {
+	public void updateMember(String loginId, String loginPw, String nickname, String email) {
 		SecSql secSql = new SecSql();
 
 		secSql.append("UPDATE member");
 		secSql.append("SET updateDate = NOW()");
 		secSql.append(", loginPw = ? ", loginPw);
+		secSql.append(", nickname = ? ", nickname);
+		secSql.append(", email = ? ", email);
 		secSql.append("WHERE loginId = ? ", loginId);
 
 		int id = DBUtil.update(dbConn, secSql);
