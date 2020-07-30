@@ -26,6 +26,9 @@ body {
 	overflow: hidden;
 }
 
+.form1 .message {
+	color: red;
+}
 /* 라이브러리 */
 .border-red {
 	border: 3px solid red;
@@ -131,6 +134,7 @@ html {
 	background-color: black;
 	background-repeat: no-repeat;
 	background-size: cover;
+	
 }
 
 /* 메인 로고 */
@@ -257,11 +261,11 @@ html {
 	height: 80px;
 }
 */
-
-.top-bar .menu-box-1 > ul ul > li > a {
+.top-bar .menu-box-1>ul ul>li>a {
 	position: absolute;
 	display: flex;
-	transition: width .5s, background-color .5s, top .3s ease .2s, opacity .5s, visibility .5s;
+	transition: width .5s, background-color .5s, top .3s ease .2s, opacity
+		.5s, visibility .5s;
 	top: 240px;
 	left: 100%;
 	opacity: 0;
@@ -279,40 +283,49 @@ html {
 	border-left: 2px solid skyblue;
 }
 
-.top-bar .menu-box-1 > ul> li:hover > ul > li > a {
+.top-bar .menu-box-1>ul>li:hover>ul>li>a {
 	opacity: 1;
 	visibility: visible;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(1) > a {
+
+.top-bar .menu-box-1>ul>li:hover>ul>li:nth-child(1)>a {
 	top: 60px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(2) > a {
+
+.top-bar .menu-box-1>ul>li:hover>ul>li:nth-child(2)>a {
 	top: 120px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(3) > a {
+
+.top-bar .menu-box-1>ul>li:hover>ul>li:nth-child(3)>a {
 	top: 180px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(4) > a {
+
+.top-bar .menu-box-1>ul>li:hover>ul>li:nth-child(4)>a {
 	top: 240px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(5) > a {
+
+.top-bar .menu-box-1>ul>li:hover>ul>li:nth-child(5)>a {
 	top: 300px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(6) > a {
+
+.top-bar .menu-box-1>ul>li:hover>ul>li:nth-child(6)>a {
 	top: 360px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(7) > a {
+
+.top-bar .menu-box-1>ul>li:hover>ul>li:nth-child(7)>a {
 	top: 420px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(8) > a {
+
+.top-bar .menu-box-1>ul>li:hover>ul>li:nth-child(8)>a {
 	top: 480px;
 }
-.top-bar .menu-box-1 > ul > li:hover > ul > li:nth-child(9) > a {
+
+.top-bar .menu-box-1>ul>li:hover>ul>li:nth-child(9)>a {
 	top: 0px;
 	z-index: 1;
 }
 
-.top-bar .menu-box-1 ul ul > li:hover > a {
+.top-bar .menu-box-1 ul ul>li:hover>a {
 	display: flex;
 	background-color: black;
 	color: orangered;
@@ -332,30 +345,30 @@ html {
 	font-size: 1.2rem;
 }
 
-.top-notice > .moiving-notice > a {
+.top-notice>.moiving-notice>a {
 	position: absolute;
 	display: block;
 	padding: 13px;
 	right: -626px;
 	width: 600px;
 	animation-duration: 15s;
- 	animation-name: slidein;
- 	animation-iteration-count: infinite;
- 	animation-timing-function: linear;
- 	overflow: hidden;
+	animation-name: slidein;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	overflow: hidden;
 	text-overflow: ellipsis;
 }
-@keyframes slidein {
-  from {
-    right: -626px;
-  }
 
-  to {
-    right: 130%;
-  }
+@
+keyframes slidein {from { right:-626px;
+	
 }
 
+to {
+	right: 130%;
+}
 
+}
 
 /* 모바일 배경 */
 .mobile-background {
@@ -707,7 +720,8 @@ html {
 	flex-wrap: wrap;
 	color: white;
 }
-.detail-box .detail-body .bottom-box > span {
+
+.detail-box .detail-body .bottom-box>span {
 	width: 50%;
 }
 
@@ -716,7 +730,8 @@ html {
 	justify-content: center;
 	margin: 10px;
 }
-.detail-box .detail-body .buttons > div {
+
+.detail-box .detail-body .buttons>div {
 	margin: 0 20px;
 	border: 1px solid skyblue;
 	padding: 5px;
@@ -737,63 +752,69 @@ html {
 	padding: 20px;
 }
 
-.reply-box > .reply-list-box > .reply-list ul li {
+.reply-box>.reply-list-box>.reply-list ul li {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
 	border-radius: 10px;
 	display: flex;
-	flex-wrap : wrap;
+	flex-wrap: wrap;
 	font-family: 'Sunflower', sans-serif;
 	color: white;
 	border-bottom: 1px solid white;
 	margin-top: 10px;
 }
-.reply-box > .reply-list-box > .reply-list > ul > li > div {
+
+.reply-box>.reply-list-box>.reply-list>ul>li>div {
 	padding: 10px;
 	border-radius: 5px;
 }
-.reply-box > .reply-list-box > .reply-list .writer {
+
+.reply-box>.reply-list-box>.reply-list .writer {
 	width: 55%;
 	border-bottom: 1px solid grey;
 }
-.reply-box > .reply-list-box > .reply-list .replyRegdate {
+
+.reply-box>.reply-list-box>.reply-list .replyRegdate {
 	width: 35%;
 	border-bottom: 1px solid grey;
 }
-.reply-box > .reply-list-box > .reply-list .replyBody {
+
+.reply-box>.reply-list-box>.reply-list .replyBody {
 	width: 100%;
 }
 
-.reply-box > .reply-list-box > .write-reply {
+.reply-box>.reply-list-box>.write-reply {
 	diplay: block;
-	padding : 20px;
+	padding: 20px;
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
 	border-radius: 10px;
 	border: 1px solid grey;
 }
-.reply-box > .reply-list-box > .write-reply > form > textarea {
+
+.reply-box>.reply-list-box>.write-reply>form>textarea {
 	width: 100%;
 	height: 60px;
 	resize: none;
 }
 
-.reply-box > .reply-list-box > .page-box > ul > li.current>a {
+.reply-box>.reply-list-box>.page-box>ul>li.current>a {
 	color: orangered;
 }
 
-.reply-box > .reply-list-box > .reply-list > ul > li > .update-reply {
+.reply-box>.reply-list-box>.reply-list>ul>li>.update-reply {
 	display: none;
 	margin: 3px;
 	width: 95%;
 }
 
-.reply-box > .reply-list-box > .reply-list > ul > li > .update-reply > textarea {
+.reply-box>.reply-list-box>.reply-list>ul>li>.update-reply>textarea {
 	margin: 3px;
 	width: 95%;
 	resize: none;
 }
-.reply-box > .reply-list-box > .reply-list > ul > .reply-buttons {
+
+.reply-box>.reply-list-box>.reply-list>ul>.reply-buttons {
 	display: flex;
 	justify-content: flex-end;
 }
@@ -920,9 +941,7 @@ html {
 	transform: translateX(-50%);
 }
 
-
 /* 어바웃 미 */
-
 .aboutme-box .con {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.7);
@@ -940,17 +959,19 @@ html {
 	color: white;
 }
 
-.aboutme-box .con > .aboutme-catebox {
+.aboutme-box .con>.aboutme-catebox {
 	font-size: 2rem;
 	height: 90%;
 	width: 15%;
 }
-.aboutme-box .con > .aboutme-catebox > ul > li {
+
+.aboutme-box .con>.aboutme-catebox>ul>li {
 	border-top: 2px solid grey;
 	border-bottom: 2px solid grey;
 	margin-top: 10px;
 }
-.aboutme-box .con > .aboutme-catebox > ul > li > a {
+
+.aboutme-box .con>.aboutme-catebox>ul>li>a {
 	display: block;
 	padding: 5px;
 	text-align: right;
@@ -958,11 +979,11 @@ html {
 	transition: width .5s;
 }
 
-.aboutme-box .con > .aboutme-catebox > ul > li:hover > a {
+.aboutme-box .con>.aboutme-catebox>ul>li:hover>a {
 	width: 80%;
 }
 
-.aboutme-box .con > .right-screen {
+.aboutme-box .con>.right-screen {
 	width: 80%;
 	height: 90%;
 	background-color: black;
@@ -974,7 +995,7 @@ html {
 	border-radius: 10px;
 }
 
-.aboutme-box > .con > .right-screen > .aboutme-body {
+.aboutme-box>.con>.right-screen>.aboutme-body {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.7);
 	width: 94%;
@@ -989,65 +1010,66 @@ html {
 	align-items: center;
 }
 
-.aboutme-box > .con > .right-screen > .first-screen {
+.aboutme-box>.con>.right-screen>.first-screen {
 	display: flex;
 	opacity: 1;
 	visibility: visible;
 }
 
-.aboutme-box > .con > .right-screen > .first-screen > .pic {
+.aboutme-box>.con>.right-screen>.first-screen>.pic {
 	width: 300px;
 	height: 300px;
 	background-color: grey;
-	padding:0;
+	padding: 0;
 }
 
-.aboutme-box > .con > .right-screen > .first-screen > .pic > img {
-	width:100%;
-	height:100%;
-	margin:0;
+.aboutme-box>.con>.right-screen>.first-screen>.pic>img {
+	width: 100%;
+	height: 100%;
+	margin: 0;
 }
 
-.aboutme-box > .con > .right-screen > .first-screen > .introduce {
+.aboutme-box>.con>.right-screen>.first-screen>.introduce {
 	width: 55%;
 	height: 100%;
 	align-items: flex-start;
 }
 
-.aboutme-box > .con > .right-screen > .first-screen > .introduce > h2 {
+.aboutme-box>.con>.right-screen>.first-screen>.introduce>h2 {
 	display: block;
 	text-align: center;
 }
 
-.aboutme-box > .con > .right-screen > .first-screen > .introduce > span {
+.aboutme-box>.con>.right-screen>.first-screen>.introduce>span {
 	display: block;
 	padding: 10px;
 }
 
-.aboutme-box > .con > .right-screen > .second-screen {
-	display:none;
+.aboutme-box>.con>.right-screen>.second-screen {
+	display: none;
 	opacity: 0;
 	visibility: hidden;
 }
 
-.aboutme-box > .con > .right-screen > .second-screen > .history {
+.aboutme-box>.con>.right-screen>.second-screen>.history {
 	width: 100%;
 	height: 100%;
 }
 
-.aboutme-box > .con > .right-screen > .second-screen > .history > h2 {
+.aboutme-box>.con>.right-screen>.second-screen>.history>h2 {
 	display: block;
 	text-align: center;
-	margin:0;
+	margin: 0;
 	padding: 10px;
 }
 
-.aboutme-box > .con > .right-screen > .second-screen > .history > .history-body {
+.aboutme-box>.con>.right-screen>.second-screen>.history>.history-body {
 	overflow: auto;
 	height: 85%;
 }
 
-.aboutme-box > .con > .right-screen > .second-screen > .history > .history-body > span {
+.aboutme-box>.con>.right-screen>.second-screen>.history>.history-body>span
+	{
 	display: block;
 	padding: 8px;
 	font-size: 1.2rem;
@@ -1110,7 +1132,7 @@ html {
 	border-radius: 10px;
 }
 
-.doWrite-box>.con>.doWrite-body > form > div > span {
+.doWrite-box>.con>.doWrite-body>form>div>span {
 	color: white;
 	font-family: 'Sunflower', sans-serif;
 	font-size: 1.5rem;
@@ -1140,7 +1162,7 @@ html {
 	margin-right: auto;
 }
 
-.doWrite-box>.con>.doWrite-body>.input-article>.input-body > div {
+.doWrite-box>.con>.doWrite-body>.input-article>.input-body>div {
 	width: 800px;
 	height: 500px;
 	color: black;
@@ -1162,7 +1184,6 @@ html {
 	background: rgba(0, 0, 0, 0.5);
 	display: block;
 	width: 40%;
-	height: 550px;
 	position: absolute;
 	top: 14%;
 	left: 50%;
@@ -1197,8 +1218,11 @@ html {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
 	display: flex;
+	flex-wrap: wrap;
 	padding: 15px;
 	border-radius: 10px;
+	width: 100%;
+	justify-content: center;
 }
 
 .join-box>.con>.join-body>.member-join>div>span {
@@ -1207,14 +1231,21 @@ html {
 	font-size: 1.5rem;
 	margin-left: 0;
 	margin-right: auto;
+	width: 40%;
 }
 
 .join-box>.con>.join-body>.member-join>div>input {
-	width: 200px;
+	width: 40%;
 	height: 30px;
 	font-size: 20px;
 	margin-left: auto;
 	margin-right: 0;
+}
+
+.join-box>.con>.join-body>.member-join>div>.message-msg {
+	width: 100%;
+	text-align: right;
+	padding-top: 8px;
 }
 
 .join-box>.con>.join-body>.member-join>.submit {
@@ -1293,13 +1324,15 @@ html {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
-.login-box > .con > .findbox {
-	 display: block; 
-	 text-align: center;
-	 margin-top: 15px;
-	 margin-bottom: 15px;
+
+.login-box>.con>.findbox {
+	display: block;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
-.login-box > .con > .findbox > a {
+
+.login-box>.con>.findbox>a {
 	display: block;
 	margin: 10px;
 	color: white;
@@ -1307,11 +1340,12 @@ html {
 	font-style: italic;
 }
 /* 채팅박스 */
-.main-right > .chatting {
+.main-right>.chatting {
 	padding: 10px;
 	color: white;
 }
-.main-right > .chatting > .chatting-title {
+
+.main-right>.chatting>.chatting-title {
 	color: white;
 	font-size: 1.2rem;
 	font-family: 'Sunflower', sans-serif;
@@ -1321,7 +1355,7 @@ html {
 	padding: 3px;
 }
 
-.main-right > .chatting > .chatting-box  {
+.main-right>.chatting>.chatting-box {
 	padding: 15px;
 	font-size: 1rem;
 	font-family: 'Sunflower', sans-serif;
@@ -1331,7 +1365,7 @@ html {
 	margin-top: 10px;
 }
 
-.main-right > .chatting > .chatting-box .chatList {
+.main-right>.chatting>.chatting-box .chatList {
 	background-color: black;
 	background: rgba(150, 150, 150, 0.5);
 	display: flex;
@@ -1341,7 +1375,8 @@ html {
 	border: 1px solid grey;
 	padding: 3px;
 }
-.main-right > .chatting > .chatting-box .chatList .nick {
+
+.main-right>.chatting>.chatting-box .chatList .nick {
 	width: 53%;
 	background: rgba(0, 0, 0, 0.6);
 	padding: 3px;
@@ -1350,39 +1385,43 @@ html {
 	border-radius: 5px;
 	margin-right: 3px;
 }
-.main-right > .chatting > .chatting-box .chatList .time {
+
+.main-right>.chatting>.chatting-box .chatList .time {
 	width: 42%;
 	background: rgba(0, 0, 0, 0.6);
 	padding: 3px;
 	border-radius: 5px;
 }
-.main-right > .chatting > .chatting-box .chatList .body {
+
+.main-right>.chatting>.chatting-box .chatList .body {
 	width: 97%;
 	padding: 5px;
 	margin-top: 3px;
 	background: rgba(0, 0, 0, 0.6);
 	border-radius: 5px;
 }
-.main-right > .chatting > .chatting-box > form {
+
+.main-right>.chatting>.chatting-box>form {
 	position: absolute;
 	bottom: 2%;
 	width: 95%;
 	display: flex;
 }
-.main-right > .chatting > .chatting-box > form > .chattingBody {
+
+.main-right>.chatting>.chatting-box>form>.chattingBody {
 	resize: none;
 	height: 25px;
 	width: 80%;
 }
-.main-right > .chatting > .chatting-box > form > .submit {
+
+.main-right>.chatting>.chatting-box>form>.submit {
 	height: 25px;
 	width: 40px;
 	margin: 5px;
 }
 
 /* 비밀번호 찾기 화면 */
-
-.findPw-box >.con {
+.findPw-box>.con {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
 	display: block;
@@ -1394,7 +1433,7 @@ html {
 	border-radius: 10px;
 }
 
-.findPw-box >.con>.findPw-title {
+.findPw-box>.con>.findPw-title {
 	text-align: center;
 	font-family: 'Sunflower', sans-serif;
 	color: white;
@@ -1406,17 +1445,17 @@ html {
 	padding: 15px;
 }
 
-.findPw-box >.con>.findPw-body {
+.findPw-box>.con>.findPw-body {
 	display: flex;
 	justify-content: center;
 	margin: 0 30px;
 }
 
-.findPw-box >.con>.findPw-body >.findPw {
+.findPw-box>.con>.findPw-body>.findPw {
 	width: 75%;
 }
 
-.findPw-box >.con>.findPw-body >.findPw>div {
+.findPw-box>.con>.findPw-body>.findPw>div {
 	display: block;
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
@@ -1425,7 +1464,7 @@ html {
 	border-radius: 10px;
 }
 
-.findPw-box >.con>.findPw-body >.findPw >div>span {
+.findPw-box>.con>.findPw-body>.findPw>div>span {
 	color: white;
 	font-family: 'Sunflower', sans-serif;
 	font-size: 1.5rem;
@@ -1433,7 +1472,7 @@ html {
 	margin-right: auto;
 }
 
-.findPw-box >.con>.findPw-body >.findPw >div>input {
+.findPw-box>.con>.findPw-body>.findPw>div>input {
 	width: 200px;
 	height: 30px;
 	font-size: 20px;
@@ -1441,7 +1480,7 @@ html {
 	margin-right: 0;
 }
 
-.findPw-box >.con>.findPw-body >.findPw >.submit {
+.findPw-box>.con>.findPw-body>.findPw>.submit {
 	display: block;
 	padding: 8px;
 	margin-left: auto;
@@ -1451,8 +1490,7 @@ html {
 }
 
 /* 아이디 찾기 화면 */
-
-.findId-box >.con {
+.findId-box>.con {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
 	display: block;
@@ -1464,7 +1502,7 @@ html {
 	border-radius: 10px;
 }
 
-.findId-box >.con>.findId-title {
+.findId-box>.con>.findId-title {
 	text-align: center;
 	font-family: 'Sunflower', sans-serif;
 	color: white;
@@ -1476,17 +1514,17 @@ html {
 	padding: 15px;
 }
 
-.findId-box >.con>.findId-body {
+.findId-box>.con>.findId-body {
 	display: flex;
 	justify-content: center;
 	margin: 0 30px;
 }
 
-.findId-box >.con>.findId-body >.findId {
+.findId-box>.con>.findId-body>.findId {
 	width: 75%;
 }
 
-.findId-box >.con>.findId-body >.findId>div {
+.findId-box>.con>.findId-body>.findId>div {
 	display: block;
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
@@ -1495,7 +1533,7 @@ html {
 	border-radius: 10px;
 }
 
-.findId-box >.con>.findId-body >.findId >div>span {
+.findId-box>.con>.findId-body>.findId>div>span {
 	color: white;
 	font-family: 'Sunflower', sans-serif;
 	font-size: 1.5rem;
@@ -1503,7 +1541,7 @@ html {
 	margin-right: auto;
 }
 
-.findId-box >.con>.findId-body >.findId >div>input {
+.findId-box>.con>.findId-body>.findId>div>input {
 	width: 200px;
 	height: 30px;
 	font-size: 20px;
@@ -1511,7 +1549,7 @@ html {
 	margin-right: 0;
 }
 
-.findId-box >.con>.findId-body >.findId >.submit {
+.findId-box>.con>.findId-body>.findId>.submit {
 	display: block;
 	padding: 8px;
 	margin-left: auto;
@@ -1521,7 +1559,7 @@ html {
 }
 
 /* 회원 정보 화면 */
-.myInfo-box > .con {
+.myInfo-box>.con {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
 	display: block;
@@ -1533,7 +1571,7 @@ html {
 	border-radius: 10px;
 }
 
-.myInfo-box > .con > .myInfo-title {
+.myInfo-box>.con>.myInfo-title {
 	text-align: center;
 	font-family: 'Sunflower', sans-serif;
 	color: white;
@@ -1545,13 +1583,13 @@ html {
 	padding: 15px;
 }
 
-.myInfo-box > .con > .myInfo-body {
+.myInfo-box>.con>.myInfo-body {
 	display: block;
 	justify-content: center;
 	margin: 0 30px;
-} 
+}
 
-.myInfo-box > .con > .myInfo-body > .Information {
+.myInfo-box>.con>.myInfo-body>.Information {
 	color: white;
 	font-family: 'Sunflower', sans-serif;
 	text-align: center;
@@ -1562,18 +1600,20 @@ html {
 	font-size: 1.5rem;
 	display: block;
 }
-.myInfo-box > .con > .myInfo-body > .Information > div { 
+
+.myInfo-box>.con>.myInfo-body>.Information>div {
 	margin: 10px;
 }
 
-.myInfo-box > .con > .myInfo-body > .btn-box {
+.myInfo-box>.con>.myInfo-body>.btn-box {
 	display: flex;
 	justify-content: center;
 	margin: 20px;
 	color: white;
 	text-decoration: underline;
 }
-.myInfo-box > .con > .myInfo-body > .btn-box > a {
+
+.myInfo-box>.con>.myInfo-body>.btn-box>a {
 	text-align: center;
 	padding: 15px;
 	border-radius: 5px;
@@ -1588,7 +1628,8 @@ html {
 	top: 10px;
 	right: 10px;
 }
-.welcome > .welcomeBox {
+
+.welcome>.welcomeBox {
 	text-align: center;
 	background-color: black;
 	background: rgba(0, 0, 0, 0.8);
@@ -1597,4 +1638,80 @@ html {
 	font-size: 1.3rem;
 	font-family: 'Sunflower', sans-serif;
 	padding: 20px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.welcome>.welcomeBox > span {
+	width: 90%;
+}
+
+.welcome>.welcomeBox > a {
+	width: 90%;
+	text-align: center;
+}
+
+/* 쪽지함 */
+
+.message-box {
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	height: 700px;	
+}
+
+.message-box > .con {
+	
+}
+
+.message-box > .con > .message-box-title {
+	color: white;
+	font-size: 2rem; 
+	text-align: center;
+	padding: 15px;
+}
+
+.message-box > .con > .message-box-body > .message-box-body-top {
+	display: flex;
+	color: white;
+	justify-content: space-around;
+	padding: 10px;
+}
+
+.message-box > .con > .message-box-body > .message-box-body-bottom {
+	width: 90%;
+	border-radius: 15px;
+	background-color: black;
+	background: rgba(150, 150, 150, 0.5);
+	margin-left: 50%;
+	transform: translatex(-50%);
+	padding: 5px;
+}
+
+.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list {
+	height: 500px;
+}
+
+.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list > ul {
+	display: flex;
+	color: white;
+	padding: 8px;
+}
+.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list > ul > li {
+	padding: 0 5px;
+}
+.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list > ul > li:nth-child(1) {
+	width: 20%;
+	border-right: 1px solid white;
+	text-align: center
+}
+.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list > ul > li:nth-child(2) {
+	width: 57%;
+	border-right: 1px solid white;
+}
+.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list > ul > a {
+	background-color: grey;
+	padding: 2px;
+	border: 1px solid white;
+	color: black;
+	margin: 0 5px;
 }

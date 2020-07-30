@@ -12,6 +12,7 @@ import com.java.blog.dto.ArticleReply;
 import com.java.blog.dto.CateItem;
 import com.java.blog.dto.Chat;
 import com.java.blog.dto.Member;
+import com.java.blog.dto.Message;
 
 public class ArticleService extends Service {
 
@@ -102,8 +103,15 @@ public class ArticleService extends Service {
 	}
 
 	public Article getLastestNoticeArticle() {
-		// TODO Auto-generated method stub
 		return articleDao.getLastestNoticeArticle();
+	}
+
+	public List<Message> getMessageList(int page, int itemsInAPage) {
+		return articleDao.getMessageList(page, itemsInAPage);
+	}
+
+	public int getMessagesCount(int id) {
+		return articleDao.getMessagesCount(id);
 	}
 
 }

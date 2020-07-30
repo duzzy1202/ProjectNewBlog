@@ -60,6 +60,29 @@
 	</script>
 </c:if>
 
+<script>
+if (!param.jsAction) {
+	param.jsAction = '';
+}
+
+var jsActions = param.jsAction.split(',');
+
+for ( var key in jsActions) {
+	var jsActionFuncName = jsActions[key];
+
+	$(function() {
+		setTimeout(function() {
+			if (window[jsActionFuncName]) {
+				window[jsActionFuncName]();
+			} else {
+				console.error("jsAction으로 요청받은, " + jsActionFuncName
+						+ " 함수는 존재하지 않아서 실행하지 못했습니다.");
+			}
+		}, 100);
+	});
+}
+</script>
+
 </head>
 
 <body>
@@ -101,6 +124,7 @@
 			<c:choose>
 				<c:when test="${isLoggedIn}">
 					<span>[ ${loggedInMember.nickname} ]님</span>
+					<a href="#" onclick="window.open('/blog/s/home/message', '쪽지관리창','width=600, height=700'); return false">쪽지</a>
 				</c:when>
 				<c:otherwise>
 					<span>[ Guest ]님</span>

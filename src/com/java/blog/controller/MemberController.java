@@ -54,9 +54,23 @@ public class MemberController extends Controller {
 			return doActionAuthMail();
 		case "doAuthMail" :
 			return doActionDOAuthMail();
+		case "getLoginIdDup":
+			return actionGetLoginIdDup();
 		}
 
 		return "";
+	}
+	
+	private String actionGetLoginIdDup() {
+		String loginId = req.getParameter("loginId");
+
+		boolean isJoinableLoginId = memberService.isJoinableLoginId(loginId);
+
+		if (isJoinableLoginId) {
+			return "json:{\"msg\":\"사용할 수 있는 아이디 입니다.\", \"resultCode\": \"S-1\", \"loginId\":\"" + loginId + "\"}";
+		} else {
+			return "json:{\"msg\":\"사용할 수 없는 아이디 입니다.\", \"resultCode\": \"F-1\", \"loginId\":\"" + loginId + "\"}";
+		}
 	}
 	
 	private String doActionDOAuthMail() {
@@ -104,7 +118,6 @@ public class MemberController extends Controller {
 		String loginPw = req.getParameter("loginPwReal");
 		String loginPwConfirm = req.getParameter("loginPwConfirmReal");
 		String nickname = req.getParameter("nickname");
-		String email = req.getParameter("email");
 		
 		if (!loginPw.equals(loginPwConfirm)) {
 			return "html:<script> alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.'); history.back(); </script>";
@@ -120,15 +133,15 @@ public class MemberController extends Controller {
 				return String.format("html:<script> alert('%s(은)는 이미 사용중인 닉네임 입니다.'); history.back(); </script>", nickname);
 			}
 		}
-		
+		/*
 		if (!currentMember.getEmail().equals(email) ) {
 			boolean isJoinableEmail = memberService.isJoinableEmail(email);
 			if ( isJoinableEmail == false ) {
 				return String.format("html:<script> alert('%s(은)는 이미 사용중인 이메일 입니다.'); history.back(); </script>", email);
 			}
 		}
-
-		memberService.updateMember(loginId, loginPw, nickname, email);
+		 */
+		memberService.updateMember(loginId, loginPw, nickname);
 		
 		return "html:<script> alert('회원정보가 수정되었습니다.'); location.replace('/blog/s/member/myInfo'); </script>";
 	}

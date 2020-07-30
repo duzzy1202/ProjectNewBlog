@@ -145,14 +145,13 @@ public class MemberDao extends Dao {
 		return new Member(DBUtil.selectRow(dbConn, secSql));
 	}
 
-	public void updateMember(String loginId, String loginPw, String nickname, String email) {
+	public void updateMember(String loginId, String loginPw, String nickname) {
 		SecSql secSql = new SecSql();
 
 		secSql.append("UPDATE member");
 		secSql.append("SET updateDate = NOW()");
 		secSql.append(", loginPw = ? ", loginPw);
 		secSql.append(", nickname = ? ", nickname);
-		secSql.append(", email = ? ", email);
 		secSql.append("WHERE loginId = ? ", loginId);
 
 		int id = DBUtil.update(dbConn, secSql);

@@ -12,8 +12,8 @@
 			<h1>회원가입</h1>
 		</div>
 		<div class="join-body">
-			<form class="member-join" method="POST" action="doJoin" onsubmit="submitJoinForm(this); return false;">
-				<div class="join-loginId"><span>ID</span> <input type="text" name="loginId" value="" maxlength="20"></div>
+			<form class="member-join" method="POST" action="doJoin" onsubmit="JoinForm__submit(this); return false;">
+				<div class="join-loginId"><span>ID</span><input type="text" name="loginId" value="" maxlength="20" onkeyup="JoinForm__checkLoginIdDup(this);" ><div class="message-msg"></div></div>
 				<div class="join-loginPw"><span>비밀번호</span> <input type="password" name="loginPw" value="" maxlength="20"></div>
 				<div class="join-loginPwConfirm"><span>비밀번호 확인</span> <input type="password" name="loginPwConfirm" value="" maxlength="20"></div>
 				<div class="join-name"><span>이름</span> <input type="text" name="name" value="" maxlength="10"></div>
@@ -33,8 +33,9 @@
 <script>
 /* 입력관련 */
 var joinFormSubmitted = false;
+var JoinForm__validLoginId = '';
 
-function submitJoinForm(form) {
+function JoinForm__submit(form) {
 	if (joinFormSubmitted) {
 		alert('처리 중입니다.');
 		return;
@@ -48,6 +49,13 @@ function submitJoinForm(form) {
 
 		return;
 	}
+
+	if (form.loginId.value != JoinForm__validLoginId) {
+		alert('다른 아이디를 입력해주세요.');
+		form.loginId.focus();
+		return;
+	}
+	
 	if (form.loginId.value.indexOf(' ') != -1) {
 		alert('아이디를 영문소문자와 숫자의 조합으로 입력해주세요.')
 		form.loginId.focus();
@@ -107,5 +115,27 @@ function submitJoinForm(form) {
 
 	form.submit();
 	joinFormSubmitted = true;
+}
+
+function JoinForm__checkLoginIdDup(input) {
+	var form = input.form;
+	form.loginId.value = form.loginId.value.trim();
+	if (form.loginId.value.length == 0) {
+		return;
+	}
+	$.get('getLoginIdDup', {
+		loginId : form.loginId.value
+	}, function(data) {
+		var $message = $(form.loginId).next();
+		if (data.resultCode.substr(0, 2) == 'S-') {
+			$message.empty().append(
+					'<div style="color:green;">' + data.msg + '</div>');
+			JoinForm__validLoginId = data.loginId;
+		} else {
+			$message.empty().append(
+					'<div style="color:red;">' + data.msg + '</div>');
+			JoinForm__validLoginId = '';
+		}
+	}, 'json');
 }
 </script>
