@@ -68,4 +68,8 @@ public class MemberService extends Service {
 		memberDao.updateMailAuthStatus(memberId);
 		
 	}
+
+	public Member getMemberByNickname(String receiverNickname) {
+		return memberDao.getMemberByNickname(receiverNickname);
+	}
 }

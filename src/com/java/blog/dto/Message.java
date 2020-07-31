@@ -60,5 +60,13 @@ public class Message extends Dto{
 	public void setReadStatus(int readStatus) {
 		this.readStatus = readStatus;
 	}
+
+	public int getDelStatus() {
+		return delStatus;
+	}
+
+	public void setDelStatus(int delStatus) {
+		this.delStatus = delStatus;
+	}
 	
 }

@@ -19,12 +19,20 @@ public class MessageService extends Service {
 		messageDao = new MessageDao(dbConn);
 	}
 
-	public List<Message> getMessageList(int page, int itemsInAPage) {
-		return messageDao.getMessageList(page, itemsInAPage);
+	public List<Message> getReceivedMessageList(int page, int itemsInAPage, int id) {
+		return messageDao.getReceivedMessageList(page, itemsInAPage, id);
 	}
 
 	public int getMessagesCount(int id) {
 		return messageDao.getMessagesCount(id);
+	}
+
+	public List<Message> getSentMessageList(int page, int itemsInAPage) {
+		return messageDao.getSentMessageList(page, itemsInAPage);
+	}
+
+	public void sendMessage(String title, String body, int writerId, int receiverId) {
+		messageDao.sendMessage(title, body, writerId, receiverId);
 	}
 
 }

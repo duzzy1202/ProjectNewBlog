@@ -1666,6 +1666,11 @@ html {
 	padding: 10px;
 }
 
+.message-box>.con>.message-box-body>.message-box-body-top > a{
+	border: 1px solid grey;
+	padding: 3px;
+}
+
 .message-box>.con>.message-box-body>.message-box-body-bottom {
 	width: 90%;
 	border-radius: 15px;
@@ -1714,3 +1719,29 @@ html {
 	color: black;
 	margin: 0 5px;
 }
+.messageWrite-box {
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	height: 700px;
+}
+
+.messageWrite-box > .con > .messageWrite-title {
+	color: white;
+	text-align: center;
+}
+
+.messageWrite-box > .con > .messageWrite-title > .input-message {
+	width: 95%;
+	border-radius: 15px;
+	background-color: black;
+	background: rgba(150, 150, 150, 0.5);
+	
+}
+
+.messageWrite-box > .con > .messageWrite-body > .input-message > .inputs {
+	display: flex;
+	justify-content: space-around;
+	color: white;
+}
+
+

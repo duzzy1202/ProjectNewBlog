@@ -165,4 +165,15 @@ public class MemberDao extends Dao {
 
 		int id = DBUtil.update(dbConn, secSql);
 	}
+
+	public Member getMemberByNickname(String receiverNickname) {
+		SecSql secSql = new SecSql();
+
+		secSql.append("SELECT * ");
+		secSql.append("FROM member ");
+		secSql.append("WHERE 1 ");
+		secSql.append("AND nickname = ? ", receiverNickname);
+
+		return new Member(DBUtil.selectRow(dbConn, secSql));
+	}
 }

@@ -24,7 +24,7 @@ public class MessageDao extends Dao {
 		this.dbConn = dbConn;
 	}
 
-	public List<Message> getMessageList(int page, int itemsInAPage) {
+	public List<Message> getReceivedMessageList(int page, int itemsInAPage, int id) {
 		SecSql secSql = new SecSql();
 		
 		int limitFrom = (page - 1) * itemsInAPage;
@@ -35,7 +35,8 @@ public class MessageDao extends Dao {
 		secSql.append("INNER JOIN member AS M");
 		secSql.append("ON MS.fromMemberId = M.id");
 		secSql.append("WHERE 1");
-		secSql.append("ORDER BY id ASC ");
+		secSql.append("AND toMemberId = ? ", id);
+		secSql.append("ORDER BY id DESC ");
 		secSql.append("LIMIT ?, ? ", limitFrom, itemsInAPage);
 		
 		List<Map<String, Object>> rows = DBUtil.selectRows(dbConn, secSql);
@@ -44,6 +45,8 @@ public class MessageDao extends Dao {
 		for (Map<String, Object> row : rows) {
 			messages.add(new Message(row));
 		}
+		
+		
 		
 		return messages;
 	}
@@ -57,5 +60,44 @@ public class MessageDao extends Dao {
 
 		int count = DBUtil.selectRowIntValue(dbConn, secSql);
 		return count;
+	}
+
+	public List<Message> getSentMessageList(int page, int itemsInAPage) {
+		SecSql secSql = new SecSql();
+		
+		int limitFrom = (page - 1) * itemsInAPage;
+		
+		secSql.append("SELECT MS.* ");
+		secSql.append(", M.nickname AS extra__messageReceiver ");
+		secSql.append("FROM message AS MS");
+		secSql.append("INNER JOIN member AS M");
+		secSql.append("ON MS.toMemberId = M.id");
+		secSql.append("WHERE 1");
+		secSql.append("ORDER BY id DESC ");
+		secSql.append("LIMIT ?, ? ", limitFrom, itemsInAPage);
+		
+		List<Map<String, Object>> rows = DBUtil.selectRows(dbConn, secSql);
+		List<Message> messages = new ArrayList<>();
+
+		for (Map<String, Object> row : rows) {
+			messages.add(new Message(row));
+		}
+		
+		return messages;
+	}
+
+	public void sendMessage(String title, String body, int writerId, int receiverId) {
+		SecSql secSql = new SecSql();
+
+		secSql.append("INSERT INTO message ");
+		secSql.append("SET regDate = NOW()");
+		secSql.append(", title = ? ", title);
+		secSql.append(", body = ? ", body);
+		secSql.append(", fromMemberId = ? ", writerId);
+		secSql.append(", toMemberId = ? ", receiverId);
+		secSql.append(", readStatus = '0' ");
+		secSql.append(", delStatus = '0' ");
+
+		int id = DBUtil.insert(dbConn, secSql);
 	}
 }
