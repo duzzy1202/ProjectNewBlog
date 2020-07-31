@@ -67,15 +67,6 @@ function submitJoinForm(form) {
 		return;
 	}
 
-	/* 이메일 입력 검사 */
-	form.email.value = form.email.value.trim();
-	if (form.email.value.length == 0) {
-		alert('이메일이 입력되지 않았습니다.');
-		form.email.focus();
-
-		return;
-	}
-
 	form.loginPwReal.value = sha256(form.loginPw.value);
 	form.loginPwConfirmReal.value = sha256(form.loginPwConfirm.value);
 	form.loginPw.value = '';
@@ -83,5 +74,6 @@ function submitJoinForm(form) {
 
 	form.submit();
 	joinFormSubmitted = true;
+	
 }
 </script>

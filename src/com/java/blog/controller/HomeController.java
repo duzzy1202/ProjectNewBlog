@@ -28,39 +28,11 @@ public class HomeController extends Controller {
 			return doActionWriteChat();
 		case "deleteAllChats":
 			return doActionDeleteAllChats();
-		case "message":
-			return doActionPopupMessage();
 		}
 
 		return "";
 	}
 	
-	private String doActionPopupMessage() {
-		
-		
-		int id = (int) session.getAttribute("loggedInMemberId");
-		
-		/* 쪽지 페이징 */
-		int page = 1; 
-		if (!Util.empty(req, "page") && Util.isNum(req, "page")) { 
-			page = Util.getInt(req, "page"); 
-		}
-		 
-		int itemsInAPage = 10; 
-		int totalCount = articleService.getMessagesCount(id);
-		int totalPage = (int) Math.ceil(totalCount / (double) itemsInAPage);
-		 
-		req.setAttribute("totalCount", totalCount); 
-		req.setAttribute("totalPage", totalPage); 
-		req.setAttribute("page", page);
-		
-		/* 쪽지 리스트 */
-		List<Message> messages = articleService.getMessageList(page, itemsInAPage);
-		req.setAttribute("messages", messages);
-		
-		return "home/message.jsp";
-	}
-
 	private String doActionDeleteAllChats() {
 		articleService.deleteAllChats();
 		return "html:<script> location.replace('/blog/s/home/main'); </script>";

@@ -136,10 +136,6 @@ public class ArticleController extends Controller {
 
 		req.setAttribute("currentMember", currentMember);
 
-		if (currentMember.getMailAuthStatus() == 0) {
-			return "html:<script> alert('이메일 인증 후에 작성하실수 있습니다.'); history.back(); </script>";
-		}
-
 		List<CateItem> cateItems = articleService.getForPrintCateItems();
 		req.setAttribute("cateItems", cateItems);
 

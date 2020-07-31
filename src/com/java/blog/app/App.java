@@ -13,6 +13,7 @@ import com.java.blog.controller.ArticleController;
 import com.java.blog.controller.Controller;
 import com.java.blog.controller.HomeController;
 import com.java.blog.controller.MemberController;
+import com.java.blog.controller.MessageController;
 import com.java.blog.exception.SQLErrorException;
 import com.java.blog.service.MailService;
 import com.java.blog.util.Util;
@@ -108,6 +109,9 @@ public class App {
 			break;
 		case "home":
 			controller = new HomeController(dbConn, actionMethodName, req, resp);
+			break;
+		case "message":
+			controller = new MessageController(dbConn, actionMethodName, req, resp);
 			break;
 		}
 

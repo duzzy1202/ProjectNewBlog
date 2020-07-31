@@ -89,7 +89,7 @@
 					<c:when test="${loggedInMember == null }">
 						<textarea name="replyBody">로그인 후에 댓글 작성 가능합니다.</textarea>
 					</c:when>
-					<c:when test="${loggedInMember.mailAuthStatus == 0}">
+					<c:when test="${loggedInMember.level < 2}">
 						<textarea name="replyBody">이메일 인증 후에 작성 가능합니다.</textarea>
 					</c:when>
 					<c:otherwise>

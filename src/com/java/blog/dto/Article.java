@@ -76,8 +76,6 @@ public class Article extends Dto {
 	}
 
 	public String getBodyForXTemplate() {
-		body.replaceAll("<!--", "");
-		body.replaceAll("-->", "");
 		return body.replaceAll("(?i)script", "<!--REPLACE:script-->");	
 	}
 }

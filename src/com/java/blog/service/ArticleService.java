@@ -106,12 +106,4 @@ public class ArticleService extends Service {
 		return articleDao.getLastestNoticeArticle();
 	}
 
-	public List<Message> getMessageList(int page, int itemsInAPage) {
-		return articleDao.getMessageList(page, itemsInAPage);
-	}
-
-	public int getMessagesCount(int id) {
-		return articleDao.getMessagesCount(id);
-	}
-
 }

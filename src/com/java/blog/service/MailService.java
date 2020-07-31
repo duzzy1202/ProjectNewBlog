@@ -1,5 +1,7 @@
 package com.java.blog.service;
 
+import java.util.UUID;
+
 import com.java.blog.dto.Member;
 import com.java.blog.util.Util;
 
@@ -59,16 +61,16 @@ public class MailService {
 		this.send(to, title, body);
 	}
 	
-	public void writeAuthMail(Member member) {
+	public void writeAuthMail(Member member, String authCode) {
 		String to = member.getEmail();
-		String code = member.getMailAuthCode();
 		String nickname = member.getNickname();
 			
 		String title = "LCF 블로그 이메일 인증 메일입니다.";
 		
 		String body = "[ " + nickname + "]님, LCF를 이용해주셔서 감사합니다!\n";
-		body += "아래의 링크를 클릭하여 이동하시면 인증이 완료됩니다.\n";
-		body += "[ https://littlecampfire.my.iu.gy/blog/s/member/doAuthMail?code="+ code +" ] \n";
+		body += "아래의 [인증하기]를 클릭하여 이동하시면 인증이 완료됩니다.\n";
+		body += "[ <html><a href=\"https://littlecampfire.my.iu.gy/blog/s/member/doAuthMail?code="+ authCode +"\""
+				+ " style=\"color: blue; font-size: 1.5rem; font-weight: bold;\">[인증하기]</a></html> ] \n";
 		body += "감사합니다.\n";
 		
 		this.send(to, title, body);

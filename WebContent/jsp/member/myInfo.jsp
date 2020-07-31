@@ -19,7 +19,7 @@
 				<div class="email">E-Mail : <span>${loggedInMember.email }</span></div>
 				<div class="email">E-Mail 인증여부 : 
 				<c:choose>
-					<c:when test="${loggedInMember.mailAuthStatus == 1 }"> <span> 인증 완료 </span> </c:when>
+					<c:when test="${loggedInMember.level >= 2 }"> <span> 인증 완료 </span> </c:when>
 					<c:otherwise> <span> 미인증 </span> </c:otherwise>
 				</c:choose>
 				</div>
@@ -27,7 +27,7 @@
 			</div>
 			<div class="btn-box">
 				<a href="/blog/s/member/checkPw">정보 변경하기</a>
-				<c:if test="${loggedInMember.mailAuthStatus == 0 }">
+				<c:if test="${loggedInMember.level < 2 }">
 					<a href="/blog/s/member/authMail">이메일 인증하기</a>
 				</c:if>
 			</div>

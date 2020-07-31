@@ -134,7 +134,6 @@ html {
 	background-color: black;
 	background-repeat: no-repeat;
 	background-size: cover;
-	
 }
 
 /* 메인 로고 */
@@ -359,16 +358,7 @@ html {
 	text-overflow: ellipsis;
 }
 
-@
-keyframes slidein {from { right:-626px;
-	
-}
-
-to {
-	right: 130%;
-}
-
-}
+@keyframes slidein { from { right:-626px; } to { right: 130%; } }
 
 /* 모바일 배경 */
 .mobile-background {
@@ -1642,42 +1632,41 @@ to {
 	flex-wrap: wrap;
 }
 
-.welcome>.welcomeBox > span {
+.welcome>.welcomeBox>span {
 	width: 90%;
 }
 
-.welcome>.welcomeBox > a {
+.welcome>.welcomeBox>a {
 	width: 90%;
 	text-align: center;
 }
 
 /* 쪽지함 */
-
 .message-box {
 	background-color: black;
 	background: rgba(0, 0, 0, 0.5);
-	height: 700px;	
+	height: 700px;
 }
 
-.message-box > .con {
+.message-box>.con {
 	
 }
 
-.message-box > .con > .message-box-title {
+.message-box>.con>.message-box-title {
 	color: white;
-	font-size: 2rem; 
+	font-size: 2rem;
 	text-align: center;
 	padding: 15px;
 }
 
-.message-box > .con > .message-box-body > .message-box-body-top {
+.message-box>.con>.message-box-body>.message-box-body-top {
 	display: flex;
 	color: white;
 	justify-content: space-around;
 	padding: 10px;
 }
 
-.message-box > .con > .message-box-body > .message-box-body-bottom {
+.message-box>.con>.message-box-body>.message-box-body-bottom {
 	width: 90%;
 	border-radius: 15px;
 	background-color: black;
@@ -1687,28 +1676,38 @@ to {
 	padding: 5px;
 }
 
-.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list {
+.message-box>.con>.message-box-body>.message-box-body-bottom>.message-box-list
+	{
 	height: 500px;
 }
 
-.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list > ul {
+.message-box>.con>.message-box-body>.message-box-body-bottom>.message-box-list>ul
+	{
 	display: flex;
 	color: white;
 	padding: 8px;
 }
-.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list > ul > li {
+
+.message-box>.con>.message-box-body>.message-box-body-bottom>.message-box-list>ul>li
+	{
 	padding: 0 5px;
 }
-.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list > ul > li:nth-child(1) {
+
+.message-box>.con>.message-box-body>.message-box-body-bottom>.message-box-list>ul>li:nth-child(1)
+	{
 	width: 20%;
 	border-right: 1px solid white;
 	text-align: center
 }
-.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list > ul > li:nth-child(2) {
+
+.message-box>.con>.message-box-body>.message-box-body-bottom>.message-box-list>ul>li:nth-child(2)
+	{
 	width: 57%;
 	border-right: 1px solid white;
 }
-.message-box > .con > .message-box-body > .message-box-body-bottom > .message-box-list > ul > a {
+
+.message-box>.con>.message-box-body>.message-box-body-bottom>.message-box-list>ul>a
+	{
 	background-color: grey;
 	padding: 2px;
 	border: 1px solid white;

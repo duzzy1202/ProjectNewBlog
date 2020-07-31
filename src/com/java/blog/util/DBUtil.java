@@ -5,15 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import com.java.blog.exception.SQLErrorException;
 
@@ -30,20 +26,23 @@ public class DBUtil {
 
 	public static List<Map<String, Object>> selectRows(Connection dbConn, SecSql sql) throws SQLErrorException {
 		List<Map<String, Object>> rows = new ArrayList<>();
-		
+
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			stmt = sql.getPreparedStatement(dbConn);
 			rs = stmt.executeQuery();
 			ResultSetMetaData metaData = rs.getMetaData();
 			int columnSize = metaData.getColumnCount();
+
 			while (rs.next()) {
 				Map<String, Object> row = new HashMap<>();
+
 				for (int columnIndex = 0; columnIndex < columnSize; columnIndex++) {
 					String columnName = metaData.getColumnName(columnIndex + 1);
 					Object value = rs.getObject(columnName);
+
 					if (value instanceof Long) {
 						int numValue = (int) (long) value;
 						row.put(columnName, numValue);
@@ -55,6 +54,7 @@ public class DBUtil {
 						row.put(columnName, value);
 					}
 				}
+
 				rows.add(row);
 			}
 		} catch (SQLException e) {
@@ -67,6 +67,7 @@ public class DBUtil {
 					throw new SQLErrorException("SQL 예외, rs 닫기, SQL : " + sql, e);
 				}
 			}
+
 			if (stmt != null) {
 				try {
 					stmt.close();
@@ -75,6 +76,7 @@ public class DBUtil {
 				}
 			}
 		}
+
 		return rows;
 	}
 
@@ -107,7 +109,7 @@ public class DBUtil {
 
 		return false;
 	}
-	
+
 	public static int insert(Connection dbConn, SecSql sql) {
 		int id = -1;
 
@@ -122,6 +124,7 @@ public class DBUtil {
 			if (rs.next()) {
 				id = rs.getInt(1);
 			}
+
 		} catch (SQLException e) {
 			throw new SQLErrorException("SQL 예외, SQL : " + sql, e);
 		} finally {
@@ -132,6 +135,7 @@ public class DBUtil {
 					throw new SQLErrorException("SQL 예외, rs 닫기, SQL : " + sql, e);
 				}
 			}
+
 			if (stmt != null) {
 				try {
 					stmt.close();
@@ -139,38 +143,12 @@ public class DBUtil {
 					throw new SQLErrorException("SQL 예외, stmt 닫기, SQL : " + sql, e);
 				}
 			}
+
 		}
+
 		return id;
 	}
-	
-	public static void justInsert(Connection dbConn, SecSql sql) {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
 
-		try {
-			stmt = sql.getPreparedStatement(dbConn);
-			stmt.executeUpdate();
-			rs = stmt.getGeneratedKeys();
-
-		} catch (SQLException e) {
-			throw new SQLErrorException("SQL 예외, SQL : " + sql, e);
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					throw new SQLErrorException("SQL 예외, rs 닫기, SQL : " + sql, e);
-				}
-			}
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					throw new SQLErrorException("SQL 예외, stmt 닫기, SQL : " + sql, e);
-				}
-			}
-		}
-	}
 	public static int update(Connection dbConn, SecSql sql) {
 		int affectedRows = 0;
 
@@ -192,6 +170,10 @@ public class DBUtil {
 		}
 
 		return affectedRows;
+	}
+
+	public static int delete(Connection dbConn, SecSql sql) {
+		return update(dbConn, sql);
 	}
 }
 

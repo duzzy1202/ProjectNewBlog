@@ -13,8 +13,7 @@
 <div class="lastest-article-list-box visible-md-up">
 	<div class="total-article-box1 visible-md-up">
 		<div class="total-article-box2">
-			<span> <i class="fab fa-free-code-camp"></i>최근 게시물<i
-				class="fab fa-free-code-camp"></i>
+			<span> <i class="fab fa-free-code-camp"></i>최근 게시물<i class="fab fa-free-code-camp"></i>
 			</span>
 		</div>
 	</div>
@@ -82,7 +81,7 @@
 					autocomplete="off" id="chattext" autofocus> <input
 					type="hidden" name="memberId" value="${loggedInMemberId}">
 					
-				<c:if test="${isLoggedIn && loggedInMember.mailAuthStatus == 1}" >
+				<c:if test="${isLoggedIn && loggedInMember.level >= 2 }" >
 				<button class="submit" type='button'
 					onclick="submitChatForm(inputChat); return false;">[ > ]</button>
 				</c:if>

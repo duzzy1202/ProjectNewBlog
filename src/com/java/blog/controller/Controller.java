@@ -11,8 +11,10 @@ import com.java.blog.dto.Article;
 import com.java.blog.dto.CateItem;
 import com.java.blog.dto.Member;
 import com.java.blog.service.ArticleService;
+import com.java.blog.service.AttrService;
 import com.java.blog.service.MailService;
 import com.java.blog.service.MemberService;
+import com.java.blog.service.MessageService;
 
 public abstract class Controller {
 	protected Connection dbConn;
@@ -24,6 +26,8 @@ public abstract class Controller {
 	protected ArticleService articleService;
 	protected MemberService memberService;
 	protected MailService mailService;
+	protected AttrService attrService;
+	protected MessageService messageService;
 	
 	protected String gmailId;
 	protected String gmailPw;
@@ -40,6 +44,7 @@ public abstract class Controller {
 		
 		articleService = new ArticleService(dbConn);
 		memberService = new MemberService(dbConn);
+		attrService = new AttrService(dbConn);
 	}
 	
 	public Controller(Connection dbConn, String actionMethodName, HttpServletRequest req, HttpServletResponse resp) {
@@ -51,6 +56,8 @@ public abstract class Controller {
 		
 		articleService = new ArticleService(dbConn);
 		memberService = new MemberService(dbConn);
+		attrService = new AttrService(dbConn);
+		messageService = new MessageService(dbConn);
 	}
 
 	public void beforeAction() {
@@ -104,10 +111,10 @@ public abstract class Controller {
 		boolean isloggedIn = (boolean) req.getAttribute("isLoggedIn");
 		
 		Member loggedInMember;
-		int isMailAuthed = 0;
+		int loggedInMemberLevel = 0;
 		if (isloggedIn) {
 			loggedInMember = (Member) req.getAttribute("loggedInMember");
-			isMailAuthed = loggedInMember.getMailAuthStatus();
+			loggedInMemberLevel = loggedInMember.getLevel();
 		}
 
 		// 로그인에 관련된 가드 시작
@@ -167,7 +174,7 @@ public abstract class Controller {
 		}
 		// 로그아웃에 관련된 가드 끝
 		
-		// 메일인증에 관련된 가드 시작
+		// 이메일 인증(level 2)에 관련된 가드 시작
 		boolean needToMailAuth = false;
 
 		switch (controllerName) {
@@ -189,7 +196,7 @@ public abstract class Controller {
 			}
 			break;
 		}
-		if (isloggedIn & needToMailAuth && isMailAuthed == 0) {
+		if (isloggedIn & needToMailAuth && loggedInMemberLevel < 2 ) {
 			return "html:<script> alert('이메일 인증 후 이용하실 수 있습니다. \\n인증은 [내 정보] 에서 가능합니다.'); location.href = '../member/myInfo'; </script>";
 		}
 		// 메일인증에 관련되 가드 끝

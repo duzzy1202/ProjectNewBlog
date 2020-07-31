@@ -1,6 +1,7 @@
 package com.java.blog.controller;
 
 import java.sql.Connection;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -84,12 +85,16 @@ public class MemberController extends Controller {
 	 	if ( session.getAttribute("loggedInMemberId") != null ) {
 	 		currentMemberId = (int)session.getAttribute("loggedInMemberId");
 	 		currentMember = articleService.getMemberById(currentMemberId);
+	 	} else {
+	 		return "html:<script> alert('로그인 후 이용해주시길 바랍니다.'); location.replace('/blog/s/member/login'); </script>";
 	 	}
 	 	
-	 	if (!currentMember.getMailAuthCode().equals(code)) {
+	 	String currentMemberAuthCode = attrService.getValue("member__"+ currentMember.getId() + "__extra__emailAuthCode");
+	 	
+	 	if (!currentMemberAuthCode.equals(code)) {
 	 		return "html:<script> alert('인증에 실패하였습니다. 다시 시도해주시기 바랍니다.'); location.replace('/blog/s/home/main'); </script>";
 	 	}
-		
+	 	
 	 	int memberId = currentMember.getId();
 	 	memberService.updateMailAuthStatus(memberId);
 		
@@ -108,7 +113,12 @@ public class MemberController extends Controller {
 	 	}
 		String email = currentMember.getEmail();
 	 	
-		mailService.writeAuthMail(currentMember);
+		String authCode = UUID.randomUUID().toString();
+		String attrName = "member__"+ currentMember.getId() + "__extra__emailAuthCode";
+		
+		attrService.setValue(attrName, authCode);
+		
+		mailService.writeAuthMail(currentMember, authCode);
 
 		return "html:<script> alert('["+ email +"]이메일로 인증 메일을 발송하였습니다.'); location.replace('/blog/s/member/myInfo'); </script>";
 	}
@@ -133,14 +143,7 @@ public class MemberController extends Controller {
 				return String.format("html:<script> alert('%s(은)는 이미 사용중인 닉네임 입니다.'); history.back(); </script>", nickname);
 			}
 		}
-		/*
-		if (!currentMember.getEmail().equals(email) ) {
-			boolean isJoinableEmail = memberService.isJoinableEmail(email);
-			if ( isJoinableEmail == false ) {
-				return String.format("html:<script> alert('%s(은)는 이미 사용중인 이메일 입니다.'); history.back(); </script>", email);
-			}
-		}
-		 */
+
 		memberService.updateMember(loginId, loginPw, nickname);
 		
 		return "html:<script> alert('회원정보가 수정되었습니다.'); location.replace('/blog/s/member/myInfo'); </script>";
@@ -288,9 +291,7 @@ public class MemberController extends Controller {
 			return String.format("html:<script> alert('%s(은)는 이미 사용중인 이메일 입니다.'); history.back(); </script>", email);
 		}
 		
-		String mailAuthCode = Util.makeMailAuthCode(loginId);
-		
-		memberService.insertJoinMember(loginId, loginPw, name, nickname, email, mailAuthCode);
+		memberService.insertJoinMember(loginId, loginPw, name, nickname, email);
 		
 		mailService.writeWelcomeMail(email, name, nickname);
 		

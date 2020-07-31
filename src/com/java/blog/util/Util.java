@@ -104,10 +104,7 @@ public class Util {
 			msg.setFrom(new InternetAddress(from, fromName));
 			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			msg.setSubject(title, "UTF-8");
-			msg.setText(body, "UTF-8");
-			
-			// 메일 내용을 html로 바꿔주는 코드
-			// msg.setContent(body, "text/html; charset=euc-kr");
+			msg.setContent(body, "text/html; charset=euc-kr");
 
 			Transport.send(msg);
 
@@ -124,34 +121,16 @@ public class Util {
 
 		return 1;
 	}
-
-	public static String makeMailAuthCode(String loginId) {
-		Random random = new Random();
-
-    	int fCode = random.nextInt(9999);
-    	int bCode = random.nextInt(9999);
-    	
-    	String Code = fCode + loginId + bCode;
-
-		return Code;
-	}
 	
 	public static String makeTempPw() {
 		Random random = new Random();
 
 		StringBuffer rdCode = new StringBuffer();
 
-		for (int i = 0; i < 20; i++) {
-
-			// rnd.nextBoolean() 는 랜덤으로 true, false 를 리턴. true일 시 랜덤 한 소문자를, false 일 시 랜덤 한
-			// 숫자를 StringBuffer 에 append 한다.
-
+		for (int i = 0; i < 10; i++) {
 			if (random.nextBoolean()) {
-
 				rdCode.append((char) ((int) (random.nextInt(26)) + 97));
-
 			} else {
-
 				rdCode.append((random.nextInt(10)));
 			}
 		}
