@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.java.blog.dto.Article;
+import com.java.blog.dto.ArticleReply;
 import com.java.blog.dto.Member;
 import com.java.blog.dto.Message;
 import com.java.blog.util.Util;
@@ -23,21 +25,46 @@ public class MessageController extends Controller {
 			return doActionPopupMessageMain();
 		case "sentMessageList":
 			return doActionSentMessageList();
-//		case "detailMessage":
-//			return doActionPopupMessage();
+		case "messageDetail":
+			return doActionMessageDetail();
 		case "writeMessage":
 			return doActionWriteMessage();
 		case "sendMessage":
 			return doActionDoWriteMessage();
-//		case "replyMessage":
-//			return doActionPopupMessage();
+		case "replyMessage":
+			return doActionReplyMessage();
 //		case "deleteMessage":
 //			return doActionPopupMessage();
 		}
 
 		return "";
 	}
-	
+
+	private String doActionReplyMessage() {
+		int id = Util.getInt(req, "id");
+		
+		Message message = messageService.getMessageById(id);
+		req.setAttribute("message", message);
+		
+		Member toMember = memberService.getMemberById(message.getFromMemberId());
+		req.setAttribute("toMember", toMember);
+		
+		return "message/replyMessage.jsp";
+	}
+
+	private String doActionMessageDetail() {
+		int id = Util.getInt(req, "id");
+
+		Message message = messageService.getMessageById(id);
+		req.setAttribute("message", message);
+		
+		int fromMemberId = message.getFromMemberId();
+		Member fromMember = memberService.getMemberById(fromMemberId);
+		req.setAttribute("fromMember", fromMember);
+
+		return "message/messageDetail.jsp";
+	}
+
 	private String doActionDoWriteMessage() {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");

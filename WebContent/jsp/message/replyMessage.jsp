@@ -12,12 +12,12 @@
 <div class="messageWrite-box">
 	<div class="con">
 		<div class="messageWrite-title">
-			<h1>쪽지 작성하기</h1>
+			<h1>쪽지 답장하기</h1>
 		</div>
 		<div class="messageWrite-body">
 			<form class="input-message" method="POST" action="sendMessage" onsubmit="submitWriteForm(this); return false">
 				<div class="input-receiver inputs">
-					<span>받는사람 닉네임</span> <input type="text" name="receiver" value="" maxlength="50">
+					<span>받는사람 닉네임</span> <span>${toMember.nickname }</span>
 				</div>
 				<div class="input-title inputs">
 					<span>제목</span> <input type="text" name="title" value="" maxlength="50">

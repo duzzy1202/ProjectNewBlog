@@ -35,4 +35,8 @@ public class MessageService extends Service {
 		messageDao.sendMessage(title, body, writerId, receiverId);
 	}
 
+	public Message getMessageById(int id) {
+		return messageDao.getMessageById(id);
+	}
+
 }

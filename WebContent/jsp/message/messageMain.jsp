@@ -22,15 +22,15 @@
 					<div class="message-box-list">
 						<c:choose>
 						<c:when test="${fn:length(receivedMessages) == 0 }" >
-							<div style="margin-left: 50%; transform: translatex(-50%); margin-top: 50px; color: white; text-align: center;">받은 메세시가 없습니다.</div>
+							<div style="margin-left: 50%; transform: translatex(-50%); margin-top: 50px; color: white; text-align: center;">받은 메세지가 없습니다.</div>
 						</c:when>
 						<c:otherwise>
-						<c:forEach var="message" begin="0" end="${fn:length(receivedMessages)}" step="1">
+						<c:forEach var="message" items="${receivedMessages }" begin="0" end="${fn:length(receivedMessages)}" step="1">
 							<ul>
-								<li>${message.fromMemberId }</li>
-								<li>${message.title }</li>
-								<a href="/blog/s/message/replyMessage">답장</a>
-								<a href="/blog/s/message/deleteMessage">삭제</a>
+								<li>${message.getExtra().get("messageWriter") }</li>
+								<li><a href="./messageDetail?id=${message.id }">${message.title }</a></li>
+								<a href="replyMessage?id=${message.id}">답장</a>
+								<a href="deleteMessage?id=${message.id}" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;">삭제</a>
 							</ul>
 						</c:forEach>
 						</c:otherwise>

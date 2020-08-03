@@ -1740,8 +1740,108 @@ html {
 
 .messageWrite-box > .con > .messageWrite-body > .input-message > .inputs {
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	color: white;
+	margin: 8px;
 }
 
+.messageWrite-box > .con > .messageWrite-body > .input-message > .inputs > span {
+	width: 40%;
+	text-align: center;
+}
 
+.messageWrite-box > .con > .messageWrite-body > .input-message > .inputs > input {
+	width: 40%;
+}
+
+.messageWrite-box > .con > .messageWrite-body > .input-message > .input-body {
+	display: block;
+	text-align: center;
+}
+
+.messageWrite-box > .con > .messageWrite-body > .input-message > .input-body > span {
+	display: block;
+	color: white;
+	margin: 8px;
+}
+.messageWrite-box > .con > .messageWrite-body > .input-message > .input-body > div {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 95%;
+}
+
+.messageWrite-box > .con > .messageWrite-body > .input-message > .submit {
+	display: block;
+	margin: 12px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.messageDetail-box {
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+	height: 700px;
+} 
+
+.messageDetail-box > .con > .messageDetail-title {
+	display: block;
+}
+
+.messageDetail-box > .con > .messageDetail-title > .messageDetail-title-box {
+	color: white;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	font-size: 1.3rem;
+	border-radius: 5px;
+	background-color: black;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.messageDetail-box > .con > .messageDetail-body {
+	background-color: grey;
+	background: rgba(100, 100, 100, 0.7);
+	width: 90%;
+	border-radius: 10px;
+	color: white;
+	margin-left: auto;
+	margin-right: auto;
+	height: 580px;
+}
+
+.messageDetail-box > .con > .messageDetail-body > .messageDetail-top-box {
+	display: flex;
+	justify-content: space-around;
+	padding: 10px;
+}
+
+.messageDetail-box > .con > .messageDetail-body > .messageDetail-top-box > span {
+	width: 45%;
+}
+
+.messageDetail-box > .con > .messageDetail-body > .messageDetail-body-box {
+	background-color: black;
+	background: rgba(200, 200, 200, .7);
+	width: 90%;
+	height: 80%;
+	overflow: auto;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+.messageDetail-box > .con > .messageDetail-body > .messageDetail-buttons {
+	display: flex;
+	justify-content: center;
+}
+
+.messageDetail-box > .con > .messageDetail-body > .messageDetail-buttons > .btn {
+	margin: 10px;
+	border-radius: 5px;
+	border: 2px solid grey;
+	padding: 3px;
+}

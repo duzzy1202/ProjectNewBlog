@@ -100,4 +100,17 @@ public class MessageDao extends Dao {
 
 		int id = DBUtil.insert(dbConn, secSql);
 	}
+
+	public Message getMessageById(int id) {
+		SecSql secSql = new SecSql();
+
+		secSql.append("SELECT * ");
+		secSql.append("FROM message ");
+		secSql.append("WHERE 1 ");
+		secSql.append("AND id = ? ", id);
+		
+		Message message = new Message(DBUtil.selectRow(dbConn, secSql));
+
+		return message;
+	}
 }
