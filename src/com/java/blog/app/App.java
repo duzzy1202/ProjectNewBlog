@@ -24,6 +24,7 @@ public class App {
 	private String gmailId;
 	private String gmailPw;
 	private MailService mailService;
+	private boolean isDelvelServer = true;
 
 	public App(HttpServletRequest req, HttpServletResponse resp, String gmailId, String gmailPw, MailService mailService) {
 		this.req = req;
@@ -31,6 +32,12 @@ public class App {
 		this.gmailId = gmailId;
 		this.gmailPw = gmailPw;
 		this.mailService = mailService;
+		
+		String profilesActive = System.getProperty("spring.profiles.active");
+		
+		if ( profilesActive != null && profilesActive.equals("production")) {
+			isDelvelServer = false;
+		}
 	}
 
 	private void loadDbDriver() throws IOException {
@@ -48,7 +55,11 @@ public class App {
 	}
 
 	private String getDbUrl() {
-		return "jdbc:mysql://site34.iu.gy:3306/site34?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull";
+		if (isDelvelServer) {
+			return "jdbc:mysql://localhost:3306/site34?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull";
+		}
+		
+		return "jdbc:mysql://101.101.210.210:3306/site34?serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull";
 	}
 
 	public void start() throws ServletException, IOException {
@@ -136,11 +147,17 @@ public class App {
 	}
 
 	private String getDbId() {
-		return "site34";
+		if (isDelvelServer) {
+			return "root";
+		}
+		return "duzzy";
 	}
 
 	private String getDbPassword() {
-		return "sbs123414";
+		if (isDelvelServer) {
+			return "";
+		}
+		return "wjdgks2651";
 	}
 
 }

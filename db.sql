@@ -64,7 +64,7 @@ CREATE TABLE `member` (
 
 /* articleReply 로 이름 변경 예정 */
 DROP TABLE IF EXISTS articleReply;
-CREATE TABLE reply (
+CREATE TABLE articleReply (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
@@ -93,25 +93,6 @@ CREATE TABLE message (
     delStatus TINYINT(1) UNSIGNED
 );
 
-
-SELECT *
-FROM article
-WHERE id = 60;
-
-
-
-SELECT * FROM article
-SELECT * FROM `member`
-SELECT * FROM cateItem
-SELECT * FROM articleReply
-SELECT * FROM chatting
-SELECT * FROM attr
-SELECT * FROM message
-
-ALTER TABLE message ADD delStatus TINYINT(1) UNSIGNED
-ALTER TABLE `member` CHANGE mailAuthCod mailAuthCode CHAR(255) NOT NULL
-ALTER TABLE reply MODIFY memberId INT(10) UNSIGNED NOT NULL
-ALTER TABLE reply RENAME articleReply
 
 DROP TABLE IF EXISTS attr;
 CREATE TABLE attr (

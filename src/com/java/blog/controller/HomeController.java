@@ -68,6 +68,9 @@ public class HomeController extends Controller {
 		req.setAttribute("replysCount", replys);
 		
 		int printChattingStart = articleService.getChattingCount() - 100;
+		if ( printChattingStart < 0 ) {
+			printChattingStart = 0;
+		}
 		
 		List<Chat> chattings = articleService.getChatting(printChattingStart);
 		req.setAttribute("chattings", chattings);
